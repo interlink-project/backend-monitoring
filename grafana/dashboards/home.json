@@ -23,8 +23,7 @@
   "fiscalYearStartMonth": 0,
   "gnetId": 893,
   "graphTooltip": 1,
-  "id": 1,
-  "iteration": 1648652933383,
+  "iteration": 1649838239342,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -1969,9 +1968,9 @@
       "error": false,
       "fontSize": "100%",
       "gridPos": {
-        "h": 10,
-        "w": 8,
-        "x": 16,
+        "h": 7,
+        "w": 12,
+        "x": 12,
         "y": 24
       },
       "id": 37,
@@ -2032,6 +2031,42 @@
       "type": "table-old"
     },
     {
+      "datasource": {
+        "type": "loki",
+        "uid": "P8E80F9AEF21F6940"
+      },
+      "gridPos": {
+        "h": 27,
+        "w": 24,
+        "x": 0,
+        "y": 31
+      },
+      "id": 39,
+      "options": {
+        "dedupStrategy": "none",
+        "enableLogDetails": true,
+        "prettifyLogMessage": false,
+        "showCommonLabels": false,
+        "showLabels": false,
+        "showTime": false,
+        "sortOrder": "Descending",
+        "wrapLogMessage": false
+      },
+      "pluginVersion": "8.4.4",
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "P8E80F9AEF21F6940"
+          },
+          "expr": "{image_name=\"backend-logging_worker\"}",
+          "refId": "A"
+        }
+      ],
+      "title": "Panel Title",
+      "type": "logs"
+    },
+    {
       "columns": [
         {
           "text": "Current",
@@ -2045,7 +2080,7 @@
         "h": 10,
         "w": 8,
         "x": 0,
-        "y": 31
+        "y": 58
       },
       "id": 36,
       "links": [],
@@ -2119,7 +2154,7 @@
         "h": 10,
         "w": 8,
         "x": 8,
-        "y": 31
+        "y": 58
       },
       "id": 35,
       "links": [],
@@ -2193,7 +2228,7 @@
       "type": "table-old"
     }
   ],
-  "refresh": "10s",
+  "refresh": "",
   "schemaVersion": 35,
   "style": "dark",
   "tags": [],
@@ -2391,6 +2426,6 @@
   "timezone": "browser",
   "title": "Docker and system monitoring",
   "uid": "tuVlyjEnz",
-  "version": 26,
+  "version": 2,
   "weekStart": ""
 }

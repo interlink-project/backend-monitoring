@@ -9,67 +9,6 @@ clients:
   - url: http://loki:3100/loki/api/v1/push
 
 scrape_configs:
-#  - job_name: system
-#    static_configs:
-#      - targets:
-#          - localhost
-#        labels:
-#          job: varlog
-#          __path__: /var/log/*log
-#
-#    pipeline_stages:
-#
-#      - cri: {}
-
-
-#  - job_name: container-logs # docker new path
-#    static_configs:
-#      - targets:
-#          - localhost
-#        labels:
-#          job: container_logs
-#          host: localhost
-##          __path__: /datadrive/docker/containers/*/*.log
-#          __path__: /var/lib/docker/containers/*/*.log
-#
-#    pipeline_stages:
-#      - json:
-#          expressions:
-#            stream: stream
-#            attrs: attrs
-#            tag: attrs.tag
-#
-#      - docker: {}
-#
-#      # --log-opt tag="{{.ImageName}}|{{.Name}}|{{.ImageFullID}}|{{.FullID}}"
-#      - regex:
-#          expression: (?P<image_name>((.*\/)?(?P<name>[^|]*[^|]))).(?P<container_name>(?:[^|]*[^|])).(?P<image_id>(?:[^|]*[^|])).(?P<container_id>(?:[^|]*[^|]))
-#          source: "tag"
-#
-##      - logfmt: # waiting till this stage is documented https://github.com/grafana/loki/issues/5384
-##          mapping:
-##            msg: msg
-##          source: output
-#
-#      - labels:
-#
-#          ## docker
-#
-##          output: output
-##          stream: stream
-##          log: log
-#
-#          ## regex
-#
-#          tag: tag
-#          name: name
-#          image_name: image_name
-#          container_name: container_name
-#          image_id: image_id
-#          container_id: container_id
-#
-#      - output: # which label will be shown as header
-#          source: output
 
   - job_name: user-logging
     static_configs:
@@ -77,8 +16,7 @@ scrape_configs:
           - localhost
         labels:
           job: user_loging
-          __path__: /var/lib/docker/containers/*/*.log
-#          __path__: /datadrive/docker/containers/*/*.log
+          __path__: /datadrive/docker/containers/*/*.log
 
     pipeline_stages:
 
@@ -87,49 +25,27 @@ scrape_configs:
             stream: stream
             attrs: attrs
             tag: attrs.tag
+            log: log
 
 #       --log-opt tag="{{.ImageName}}|{{.Name}}|{{.ImageFullID}}|{{.FullID}}"
       - regex:
           expression: (?P<image_name>((.*\/)?(?P<name>[^|]*[^|]))).(?P<container_name>(?:[^|]*[^|])).(?P<image_id>(?:[^|]*[^|])).(?P<container_id>(?:[^|]*[^|]))
           source: "tag"
 
-#      - match:
-#          pipeline_name: "app_user_logs"
-#          selector: '{container_name="logging"}'
-#          action: keep
-#          stages:
-#            - json:
-#                expresssions:
-#                  model: model
-#                  action: action
-#                  user_id: stream
-#                  service: service
 
-
-      - match:
-          selector: '{container_name!="logging"}'
-          action: drop
-          drop_counter_reason: other containers than logging
-
+      - json:
+          expressions:
+            action: action
+          source: "log"
 
       - labels:
 
-          ## docker
-
-          #          output: output
-          #          stream: stream
-          #          log: log
-
-          ## regex
-
-          content: content
-          tag: tag
-          name: name
+          action: action
           image_name: image_name
           container_name: container_name
           image_id: image_id
           container_id: container_id
-#          model:
-#          action:
-#          user_id:
-#          service:
+
+
+      - output:
+          source: log
