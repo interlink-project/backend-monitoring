@@ -1,6 +1,9 @@
-name: build-and-publish-docker-postgres
+name: build-and-publish-docker-monitoring
 
 on:
+  repository_dispatch:
+    types: [build-and-publish-docker-monitoring]
+
   push:
     branches:
       - "master"
