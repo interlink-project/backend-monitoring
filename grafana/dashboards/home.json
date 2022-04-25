@@ -23,7 +23,7 @@
   "fiscalYearStartMonth": 0,
   "gnetId": 893,
   "graphTooltip": 1,
-  "iteration": 1649838239342,
+  "iteration": 1650871036707,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -2059,7 +2059,7 @@
             "type": "loki",
             "uid": "P8E80F9AEF21F6940"
           },
-          "expr": "{image_name=\"backend-logging_worker\"}",
+          "expr": "{job_name=\"system\"}",
           "refId": "A"
         }
       ],
@@ -2424,8 +2424,8 @@
     ]
   },
   "timezone": "browser",
-  "title": "Docker and system monitoring",
+  "title": "Infrastructure Monitoring",
   "uid": "tuVlyjEnz",
-  "version": 2,
+  "version": 1,
   "weekStart": ""
 }
