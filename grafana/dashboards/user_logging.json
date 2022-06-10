@@ -3,7 +3,10 @@
     "list": [
       {
         "builtIn": 1,
-        "datasource": "-- Grafana --",
+        "datasource": {
+          "type": "datasource",
+          "uid": "grafana"
+        },
         "enable": true,
         "hide": true,
         "iconColor": "rgba(0, 211, 255, 1)",
@@ -22,10 +25,436 @@
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
   "id": 3,
-  "iteration": 1650608001705,
+  "iteration": 1653922135312,
   "links": [],
   "liveNow": false,
   "panels": [
+    {
+      "datasource": {
+        "type": "loki",
+        "uid": "P8E80F9AEF21F6940"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 0,
+        "y": 0
+      },
+      "id": 26,
+      "options": {
+        "colorMode": "none",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "8.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "P8E80F9AEF21F6940"
+          },
+          "expr": "sum(count_over_time({container_name=~\".*-interlink-project-eu-logging\",job=\"user_loging\"}[$interval] | json | (crud=\"false\" or frontend=\"true\") and action=\"CREATE\" and model=\"COPRODPROCESS\"))",
+          "queryType": "range",
+          "refId": "A"
+        }
+      ],
+      "title": "Coproduction Processes created on interval",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "loki",
+        "uid": "P8E80F9AEF21F6940"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 4,
+        "y": 0
+      },
+      "id": 28,
+      "options": {
+        "colorMode": "none",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "8.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "P8E80F9AEF21F6940"
+          },
+          "expr": "count(sum by (user_id)(count_over_time({container_name=~\".*-interlink-project-eu-logging\",job=\"user_loging\"}[$interval] | json | (crud=\"false\" or frontend=\"true\") and action=\"GET\" and model=\"COPRODPROCESS\")))",
+          "queryType": "range",
+          "refId": "A"
+        }
+      ],
+      "title": "Numer of unique users on interval",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "loki",
+        "uid": "P8E80F9AEF21F6940"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 8,
+        "y": 0
+      },
+      "id": 20,
+      "options": {
+        "colorMode": "none",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "8.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "P8E80F9AEF21F6940"
+          },
+          "expr": "sum(count_over_time({container_name=~\".*-interlink-project-eu-logging\",job=\"user_loging\"}[$interval] | json | (crud=\"false\" or frontend=\"true\") and action=\"CREATE\" and model=\"ASSET\"))",
+          "queryType": "range",
+          "refId": "A"
+        }
+      ],
+      "title": "Interlinkers created on interval",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "loki",
+        "uid": "P8E80F9AEF21F6940"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "continuous-GrYlRd"
+          },
+          "custom": {
+            "fillOpacity": 70,
+            "lineWidth": 0,
+            "spanNulls": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 0
+      },
+      "id": 9,
+      "options": {
+        "alignValue": "left",
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "mergeValues": true,
+        "rowHeight": 0.9,
+        "showValue": "auto",
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "8.4.4",
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "P8E80F9AEF21F6940"
+          },
+          "expr": "sum by (knowledgeinterlinker_name)(count_over_time({container_name=~\".*-interlink-project-eu-logging\",job=\"user_loging\"}[$interval] | json | (crud=\"false\" or frontend=\"true\") and action=\"CREATE\" and model=\"ASSET\" and knowledgeinterlinker_name!=\"\"))",
+          "legendFormat": "{{knowledgeinterlinker_name}}",
+          "queryType": "range",
+          "refId": "A"
+        }
+      ],
+      "title": "Deployed Knowledge Interlinkers by name",
+      "type": "state-timeline"
+    },
+    {
+      "datasource": {
+        "type": "loki",
+        "uid": "P8E80F9AEF21F6940"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 0,
+        "y": 4
+      },
+      "id": 24,
+      "options": {
+        "colorMode": "none",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "8.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "P8E80F9AEF21F6940"
+          },
+          "expr": "sum(count_over_time({container_name=~\".*-interlink-project-eu-logging\",job=\"user_loging\"}[7d] | json | (crud=\"false\" or frontend=\"true\") and action=\"CREATE\" and model=\"ASSET\"))",
+          "queryType": "range",
+          "refId": "A"
+        }
+      ],
+      "title": "Interlinkers created last 7 days",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "loki",
+        "uid": "P8E80F9AEF21F6940"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 4,
+        "y": 4
+      },
+      "id": 30,
+      "options": {
+        "colorMode": "none",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "8.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "P8E80F9AEF21F6940"
+          },
+          "expr": "sum(count_over_time({container_name=~\".*-interlink-project-eu-logging\",job=\"user_loging\"}[3d] | json | (crud=\"false\" or frontend=\"true\") and action=\"CREATE\" and model=\"ASSET\"))",
+          "queryType": "range",
+          "refId": "A"
+        }
+      ],
+      "title": "Interlinkers created last 3 days",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "loki",
+        "uid": "P8E80F9AEF21F6940"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 8,
+        "y": 4
+      },
+      "id": 22,
+      "options": {
+        "colorMode": "none",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "8.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "P8E80F9AEF21F6940"
+          },
+          "expr": "sum(count_over_time({container_name=~\".*-interlink-project-eu-logging\",job=\"user_loging\"}[24h] | json | (crud=\"false\" or frontend=\"true\") and action=\"CREATE\" and model=\"ASSET\"))",
+          "queryType": "range",
+          "refId": "A"
+        }
+      ],
+      "title": "Interlinkers created last 24h",
+      "type": "stat"
+    },
     {
       "datasource": {
         "type": "loki",
@@ -86,7 +515,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 0
+        "y": 8
       },
       "id": 8,
       "options": {
@@ -106,176 +535,12 @@
             "type": "loki",
             "uid": "P8E80F9AEF21F6940"
           },
-          "expr": "sum(count_over_time({image_name=\"backend-logging_worker\",job=\"user_loging\"}[$interval] | json | (crud=\"false\" or frontend=\"true\") and action=\"CREATE\" and model=\"ASSET\" and external_interlinker=\"false\"))",
+          "expr": "sum(count_over_time({container_name=~\".*-interlink-project-eu-logging\",job=\"user_loging\"}[$interval] | json | (crud=\"false\" or frontend=\"true\") and action=\"CREATE\" and model=\"ASSET\"))",
           "legendFormat": "Total Interlinkers",
           "refId": "A"
         }
       ],
       "title": "Interlinkers created",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "loki",
-        "uid": "P8E80F9AEF21F6940"
-      },
-      "description": "",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "continuous-GrYlRd"
-          },
-          "custom": {
-            "fillOpacity": 70,
-            "lineWidth": 0,
-            "spanNulls": false
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 9,
-        "w": 12,
-        "x": 12,
-        "y": 0
-      },
-      "id": 9,
-      "options": {
-        "alignValue": "left",
-        "legend": {
-          "displayMode": "list",
-          "placement": "bottom"
-        },
-        "mergeValues": true,
-        "rowHeight": 0.9,
-        "showValue": "auto",
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "pluginVersion": "8.4.4",
-      "targets": [
-        {
-          "datasource": {
-            "type": "loki",
-            "uid": "P8E80F9AEF21F6940"
-          },
-          "expr": "sum by (knowledgeinterlinker_name)(count_over_time({image_name=\"backend-logging_worker\",job=\"user_loging\"}[$interval] | json | (crud=\"false\" or frontend=\"true\") and action=\"CREATE\" and model=\"ASSET\" and external_interlinker=\"false\" and knowledgeinterlinker_name!=\"\"))",
-          "legendFormat": "{{knowledgeinterlinker_name}}",
-          "queryType": "range",
-          "refId": "A"
-        }
-      ],
-      "title": "Deployed Knowledge Interlinkers by name",
-      "type": "state-timeline"
-    },
-    {
-      "datasource": {
-        "type": "loki",
-        "uid": "P8E80F9AEF21F6940"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisGridShow": true,
-            "axisLabel": "Total",
-            "axisPlacement": "right",
-            "axisSoftMin": 0,
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "lineInterpolation": "stepAfter",
-            "lineStyle": {
-              "fill": "solid"
-            },
-            "lineWidth": 3,
-            "pointSize": 6,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "normal"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "decimals": 0,
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 9,
-        "w": 12,
-        "x": 0,
-        "y": 9
-      },
-      "id": 4,
-      "options": {
-        "legend": {
-          "calcs": [
-            "max"
-          ],
-          "displayMode": "table",
-          "placement": "right",
-          "sortBy": "Max",
-          "sortDesc": true
-        },
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "targets": [
-        {
-          "datasource": {
-            "type": "loki",
-            "uid": "P8E80F9AEF21F6940"
-          },
-          "expr": "sum by (softwareinterlinker_name)(count_over_time({image_name=\"backend-logging_worker\",job=\"user_loging\"}[$interval] | json | (crud=\"false\" or frontend=\"true\") and action=\"CREATE\" and model=\"ASSET\" and external_interlinker=\"false\"))",
-          "legendFormat": "{{softwareinterlinker_name}}",
-          "queryType": "range",
-          "refId": "A"
-        }
-      ],
-      "title": "Deployed Interlinkers by name",
       "type": "timeseries"
     },
     {
@@ -367,7 +632,7 @@
             "type": "loki",
             "uid": "P8E80F9AEF21F6940"
           },
-          "expr": "sum by (knowledgeinterlinker_name)(count_over_time({image_name=\"backend-logging_worker\",job=\"user_loging\"}[$interval] | json | (crud=\"false\" or frontend=\"true\") and action=\"CREATE\" and model=\"ASSET\" and external_interlinker=\"false\" and knowledgeinterlinker_name!=\"\"))",
+          "expr": "sum by (knowledgeinterlinker_name)(count_over_time({container_name=~\".*-interlink-project-eu-logging\",job=\"user_loging\"}[$interval] | json | (crud=\"false\" or frontend=\"true\") and action=\"CREATE\" and model=\"ASSET\" and knowledgeinterlinker_name!=\"\"))",
           "legendFormat": "{{knowledgeinterlinker_name}}",
           "queryType": "range",
           "refId": "A"
@@ -375,6 +640,169 @@
       ],
       "title": "Deployed Knowledge Interlinkers by name",
       "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "loki",
+        "uid": "P8E80F9AEF21F6940"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisGridShow": true,
+            "axisLabel": "Total",
+            "axisPlacement": "right",
+            "axisSoftMin": 0,
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "stepAfter",
+            "lineStyle": {
+              "fill": "solid"
+            },
+            "lineWidth": 3,
+            "pointSize": 6,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "normal"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "decimals": 0,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 0,
+        "y": 17
+      },
+      "id": 4,
+      "options": {
+        "legend": {
+          "calcs": [
+            "max"
+          ],
+          "displayMode": "table",
+          "placement": "right",
+          "sortBy": "Max",
+          "sortDesc": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "P8E80F9AEF21F6940"
+          },
+          "expr": "sum by (softwareinterlinker_name)(count_over_time({container_name=~\".*-interlink-project-eu-logging\",job=\"user_loging\"}[$interval] | json | (crud=\"false\" or frontend=\"true\") and action=\"CREATE\" and model=\"ASSET\"))",
+          "legendFormat": "{{softwareinterlinker_name}}",
+          "queryType": "range",
+          "refId": "A"
+        }
+      ],
+      "title": "Deployed Interlinkers by name",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "loki",
+        "uid": "P8E80F9AEF21F6940"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            }
+          },
+          "mappings": []
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 6,
+        "x": 12,
+        "y": 18
+      },
+      "id": 2,
+      "options": {
+        "displayLabels": [
+          "percent"
+        ],
+        "legend": {
+          "displayMode": "list",
+          "placement": "right",
+          "values": []
+        },
+        "pieType": "donut",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "8.4.4",
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "P8E80F9AEF21F6940"
+          },
+          "expr": "sum by (softwareinterlinker_name)(count_over_time({container_name=~\".*-interlink-project-eu-logging\",job=\"user_loging\"}[$interval] | json | (crud=\"false\" or frontend=\"true\") and action=\"CREATE\" and model=\"ASSET\"))",
+          "legendFormat": "{{softwareinterlinker_name}}",
+          "refId": "A"
+        }
+      ],
+      "title": "Deployed Interlinkers by name",
+      "type": "piechart"
     },
     {
       "datasource": {
@@ -436,7 +864,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 18
+        "y": 26
       },
       "id": 18,
       "options": {
@@ -456,162 +884,11 @@
             "type": "loki",
             "uid": "P8E80F9AEF21F6940"
           },
-          "expr": "sum (count_over_time({image_name=\"backend-logging_worker\",job=\"user_loging\"}[$interval] | json | (crud=\"false\" or frontend=\"true\") and action=\"CREATE\" model=\"COPRODPROCESS\"))",
+          "expr": "sum (count_over_time({container_name=~\".*-interlink-project-eu-logging\",job=\"user_loging\"}[$interval] | json | (crud=\"false\" or frontend=\"true\") and action=\"CREATE\" model=\"COPRODPROCESS\"))",
           "refId": "A"
         }
       ],
       "title": "Coproduction Processes Created",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "loki",
-        "uid": "P8E80F9AEF21F6940"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            }
-          },
-          "mappings": []
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 6,
-        "x": 12,
-        "y": 18
-      },
-      "id": 2,
-      "options": {
-        "displayLabels": [
-          "percent"
-        ],
-        "legend": {
-          "displayMode": "list",
-          "placement": "right",
-          "values": []
-        },
-        "pieType": "donut",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "pluginVersion": "8.4.4",
-      "targets": [
-        {
-          "datasource": {
-            "type": "loki",
-            "uid": "P8E80F9AEF21F6940"
-          },
-          "expr": "sum by (softwareinterlinker_name)(count_over_time({image_name=\"backend-logging_worker\",job=\"user_loging\"}[$interval] | json | (crud=\"false\" or frontend=\"true\") and action=\"CREATE\" and model=\"ASSET\" and external_interlinker=\"false\"))",
-          "legendFormat": "{{softwareinterlinker_name}}",
-          "refId": "A"
-        }
-      ],
-      "title": "Deployed Interlinkers by name",
-      "type": "piechart"
-    },
-    {
-      "datasource": {
-        "type": "loki",
-        "uid": "P8E80F9AEF21F6940"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 0,
-        "y": 26
-      },
-      "id": 14,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "hidden",
-          "placement": "bottom"
-        },
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "targets": [
-        {
-          "datasource": {
-            "type": "loki",
-            "uid": "P8E80F9AEF21F6940"
-          },
-          "expr": "sum by (user_id)(count_over_time({image_name=\"backend-logging_worker\",job=\"user_loging\"}[$interval] | json | (crud=\"false\" or frontend=\"true\") and action=\"CREATE\" model=\"TEAM\"))",
-          "refId": "A"
-        }
-      ],
-      "title": "Teams Created",
       "type": "timeseries"
     },
     {
@@ -693,11 +970,97 @@
             "type": "loki",
             "uid": "P8E80F9AEF21F6940"
           },
-          "expr": "sum by (user_id)(count_over_time({image_name=\"backend-logging_worker\",job=\"user_loging\"}[$interval] | json | (crud=\"false\" or frontend=\"true\") and action=\"CREATE\" model=\"ROLE\"))",
+          "expr": "sum by (user_id)(count_over_time({container_name=~\".*-interlink-project-eu-logging\",job=\"user_loging\"}[$interval] | json | (crud=\"false\" or frontend=\"true\") and action=\"CREATE\" model=\"ROLE\"))",
           "refId": "A"
         }
       ],
       "title": "Roles Created",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "loki",
+        "uid": "P8E80F9AEF21F6940"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 34
+      },
+      "id": 14,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "hidden",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "P8E80F9AEF21F6940"
+          },
+          "expr": "sum by (user_id)(count_over_time({container_name=~\".*-interlink-project-eu-logging\",job=\"user_loging\"}[$interval] | json | (crud=\"false\" or frontend=\"true\") and action=\"CREATE\" model=\"TEAM\"))",
+          "refId": "A"
+        }
+      ],
+      "title": "Teams Created",
       "type": "timeseries"
     },
     {
@@ -732,7 +1095,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 34
+        "y": 42
       },
       "id": 6,
       "options": {
@@ -756,7 +1119,7 @@
             "type": "loki",
             "uid": "P8E80F9AEF21F6940"
           },
-          "expr": "sum (count_over_time({image_name=\"backend-logging_worker\",job=\"user_loging\"}[$interval] | json | (crud=\"false\" or frontend=\"true\") and action=\"CREATE\" and model=\"ASSET\" and external_interlinker=\"false\"))",
+          "expr": "sum (count_over_time({container_name=~\".*-interlink-project-eu-logging\",job=\"user_loging\"}[$interval] | json | (crud=\"false\" or frontend=\"true\") and action=\"CREATE\" and model=\"ASSET\"))",
           "legendFormat": "{{user_id}}",
           "refId": "A"
         }
@@ -766,7 +1129,7 @@
     }
   ],
   "refresh": "5m",
-  "schemaVersion": 35,
+  "schemaVersion": 36,
   "style": "dark",
   "tags": [],
   "templating": {
@@ -777,8 +1140,8 @@
         "auto_min": "10s",
         "current": {
           "selected": false,
-          "text": "7d",
-          "value": "7d"
+          "text": "14d",
+          "value": "14d"
         },
         "description": "",
         "hide": 0,
@@ -846,12 +1209,12 @@
             "value": "1d"
           },
           {
-            "selected": true,
+            "selected": false,
             "text": "7d",
             "value": "7d"
           },
           {
-            "selected": false,
+            "selected": true,
             "text": "14d",
             "value": "14d"
           },
@@ -875,8 +1238,8 @@
   },
   "timepicker": {},
   "timezone": "",
-  "title": "User monitoring",
+  "title": "User Monitoring",
   "uid": "v2K2y7Q7z",
-  "version": 4,
+  "version": 2,
   "weekStart": "monday"
 }
