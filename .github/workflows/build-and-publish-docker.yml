@@ -30,8 +30,7 @@ jobs:
         id: docker_build_filebeat
         uses: docker/build-push-action@v2
         with:
-          context: ./filebeat/.
-          file: Dockerfile
+          context: ./filebeat
           push: true
           tags: |
             interlinkproject/backend-monitoring:filebeat.${{ github.ref_name }}
@@ -42,8 +41,7 @@ jobs:
         id: docker_build_grafana
         uses: docker/build-push-action@v2
         with:
-          context: ./filebeat/.
-          file: Dockerfile
+          context: ./grafana
           push: true
           tags: |
             interlinkproject/backend-monitoring:grafana.${{ github.ref_name }}
@@ -54,8 +52,7 @@ jobs:
         id: docker_build_loki
         uses: docker/build-push-action@v2
         with:
-          context: ./loki/.
-          file: Dockerfile
+          context: ./loki
           push: true
           tags: |
             interlinkproject/backend-monitoring:loki.${{ github.ref_name }}
@@ -66,8 +63,7 @@ jobs:
         id: docker_build_prometheus
         uses: docker/build-push-action@v2
         with:
-          context: ./prometheus/.
-          file: Dockerfile
+          context: ./prometheus
           push: true
           tags: |
             interlinkproject/backend-monitoring:prometheus.${{ github.ref_name }}
@@ -78,8 +74,7 @@ jobs:
         id: docker_build_promtail
         uses: docker/build-push-action@v2
         with:
-          context: ./promtail/.
-          file: Dockerfile
+          context: ./promtail
           push: true
           tags: |
             interlinkproject/backend-monitoring:promtail.${{ github.ref_name }}
