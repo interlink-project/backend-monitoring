@@ -3,16 +3,18 @@ version: "3.7"
 services:
 
   grafana:
-    image: grafana/grafana:latest
+    image: grafanadev
     container_name: ${PLATFORM_STACK_NAME}-grafana
     restart: unless-stopped
+    build:
+      context: ./grafana/.
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
     links:
       - prometheus:prometheus
       - loki:loki
     volumes:
-      - ./grafana/grafana.ini:/etc/grafana/grafana.ini
-      - ./grafana/provisioning:/etc/grafana/provisioning
-      - ./grafana/dashboards:/var/lib/grafana/dashboards
       - grafana-dashboards:/var/lib/grafana
       - grafana-data:/etc/grafana/
     labels:
@@ -36,11 +38,13 @@ services:
 
 
   prometheus:
-    image: prom/prometheus:latest
+    image: prometheusdev
     container_name: ${PLATFORM_STACK_NAME}-prometheus
     restart: unless-stopped
+    build:
+      context: ./prometheus/.
+      dockerfile: Dockerfile
     volumes:
-      - ./prometheus/:/etc/prometheus/
       - prometheus-data:/prometheus
     expose:
       - 9090
@@ -57,7 +61,7 @@ services:
         tag: "{{.ImageName}}|{{.Name}}|{{.ImageFullID}}|{{.FullID}}"
 
   cadvisor:
-    image: google/cadvisor:latest
+    image: google/cadvisor:v0.33.0
     container_name: ${PLATFORM_STACK_NAME}-monitoring_cadvisor
     restart: unless-stopped
     volumes:
@@ -77,7 +81,7 @@ services:
 
 
   node-exporter:
-    image: prom/node-exporter:latest
+    image: prom/node-exporter:v1.3.1
     container_name: ${PLATFORM_STACK_NAME}-monitoring_node_exporter
     restart: unless-stopped
     expose:
@@ -100,14 +104,16 @@ services:
 
 
   loki:
-    image: grafana/loki:main
+    image: grafana/loki:main-58718a5
     container_name: ${PLATFORM_STACK_NAME}-loki
+    build:
+      context: ./loki/.
+      dockerfile: Dockerfile
     restart: unless-stopped
     command: -config.file=/etc/loki/local-config.yaml
     ports:
       - "3100:3100"
     volumes:
-      - ./loki/loki-local-config.yml:/etc/loki/local-config.yaml
       - loki-data:/loki
     networks:
       - grafana-network
@@ -118,12 +124,14 @@ services:
 
 
   promtail:
-    image: grafana/promtail:2.4.1
+    image: promtaildev
     container_name: ${PLATFORM_STACK_NAME}-promtail
+    build:
+      context: ./promtail/.
+      dockerfile: Dockerfile
     restart: unless-stopped
     command: -config.file=/etc/promtail/config.yml
     volumes:
-      - ./promtail/promtail-config.yml:/etc/promtail/config.yml
       - /var/log:/var/log
       - /var/lib/docker/containers/:/var/lib/docker/containers/:ro
       - /datadrive/docker/containers/:/datadrive/docker/containers/:ro
@@ -139,15 +147,43 @@ services:
       options:
         tag: "{{.ImageName}}|{{.Name}}|{{.ImageFullID}}|{{.FullID}}"
 
+  filebeat:
+    image: filebeatdev
+    container_name: ${PLATFORM_STACK_NAME}-filebeat
+    build:
+      context: ./filebeat/.
+      dockerfile: Dockerfile
+    user: root
+    volumes:
+      - type: bind
+        source: /datadrive/docker/containers
+        target: /var/lib/docker/containers
+        read_only: true
+      - type: bind
+        source: /var/run/docker.sock
+        target: /var/run/docker.sock
+        read_only: true
+    command:
+      # Log to stderr.
+      - -e
+      # Disable config file permissions checks. Allows mounting
+      # 'config/filebeat.yml' even if it's not owned by root.
+      # see: https://www.elastic.co/guide/en/beats/libbeat/current/config-file-permissions.html
+      - --strict.perms=false
+    networks:
+      - grafana-network
+      - traefik-public
+
 
 #  alertmanager:
-#    image: prom/alertmanager:latest
+#    image: alertmanagerdev
 #    container_name: ${PLATFORM_STACK_NAME}-alertmanager
 #    restart: unless-stopped
+#    build:
+#      context: ./alertmanager/.
+#      dockerfile: Dockerfile
 #    ports:
 #      - "9093:9093"
-#    volumes:
-#      - ./alertmanager/:/etc/alertmanager/
 #    command:
 #      - '-config.file=/etc/alertmanager/config.yml'
 #      - '-storage.path=/alertmanager'

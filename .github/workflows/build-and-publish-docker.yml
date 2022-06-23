@@ -1,0 +1,98 @@
+name: build-and-publish-docker
+
+on:
+  workflow_dispatch:
+
+  push:
+    tags:
+      - '*'
+
+    branches:
+      - master
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get current date
+        id: date
+        run: echo "::set-output name=date::$(date +'%Y%m%d')"
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+      - name: Login to DockerHub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Build and push Docker Image Filebeat
+        id: docker_build_filebeat
+        uses: docker/build-push-action@v2
+        with:
+          context: ./filebeat/.
+          file: Dockerfile
+          push: true
+          tags: |
+            interlinkproject/backend-monitoring:filebeat.${{ github.ref_name }}
+            interlinkproject/backend-monitoring:filebeat.${{ github.ref_name }}.${{ steps.date.outputs.date }}
+          cache-from: type=registry,ref=interlinkproject/backend-monitoring:filebeat-buildcache
+          cache-to: type=registry,ref=interlinkproject/backend-monitoring:filebeat-buildcache,mode=max
+      - name: Build and push Docker Image Grafana
+        id: docker_build_grafana
+        uses: docker/build-push-action@v2
+        with:
+          context: ./filebeat/.
+          file: Dockerfile
+          push: true
+          tags: |
+            interlinkproject/backend-monitoring:grafana.${{ github.ref_name }}
+            interlinkproject/backend-monitoring:grafana.${{ github.ref_name }}.${{ steps.date.outputs.date }}
+          cache-from: type=registry,ref=interlinkproject/backend-monitoring:grafana-buildcache
+          cache-to: type=registry,ref=interlinkproject/backend-monitoring:grafana-buildcache,mode=max
+      - name: Build and push Docker Image Loki
+        id: docker_build_loki
+        uses: docker/build-push-action@v2
+        with:
+          context: ./loki/.
+            file: Dockerfile
+          push: true
+          tags: |
+            interlinkproject/backend-monitoring:loki.${{ github.ref_name }}
+            interlinkproject/backend-monitoring:loki.${{ github.ref_name }}.${{ steps.date.outputs.date }}
+          cache-from: type=registry,ref=interlinkproject/backend-monitoring:loki-buildcache
+          cache-to: type=registry,ref=interlinkproject/backend-monitoring:loki-buildcache,mode=max
+      - name: Build and push Docker Image Prometheus
+        id: docker_build_prometheus
+        uses: docker/build-push-action@v2
+        with:
+          context: ./prometheus/.
+            file: Dockerfile
+          push: true
+          tags: |
+            interlinkproject/backend-monitoring:prometheus.${{ github.ref_name }}
+            interlinkproject/backend-monitoring:prometheus.${{ github.ref_name }}.${{ steps.date.outputs.date }}
+          cache-from: type=registry,ref=interlinkproject/backend-monitoring:prometheus-buildcache
+          cache-to: type=registry,ref=interlinkproject/backend-monitoring:prometheus-buildcache,mode=max
+      - name: Build and push Docker Image Promtail
+          id: docker_build_promtail
+          uses: docker/build-push-action@v2
+          with:
+            context: ./promtail/.
+              file: Dockerfile
+            push: true
+            tags: |
+              interlinkproject/backend-monitoring:promtail.${{ github.ref_name }}
+              interlinkproject/backend-monitoring:promtail.${{ github.ref_name }}.${{ steps.date.outputs.date }}
+            cache-from: type=registry,ref=interlinkproject/backend-monitoring:promtail-buildcache
+            cache-to: type=registry,ref=interlinkproject/backend-monitoring:promtail-buildcache,mode=max
+      - name: Trigger Dev Deployment
+        uses: octokit/request-action@v2.x
+        id: trigger_dev_deployment
+        with:
+          route: POST /repos/{owner}/{repo}/dispatches
+          owner: interlink-project
+          repo: interlink-project
+          event_type: update-dev-environment
+        env:
+          GITHUB_TOKEN: ${{ secrets.INTERLINK_PROJECT_GITHUB_TOKEN }}

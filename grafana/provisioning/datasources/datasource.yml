@@ -13,3 +13,52 @@ datasources:
   isDefault: false
   access: proxy
   editable: true
+
+- name: Elasticsearch-logging
+  type: elasticsearch
+  access: proxy
+  database: '[metrics-]YYYY.MM.DD'
+  url: http://newelasticsearch:9200
+  jsonData:
+    interval: Daily
+    timeField: 'timestamp'
+
+- name: Elasticsearch-filebeats
+  type: elasticsearch
+  access: proxy
+  database: '[metrics-]YYYY.MM.DD'
+  url: http://newelasticsearch:9200
+  jsonData:
+    interval: Daily
+    timeField: '@timestamp'
+
+
+- name: Coproduction
+  type: postgres
+  url: db:5432
+  database: coproduction_production
+  user: viewer
+  secureJsonData:
+    password: "viewer"
+  jsonData:
+    sslmode: 'disable' # disable/require/verify-ca/verify-full
+    maxOpenConns: 0
+    maxIdleConns: 2
+    connMaxLifetime: 14400
+    postgresVersion: 1200 # 903=9.3, 904=9.4, 905=9.5, 906=9.6, 1000=10
+    timescaledb: false
+
+- name: Catalogue
+  type: postgres
+  url: db:5432
+  database: catalogue_production
+  user: viewer
+  secureJsonData:
+    password: "viewer"
+  jsonData:
+    sslmode: 'disable' # disable/require/verify-ca/verify-full
+    maxOpenConns: 0
+    maxIdleConns: 2
+    connMaxLifetime: 14400
+    postgresVersion: 1200 # 903=9.3, 904=9.4, 905=9.5, 906=9.6, 1000=10
+    timescaledb: false
