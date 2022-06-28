@@ -104,7 +104,7 @@ services:
 
 
   loki:
-    image: grafana/loki:main-58718a5
+    image: lokidev
     container_name: ${PLATFORM_STACK_NAME}-loki
     build:
       context: ./loki/.
