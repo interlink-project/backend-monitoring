@@ -17,20 +17,28 @@ datasources:
 - name: Elasticsearch-logging
   type: elasticsearch
   access: proxy
-  database: '[metrics-]YYYY.MM.DD'
+  database: 'logs'
+  basicAuth: true
+  basicAuthUser: elastic
+  secureJsonData:
+    basicAuthPassword: elastic
   url: http://newelasticsearch:9200
   jsonData:
-    interval: Daily
     timeField: 'timestamp'
+    esVersion: '8.0.0'
 
-- name: Elasticsearch-filebeats
+- name: Elasticsearch-filebeat
   type: elasticsearch
   access: proxy
-  database: '[metrics-]YYYY.MM.DD'
+  database: 'filebeat'
+  basicAuth: true
+  basicAuthUser: elastic
+  secureJsonData:
+    basicAuthPassword: elastic
   url: http://newelasticsearch:9200
   jsonData:
-    interval: Daily
     timeField: '@timestamp'
+    esVersion: '8.0.0'
 
 
 - name: Coproduction
