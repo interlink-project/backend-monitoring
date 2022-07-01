@@ -37,6 +37,21 @@ services:
         tag: "{{.ImageName}}|{{.Name}}|{{.ImageFullID}}|{{.FullID}}"
 
 
+  mysql:
+    image: mysqldev
+    container_name: ${PLATFORM_STACK_NAME}-mysql
+    restart: unless-stopped
+    build:
+      context: ./mysql/.
+      dockerfile: Dockerfile
+    volumes:
+      - mysql-data:/var/lib/mysql
+    environment:
+        MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD_MONITORING}
+        MYSQL_DATABASE: ${MYSQL_DATABASE_MONITORING}
+        MYSQL_USER: ${MYSQL_USER_MONITORING}
+        MYSQL_PASSWORD: ${MYSQL_PASSWORD_MONITORING}
+
   prometheus:
     image: prometheusdev
     container_name: ${PLATFORM_STACK_NAME}-prometheus
@@ -198,6 +213,7 @@ services:
 volumes:
   grafana-dashboards:
   grafana-data:
+  mysql-data:
   prometheus-data:
   loki-data:
 #  alertmanager-data:

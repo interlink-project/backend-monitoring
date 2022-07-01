@@ -26,17 +26,6 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-      - name: Build and push Docker Image Filebeat
-        id: docker_build_filebeat
-        uses: docker/build-push-action@v2
-        with:
-          context: ./filebeat
-          push: true
-          tags: |
-            interlinkproject/backend-monitoring:filebeat.${{ github.ref_name }}
-            interlinkproject/backend-monitoring:filebeat.${{ github.ref_name }}.${{ steps.date.outputs.date }}
-          cache-from: type=registry,ref=interlinkproject/backend-monitoring:filebeat-buildcache
-          cache-to: type=registry,ref=interlinkproject/backend-monitoring:filebeat-buildcache,mode=max
       - name: Build and push Docker Image Grafana
         id: docker_build_grafana
         uses: docker/build-push-action@v2
@@ -48,6 +37,28 @@ jobs:
             interlinkproject/backend-monitoring:grafana.${{ github.ref_name }}.${{ steps.date.outputs.date }}
           cache-from: type=registry,ref=interlinkproject/backend-monitoring:grafana-buildcache
           cache-to: type=registry,ref=interlinkproject/backend-monitoring:grafana-buildcache,mode=max
+      - name: Build and push Docker Image Mysql
+        id: docker_build_mysql
+        uses: docker/build-push-action@v2
+        with:
+          context: ./mysql
+          push: true
+          tags: |
+            interlinkproject/backend-monitoring:mysql.${{ github.ref_name }}
+            interlinkproject/backend-monitoring:mysql.${{ github.ref_name }}.${{ steps.date.outputs.date }}
+          cache-from: type=registry,ref=interlinkproject/backend-monitoring:mysql-buildcache
+          cache-to: type=registry,ref=interlinkproject/backend-monitoring:mysql-buildcache,mode=max
+      - name: Build and push Docker Image Filebeat
+        id: docker_build_filebeat
+        uses: docker/build-push-action@v2
+        with:
+          context: ./filebeat
+          push: true
+          tags: |
+            interlinkproject/backend-monitoring:filebeat.${{ github.ref_name }}
+            interlinkproject/backend-monitoring:filebeat.${{ github.ref_name }}.${{ steps.date.outputs.date }}
+          cache-from: type=registry,ref=interlinkproject/backend-monitoring:filebeat-buildcache
+          cache-to: type=registry,ref=interlinkproject/backend-monitoring:filebeat-buildcache,mode=max
       - name: Build and push Docker Image Loki
         id: docker_build_loki
         uses: docker/build-push-action@v2
