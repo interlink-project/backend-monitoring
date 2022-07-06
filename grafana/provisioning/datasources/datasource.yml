@@ -38,8 +38,10 @@ datasources:
   url: http://newelasticsearch:9200
   jsonData:
     timeField: '@timestamp'
+    logMessageField: message
+    logLevelField: stream
     esVersion: '8.0.0'
-    logMessageField: 'message'
+
 
 
 - name: Coproduction
