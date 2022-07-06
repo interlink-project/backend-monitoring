@@ -39,6 +39,7 @@ datasources:
   jsonData:
     timeField: '@timestamp'
     esVersion: '8.0.0'
+    logMessageField: 'message'
 
 
 - name: Coproduction
