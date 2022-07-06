@@ -14,6 +14,8 @@ processors:
 
 output.elasticsearch:
   hosts: ["newelasticsearch:9200"]
+  username: "elastic"
+  password: "elastic"
   indices:
     - index: "filebeat"
 
