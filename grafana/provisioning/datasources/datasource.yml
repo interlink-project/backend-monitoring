@@ -73,3 +73,13 @@ datasources:
     connMaxLifetime: 14400
     postgresVersion: 1200 # 903=9.3, 904=9.4, 905=9.5, 906=9.6, 1000=10
     timescaledb: false
+
+- name: MySQL
+  type: mysql
+  url: mysql:3306
+  database: monitoring
+  user: viewer
+  secureJsonData:
+    password: "viewer"
+  jsonData:
+    tlsSkipVerify: true
