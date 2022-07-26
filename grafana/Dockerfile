@@ -3,6 +3,5 @@ COPY grafana.ini /etc/grafana/grafana.ini
 COPY provisioning /etc/grafana/provisioning
 COPY dashboards /var/lib/grafana/dashboards
 COPY plugins /var/lib/grafana/plugins
-USER root
 RUN chown grafana /etc/grafana/provisioning
 RUN chown grafana /var/lib/grafana/plugins

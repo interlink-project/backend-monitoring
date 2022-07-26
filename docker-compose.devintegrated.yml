@@ -7,7 +7,7 @@ services:
     container_name: ${PLATFORM_STACK_NAME}-grafana
     restart: unless-stopped
     build:
-      context: ./grafana/.
+      context: ./grafana/
       dockerfile: Dockerfile
     ports:
       - "3000:3000"
