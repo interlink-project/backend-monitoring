@@ -19,38 +19,36 @@ datasources:
   access: proxy
   database: 'logs'
   basicAuth: true
-  basicAuthUser: elastic
+  basicAuthUser: $ELASTIC_USER
   secureJsonData:
-    basicAuthPassword: elastic
-  url: http://newelasticsearch:9200
+    basicAuthPassword: $ELASTIC_PASSWORD
+  url: $ELASTIC_HOST:$ELASTIC_PORT
   jsonData:
     timeField: 'timestamp'
-    esVersion: '8.0.0'
+    esVersion: '6.0.0'
 
 - name: Elasticsearch-filebeat
   type: elasticsearch
   access: proxy
   database: 'filebeat'
   basicAuth: true
-  basicAuthUser: elastic
+  basicAuthUser: $ELASTIC_USERNAME
   secureJsonData:
-    basicAuthPassword: elastic
-  url: http://newelasticsearch:9200
+    basicAuthPassword: $ELASTIC_PASSWORD
+  url: $ELASTIC_HOST:$ELASTIC_PORT
   jsonData:
     timeField: '@timestamp'
     logMessageField: message
     logLevelField: stream
-    esVersion: '8.0.0'
-
-
+    esVersion: '6.0.0'
 
 - name: Coproduction
   type: postgres
-  url: db:5432
+  url: $POSTGRES_HOST:$POSTGRES_PORT
   database: coproduction_production
-  user: viewer
+  user: $POSTGRES_USER
   secureJsonData:
-    password: "viewer"
+    password: $POSTGRES_PASSWORD
   jsonData:
     sslmode: 'disable' # disable/require/verify-ca/verify-full
     maxOpenConns: 0
@@ -61,11 +59,11 @@ datasources:
 
 - name: Catalogue
   type: postgres
-  url: db:5432
+  url: $POSTGRES_HOST:$POSTGRES_PORT
   database: catalogue_production
-  user: viewer
+  user: $POSTGRES_USER
   secureJsonData:
-    password: "viewer"
+    password: $POSTGRES_PASSWORD
   jsonData:
     sslmode: 'disable' # disable/require/verify-ca/verify-full
     maxOpenConns: 0
@@ -76,10 +74,17 @@ datasources:
 
 - name: MySQL
   type: mysql
-  url: mysql:3306
+  url: $MYSQL_HOST:$MYSQL_PORT
   database: monitoring
-  user: viewer
+  user: $MYSQL_USER
   secureJsonData:
-    password: "viewer"
+    password: $MYSQL_PASSWORD
   jsonData:
     tlsSkipVerify: true
+
+- name: Dremio
+  type: digital-hub-dremio
+  jsonData:
+    url: $DREMIO_HOST:$DREMIO_PORT
+    user: $DREMIO_USER
+    password: $DREMIO_PASSWORD

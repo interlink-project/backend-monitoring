@@ -11,6 +11,8 @@ services:
       dockerfile: Dockerfile
     ports:
       - "3000:3000"
+    environment:
+      - test_env=changethis
     links:
       - prometheus:prometheus
       - loki:loki

@@ -32,6 +32,9 @@ jobs:
         with:
           context: ./grafana
           push: true
+          secrets: |
+            "DREMIO_USER=${{ secrets.DREMIO_USER }}"
+            "DREMIO_PASSWORD=${{ secrets.DREMIO_PASSWORD }}"
           tags: |
             interlinkproject/backend-monitoring:grafana.${{ github.ref_name }}
             interlinkproject/backend-monitoring:grafana.${{ github.ref_name }}.${{ steps.date.outputs.date }}
