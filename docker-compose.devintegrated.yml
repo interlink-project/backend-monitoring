@@ -12,7 +12,31 @@ services:
     ports:
       - "3000:3000"
     environment:
-      - test_env=changethis
+      # Postgres
+      POSTGRES_HOST: ${POSTGRES_HOST}
+      POSTGRES_PORT: ${POSTGRES_PORT}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+
+      # Elasticsearch
+      ELASTIC_HOST: ${ELASTIC_HOST}
+      ELASTIC_PORT: ${ELASTIC_PORT}
+      ELASTIC_USER: ${ELASTIC_USER}
+      ELASTIC_PASSWORD: ${ELASTIC_PASSWORD}
+
+      # MySQL
+      MYSQL_HOST: ${MYSQL_HOST}
+      MYSQL_PORT: ${MYSQL_PORT}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+
+      # Dremio
+      DREMIO_HOST: ${DREMIO_HOST}
+      DREMIO_PORT: ${DREMIO_PORT}
+      DREMIO_USER: ${DREMIO_USER}
+      DREMIO_PASSWORD: ${DREMIO_PASSWORD}
+
     links:
       - prometheus:prometheus
       - loki:loki
@@ -49,10 +73,10 @@ services:
     volumes:
       - mysql-data:/var/lib/mysql
     environment:
-        MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD_MONITORING}
-        MYSQL_DATABASE: ${MYSQL_DATABASE_MONITORING}
-        MYSQL_USER: ${MYSQL_USER_MONITORING}
-        MYSQL_PASSWORD: ${MYSQL_PASSWORD_MONITORING}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     links:
       - loki:loki
     networks:

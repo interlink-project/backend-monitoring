@@ -21,7 +21,13 @@ ENV MYSQL_HOST=mysql
 ENV MYSQL_PORT=3306
 ENV MYSQL_USER=admin
 ENV MYSQL_PASSWORD=admin
-ENV MYSQL_ROOT_PASSWORDG=root
+ENV MYSQL_ROOT_PASSWORD=root
+
+# Dremio
+ENV DREMIO_HOST=dremio
+ENV DREMIO_PORT=9047
+ENV DREMIO_USER=admin
+ENV DREMIO_PASSWORD=admin
 
 RUN chown grafana /etc/grafana/provisioning
 RUN chown grafana /var/lib/grafana/plugins
