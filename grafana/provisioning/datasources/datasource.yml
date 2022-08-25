@@ -19,7 +19,7 @@ datasources:
   access: proxy
   database: 'logs'
   basicAuth: true
-  basicAuthUser: $ELASTIC_USER
+  basicAuthUser: $ELASTIC_USERNAME
   secureJsonData:
     basicAuthPassword: $ELASTIC_PASSWORD
   url: $ELASTIC_HOST:$ELASTIC_PORT
@@ -46,7 +46,7 @@ datasources:
   type: postgres
   url: $POSTGRES_HOST:$POSTGRES_PORT
   database: coproduction_production
-  user: $POSTGRES_USER
+  user: $POSTGRES_USERNAME
   secureJsonData:
     password: $POSTGRES_PASSWORD
   jsonData:
@@ -61,7 +61,7 @@ datasources:
   type: postgres
   url: $POSTGRES_HOST:$POSTGRES_PORT
   database: catalogue_production
-  user: $POSTGRES_USER
+  user: $POSTGRES_USERNAME
   secureJsonData:
     password: $POSTGRES_PASSWORD
   jsonData:
@@ -74,11 +74,11 @@ datasources:
 
 - name: MySQL
   type: mysql
-  url: $MYSQL_HOST:$MYSQL_PORT
-  database: monitoring
-  user: $MYSQL_USER
+  url: $MYSQL_HOST_MONITORING:$MYSQL_PORT_MONITORING
+  database: $MYSQL_DATABASE_MONITORING
+  user: $MYSQL_USERNAME_MONITORING
   secureJsonData:
-    password: $MYSQL_PASSWORD
+    password: $MYSQL_PASSWORD_MONITORING
   jsonData:
     tlsSkipVerify: true
 
@@ -86,5 +86,5 @@ datasources:
   type: digital-hub-dremio
   jsonData:
     url: $DREMIO_HOST:$DREMIO_PORT
-    user: $DREMIO_USER
+    user: $DREMIO_USERNAME
     password: $DREMIO_PASSWORD
