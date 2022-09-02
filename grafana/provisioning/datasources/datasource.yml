@@ -85,6 +85,6 @@ datasources:
 - name: Dremio
   type: digital-hub-dremio
   jsonData:
-    url: $DREMIO_HOST:$DREMIO_PORT
+    url: http://$DREMIO_HOST:$DREMIO_PORT
     user: $DREMIO_USERNAME
     password: $DREMIO_PASSWORD
