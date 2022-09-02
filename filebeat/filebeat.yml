@@ -3,6 +3,7 @@ filebeat.inputs:
   containers:
     ids: "*"
     path: '/var/lib/docker/containers'
+    stream: "message"
 
 processors:
 - add_docker_metadata:
