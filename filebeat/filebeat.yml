@@ -1,7 +1,9 @@
 filebeat.inputs:
-- type: container
-  paths:
-    - '/var/lib/docker/containers/*/*.log'
+- type: docker
+  containers:
+    ids: "*"
+    path: '/var/lib/docker/containers'
+    stream: "all"
 
 processors:
 - add_docker_metadata:
@@ -13,7 +15,7 @@ processors:
     overwrite_keys: true
 
 output.elasticsearch:
-  hosts: ["newelasticsearch:9200"]
+  hosts: ["elasticsearch:9200"]
   username: "elastic"
   password: "elastic"
   indices:
