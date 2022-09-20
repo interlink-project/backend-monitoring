@@ -25,16 +25,15 @@
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
   "id": 3,
-  "iteration": 1658838561448,
+  "iteration": 1663684421687,
   "links": [],
   "liveNow": false,
   "panels": [
     {
       "datasource": {
-        "type": "postgres",
-        "uid": "P0156C528EAB550E4"
+        "type": "digital-hub-dremio",
+        "uid": "PFFAE26C65C486A4D"
       },
-      "description": "",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -59,81 +58,39 @@
       },
       "gridPos": {
         "h": 4,
-        "w": 4,
+        "w": 3,
         "x": 0,
         "y": 0
       },
-      "id": 32,
+      "id": 157,
       "options": {
-        "colorMode": "none",
+        "colorMode": "value",
         "graphMode": "area",
         "justifyMode": "auto",
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
-            "sum"
+            "lastNotNull"
           ],
           "fields": "",
           "values": false
-        },
-        "text": {
-          "valueSize": 80
         },
         "textMode": "auto"
       },
       "pluginVersion": "8.5.1",
       "targets": [
         {
-          "alias": "",
-          "bucketAggs": [
-            {
-              "field": "timestamp",
-              "id": "2",
-              "settings": {
-                "interval": "auto"
-              },
-              "type": "date_histogram"
-            }
-          ],
           "datasource": {
-            "type": "postgres",
-            "uid": "P0156C528EAB550E4"
+            "type": "digital-hub-dremio",
+            "uid": "PFFAE26C65C486A4D"
           },
-          "format": "table",
-          "group": [],
-          "metricColumn": "none",
-          "metrics": [
-            {
-              "id": "1",
-              "type": "count"
-            }
-          ],
-          "query": "",
-          "rawQuery": true,
-          "rawSql": "SELECT COUNT(distinct id) FROM \"user\"",
+          "queryText": "select * from grafana.Serge_view001_num_USERS_total;",
+          "queryTimeout": 60,
           "refId": "A",
-          "select": [
-            [
-              {
-                "params": [
-                  "value"
-                ],
-                "type": "column"
-              }
-            ]
-          ],
-          "timeColumn": "time",
-          "timeField": "timestamp",
-          "where": [
-            {
-              "name": "$__timeFilter",
-              "params": [],
-              "type": "macro"
-            }
-          ]
+          "timeCol": "time_col"
         }
       ],
-      "title": "T001 Number of users registered in web portal in total (SQL)",
+      "title": "T001-num-USERS-all",
       "type": "stat"
     },
     {
@@ -188,7 +145,7 @@
       "gridPos": {
         "h": 4,
         "w": 4,
-        "x": 4,
+        "x": 3,
         "y": 0
       },
       "id": 74,
@@ -304,7 +261,7 @@
       "gridPos": {
         "h": 4,
         "w": 4,
-        "x": 8,
+        "x": 7,
         "y": 0
       },
       "id": 20,
@@ -359,18 +316,20 @@
     },
     {
       "datasource": {
-        "type": "elasticsearch",
-        "uid": "P93B636384B151928"
+        "type": "digital-hub-dremio",
+        "uid": "PFFAE26C65C486A4D"
       },
-      "description": "",
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "continuous-GrYlRd"
+            "mode": "thresholds"
           },
-          "decimals": 0,
+          "custom": {
+            "align": "auto",
+            "displayMode": "auto",
+            "inspect": false
+          },
           "mappings": [],
-          "min": 0,
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -384,86 +343,6 @@
               }
             ]
           }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 12,
-        "y": 0
-      },
-      "id": 9,
-      "options": {
-        "displayMode": "basic",
-        "minVizHeight": 10,
-        "minVizWidth": 0,
-        "orientation": "horizontal",
-        "reduceOptions": {
-          "calcs": [],
-          "fields": "",
-          "values": true
-        },
-        "showUnfilled": true
-      },
-      "pluginVersion": "8.5.1",
-      "targets": [
-        {
-          "alias": "",
-          "bucketAggs": [
-            {
-              "field": "knowledgeinterlinker_id.keyword",
-              "id": "2",
-              "settings": {
-                "min_doc_count": "1",
-                "order": "desc",
-                "orderBy": "_term",
-                "size": "10"
-              },
-              "type": "terms"
-            }
-          ],
-          "datasource": {
-            "type": "elasticsearch",
-            "uid": "P93B636384B151928"
-          },
-          "metrics": [
-            {
-              "id": "1",
-              "type": "count"
-            }
-          ],
-          "query": "_exists_:coproductionprocess_id.keyword AND model.keyword:ASSET",
-          "refId": "A",
-          "timeField": "timestamp"
-        }
-      ],
-      "title": "Deployed Knowledge Interlinkers",
-      "type": "bargauge"
-    },
-    {
-      "datasource": {
-        "type": "postgres",
-        "uid": "P0156C528EAB550E4"
-      },
-      "description": "",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "decimals": 0,
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              }
-            ]
-          },
-          "unit": "short"
         },
         "overrides": []
       },
@@ -473,304 +352,43 @@
         "x": 0,
         "y": 4
       },
-      "id": 54,
+      "id": 178,
       "options": {
-        "displayMode": "gradient",
-        "minVizHeight": 10,
-        "minVizWidth": 0,
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
+        "footer": {
           "fields": "",
-          "values": true
-        },
-        "showUnfilled": true
-      },
-      "pluginVersion": "8.5.1",
-      "targets": [
-        {
-          "alias": "",
-          "bucketAggs": [
-            {
-              "field": "timestamp",
-              "id": "2",
-              "settings": {
-                "interval": "auto"
-              },
-              "type": "date_histogram"
-            }
+          "reducer": [
+            "sum"
           ],
-          "datasource": {
-            "type": "postgres",
-            "uid": "P0156C528EAB550E4"
-          },
-          "format": "table",
-          "group": [],
-          "hide": false,
-          "metricColumn": "none",
-          "metrics": [
-            {
-              "id": "1",
-              "type": "count"
-            }
-          ],
-          "query": "",
-          "rawQuery": true,
-          "rawSql": "SELECT c.coproductionprocess_id, count(distinct( b.user_id ))\nFROM       team a\nINNER JOIN association_user_team b ON (a.id = b.team_id)\nINNER JOIN permission            c ON (a.id = c.team_id)\ngroup by c.coproductionprocess_id\norder by c.coproductionprocess_id;",
-          "refId": "A",
-          "select": [
-            [
-              {
-                "params": [
-                  "value"
-                ],
-                "type": "column"
-              }
-            ]
-          ],
-          "timeColumn": "time",
-          "timeField": "timestamp",
-          "where": [
-            {
-              "name": "$__timeFilter",
-              "params": [],
-              "type": "macro"
-            }
-          ]
-        }
-      ],
-      "title": "T002 Number of users per co-production process",
-      "type": "bargauge"
-    },
-    {
-      "datasource": {
-        "type": "postgres",
-        "uid": "P0156C528EAB550E4"
-      },
-      "description": "",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "axisSoftMin": 0,
-            "fillOpacity": 80,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "lineWidth": 1,
-            "scaleDistribution": {
-              "type": "linear"
-            }
-          },
-          "decimals": 0,
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "short"
+          "show": false
         },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 4,
-        "w": 12,
-        "x": 0,
-        "y": 8
-      },
-      "id": 58,
-      "options": {
-        "barRadius": 0,
-        "barWidth": 0.97,
-        "groupWidth": 0.7,
-        "legend": {
-          "calcs": [],
-          "displayMode": "hidden",
-          "placement": "right"
-        },
-        "orientation": "auto",
-        "showValue": "never",
-        "stacking": "none",
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        },
-        "xTickLabelRotation": 0,
-        "xTickLabelSpacing": 0
+        "showHeader": true
       },
       "pluginVersion": "8.5.1",
       "targets": [
         {
           "datasource": {
-            "type": "postgres",
-            "uid": "P0156C528EAB550E4"
+            "type": "digital-hub-dremio",
+            "uid": "PFFAE26C65C486A4D"
           },
-          "format": "table",
-          "group": [],
-          "metricColumn": "none",
-          "rawQuery": true,
-          "rawSql": "SELECT a.type, count(distinct(b.user_id))\nFROM team a\nINNER JOIN association_user_team b ON (a.id = b.team_id)\ngroup by a.type\norder by a.type;",
+          "queryText": "select * from grafana.\"Serge_view002w_num_TEAMS_USERS3_per_PROCESS\"",
+          "queryTimeout": 60,
           "refId": "A",
-          "select": [
-            [
-              {
-                "params": [
-                  "value"
-                ],
-                "type": "column"
-              }
-            ]
-          ],
-          "timeColumn": "time",
-          "where": [
-            {
-              "name": "$__timeFilter",
-              "params": [],
-              "type": "macro"
-            }
-          ]
+          "timeCol": "time_col"
         }
       ],
-      "title": "T003 Number of users per user type (business role) in all processes",
-      "type": "barchart"
+      "title": "T002w_num_TEAMS_USERS3_per_PROCESS",
+      "type": "table"
     },
     {
       "datasource": {
-        "type": "elasticsearch",
-        "uid": "P93B636384B151928"
+        "type": "digital-hub-dremio",
+        "uid": "PFFAE26C65C486A4D"
       },
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "palette-classic"
+            "mode": "thresholds"
           },
-          "custom": {
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 25,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 9,
-        "w": 12,
-        "x": 12,
-        "y": 8
-      },
-      "id": 12,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom"
-        },
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "targets": [
-        {
-          "alias": "",
-          "bucketAggs": [
-            {
-              "field": "timestamp",
-              "id": "2",
-              "settings": {
-                "interval": "auto"
-              },
-              "type": "date_histogram"
-            }
-          ],
-          "datasource": {
-            "type": "elasticsearch",
-            "uid": "P93B636384B151928"
-          },
-          "metrics": [
-            {
-              "hide": true,
-              "id": "1",
-              "type": "count"
-            },
-            {
-              "field": "1",
-              "id": "3",
-              "pipelineAgg": "1",
-              "type": "cumulative_sum"
-            }
-          ],
-          "query": "action.keyword:CREATE AND model.keyword:ASSET AND (_exists_:knowledgeinterlinker_id.keyword)",
-          "refId": "A",
-          "timeField": "timestamp"
-        }
-      ],
-      "title": "Deployed Knowledge Interlinkers vs time",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "postgres",
-        "uid": "P0156C528EAB550E4"
-      },
-      "description": "",
-      "fieldConfig": {
-        "defaults": {
           "custom": {
             "align": "auto",
             "displayMode": "auto",
@@ -795,11 +413,11 @@
       },
       "gridPos": {
         "h": 5,
-        "w": 12,
+        "w": 6,
         "x": 0,
-        "y": 12
+        "y": 8
       },
-      "id": 56,
+      "id": 172,
       "options": {
         "footer": {
           "fields": "",
@@ -814,192 +432,34 @@
       "targets": [
         {
           "datasource": {
-            "type": "postgres",
-            "uid": "P0156C528EAB550E4"
+            "type": "digital-hub-dremio",
+            "uid": "PFFAE26C65C486A4D"
           },
-          "format": "table",
-          "group": [],
-          "metricColumn": "none",
-          "rawQuery": true,
-          "rawSql": "SELECT c.coproductionprocess_id, a.type, count(distinct(b.user_id))\nFROM team a\nINNER JOIN association_user_team b ON (a.id = b.team_id)\nINNER JOIN permission            c ON (a.id = c.team_id)\ngroup by c.coproductionprocess_id, a.type\norder by c.coproductionprocess_id, a.type;",
+          "queryText": "select * from grafana.Serge_view003x_num_users2_per_ROLE",
+          "queryTimeout": 60,
           "refId": "A",
-          "select": [
-            [
-              {
-                "params": [
-                  "value"
-                ],
-                "type": "column"
-              }
-            ]
-          ],
-          "timeColumn": "time",
-          "where": [
-            {
-              "name": "$__timeFilter",
-              "params": [],
-              "type": "macro"
-            }
-          ]
+          "timeCol": "time_col"
         }
       ],
-      "title": "T004 Number of users per user type (business role) per co-prod process",
+      "title": "T003x_num_users2_per_ROLE",
       "type": "table"
     },
     {
       "datasource": {
-        "type": "datasource",
-        "uid": "-- Mixed --"
+        "type": "digital-hub-dremio",
+        "uid": "PFFAE26C65C486A4D"
       },
-      "description": "",
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "thresholds"
           },
+          "custom": {
+            "align": "auto",
+            "displayMode": "auto",
+            "inspect": false
+          },
           "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              }
-            ]
-          }
-        },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Cumulative Sum Unique Count user_id.keyword"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "logs"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "count"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "SQL"
-              }
-            ]
-          }
-        ]
-      },
-      "gridPos": {
-        "h": 5,
-        "w": 6,
-        "x": 0,
-        "y": 17
-      },
-      "id": 144,
-      "options": {
-        "colorMode": "none",
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "textMode": "auto"
-      },
-      "pluginVersion": "8.5.1",
-      "targets": [
-        {
-          "datasource": {
-            "type": "postgres",
-            "uid": "P0156C528EAB550E4"
-          },
-          "format": "table",
-          "group": [],
-          "hide": false,
-          "metricColumn": "none",
-          "rawQuery": true,
-          "rawSql": "select count(distinct id) from \"user\";",
-          "refId": "A",
-          "select": [
-            [
-              {
-                "params": [
-                  "value"
-                ],
-                "type": "column"
-              }
-            ]
-          ],
-          "timeColumn": "time",
-          "where": [
-            {
-              "name": "$__timeFilter",
-              "params": [],
-              "type": "macro"
-            }
-          ]
-        },
-        {
-          "alias": "",
-          "bucketAggs": [
-            {
-              "field": "timestamp",
-              "id": "2",
-              "settings": {
-                "interval": "auto"
-              },
-              "type": "date_histogram"
-            }
-          ],
-          "datasource": {
-            "uid": "P93B636384B151928"
-          },
-          "hide": false,
-          "metrics": [
-            {
-              "field": "user_id.keyword",
-              "hide": true,
-              "id": "1",
-              "type": "cardinality"
-            },
-            {
-              "field": "1",
-              "id": "3",
-              "pipelineAgg": "1",
-              "type": "cumulative_sum"
-            }
-          ],
-          "query": "NOT _empty_:user_id.keyword",
-          "refId": "C",
-          "timeField": "timestamp"
-        }
-      ],
-      "title": "T005a Number of ACTIVE users (all types in all processes)",
-      "type": "stat"
-    },
-    {
-      "datasource": {
-        "type": "elasticsearch",
-        "uid": "P93B636384B151928"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "continuous-GrYlRd"
-          },
-          "decimals": 0,
-          "mappings": [],
-          "min": 0,
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -1017,59 +477,101 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 12,
-        "y": 17
+        "h": 4,
+        "w": 4,
+        "x": 0,
+        "y": 13
       },
-      "id": 48,
+      "id": 180,
       "options": {
-        "displayMode": "basic",
-        "minVizHeight": 10,
-        "minVizWidth": 0,
-        "orientation": "horizontal",
-        "reduceOptions": {
-          "calcs": [],
+        "footer": {
           "fields": "",
-          "values": true
+          "reducer": [
+            "sum"
+          ],
+          "show": false
         },
-        "showUnfilled": true,
-        "text": {}
+        "showHeader": true
       },
       "pluginVersion": "8.5.1",
       "targets": [
         {
-          "alias": "",
-          "bucketAggs": [
-            {
-              "field": "coproductionprocess_id.keyword",
-              "id": "2",
-              "settings": {
-                "min_doc_count": "1",
-                "order": "desc",
-                "orderBy": "_term",
-                "size": "10"
-              },
-              "type": "terms"
-            }
-          ],
           "datasource": {
-            "type": "elasticsearch",
-            "uid": "P93B636384B151928"
+            "type": "digital-hub-dremio",
+            "uid": "PFFAE26C65C486A4D"
           },
-          "metrics": [
-            {
-              "id": "1",
-              "type": "count"
-            }
-          ],
-          "query": "model.keyword:ASSET AND action.keyword:GET",
+          "queryText": "select * from grafana.Serge_view004_num_USERS_per_PROC_per_ROLE",
+          "queryTimeout": 60,
           "refId": "A",
-          "timeField": "timestamp"
+          "timeCol": "time_col"
         }
       ],
-      "title": "Number of asset operations per co-prod process",
-      "type": "bargauge"
+      "title": "T004-num-USERS-per-PROCESS-per-ROLE",
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "digital-hub-dremio",
+        "uid": "PFFAE26C65C486A4D"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 6,
+        "x": 0,
+        "y": 17
+      },
+      "id": 158,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "sum"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "8.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "digital-hub-dremio",
+            "uid": "PFFAE26C65C486A4D"
+          },
+          "queryText": "select * from grafana.Serge_view005a_num_ACTIVE_USERS_total",
+          "queryTimeout": 60,
+          "refId": "A",
+          "timeCol": "time_col"
+        }
+      ],
+      "title": "T005a-num-ACTIVE-USERS",
+      "type": "stat"
     },
     {
       "datasource": {
@@ -1088,7 +590,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               }
             ]
           }
@@ -1162,22 +665,26 @@
     },
     {
       "datasource": {
-        "type": "elasticsearch",
-        "uid": "P93B636384B151928"
+        "type": "digital-hub-dremio",
+        "uid": "PFFAE26C65C486A4D"
       },
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "continuous-GrYlRd"
+            "mode": "thresholds"
           },
-          "decimals": 0,
+          "custom": {
+            "align": "auto",
+            "displayMode": "auto",
+            "inspect": false
+          },
           "mappings": [],
-          "min": 0,
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -1186,61 +693,66 @@
             ]
           }
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "process_name"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 268
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "team_type"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 178
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
-        "h": 9,
-        "w": 12,
-        "x": 12,
-        "y": 25
+        "h": 4,
+        "w": 2,
+        "x": 0,
+        "y": 26
       },
-      "id": 4,
+      "id": 182,
       "options": {
-        "displayMode": "basic",
-        "minVizHeight": 10,
-        "minVizWidth": 0,
-        "orientation": "horizontal",
-        "reduceOptions": {
-          "calcs": [],
+        "footer": {
           "fields": "",
-          "values": true
+          "reducer": [
+            "sum"
+          ],
+          "show": false
         },
-        "showUnfilled": true
+        "showHeader": true,
+        "sortBy": []
       },
       "pluginVersion": "8.5.1",
       "targets": [
         {
-          "alias": "",
-          "bucketAggs": [
-            {
-              "field": "softwareinterlinker_name.keyword",
-              "id": "2",
-              "settings": {
-                "min_doc_count": "1",
-                "order": "desc",
-                "orderBy": "_term",
-                "size": "10"
-              },
-              "type": "terms"
-            }
-          ],
           "datasource": {
-            "type": "elasticsearch",
-            "uid": "P93B636384B151928"
+            "type": "digital-hub-dremio",
+            "uid": "PFFAE26C65C486A4D"
           },
-          "metrics": [
-            {
-              "id": "1",
-              "type": "count"
-            }
-          ],
-          "query": "action:CREATE and model:ASSET AND !_exists_:knowledgeinterlinker_id",
+          "queryText": "select * from grafana.\"Serge_view005d_num_ACTIVE_USERS_per_PROC_per_ROLE\"",
+          "queryTimeout": 60,
           "refId": "A",
-          "timeField": "timestamp"
+          "timeCol": "time_col"
         }
       ],
-      "title": "Deployed Software Interlinkers",
-      "type": "bargauge"
+      "title": "T005d-num-ACTIVE-USERS-per-PROC-per-ROLE",
+      "type": "table"
     },
     {
       "datasource": {
@@ -1287,7 +799,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               }
             ]
           }
@@ -1298,7 +811,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 26
+        "y": 30
       },
       "id": 36,
       "options": {
@@ -1358,22 +871,26 @@
     },
     {
       "datasource": {
-        "type": "postgres",
-        "uid": "P0156C528EAB550E4"
+        "type": "digital-hub-dremio",
+        "uid": "PFFAE26C65C486A4D"
       },
-      "description": "",
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "continuous-GrYlRd"
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "displayMode": "auto",
+            "inspect": false
           },
           "mappings": [],
-          "min": 0,
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -1385,105 +902,60 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 8,
+        "h": 4,
         "w": 12,
         "x": 0,
-        "y": 34
+        "y": 38
       },
-      "id": 60,
+      "id": 176,
       "options": {
-        "displayMode": "basic",
-        "minVizHeight": 10,
-        "minVizWidth": 0,
-        "orientation": "horizontal",
-        "reduceOptions": {
-          "calcs": [],
+        "footer": {
           "fields": "",
-          "values": true
+          "reducer": [
+            "sum"
+          ],
+          "show": false
         },
-        "showUnfilled": true
+        "showHeader": true
       },
       "pluginVersion": "8.5.1",
       "targets": [
         {
           "datasource": {
-            "type": "postgres",
-            "uid": "P0156C528EAB550E4"
+            "type": "digital-hub-dremio",
+            "uid": "PFFAE26C65C486A4D"
           },
-          "format": "table",
-          "group": [],
-          "metricColumn": "none",
-          "rawQuery": true,
-          "rawSql": "SELECT team_id, count (distinct user_id)\nFROM association_user_team\ngroup by team_id\norder by team_id;\n",
+          "queryText": "select * from grafana.Serge_view006_num_USERS_per_TEAM",
+          "queryTimeout": 60,
           "refId": "A",
-          "select": [
-            [
-              {
-                "params": [
-                  "value"
-                ],
-                "type": "column"
-              }
-            ]
-          ],
-          "timeColumn": "time",
-          "where": [
-            {
-              "name": "$__timeFilter",
-              "params": [],
-              "type": "macro"
-            }
-          ]
+          "timeCol": "time_col"
         }
       ],
-      "title": "T006 Number of users per team",
-      "type": "bargauge"
+      "title": "T006-num-USERS-per-TEAM",
+      "type": "table"
     },
     {
       "datasource": {
-        "type": "elasticsearch",
-        "uid": "P93B636384B151928"
+        "type": "digital-hub-dremio",
+        "uid": "PFFAE26C65C486A4D"
       },
-      "description": "",
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "palette-classic"
+            "mode": "thresholds"
           },
           "custom": {
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "bars",
-            "fillOpacity": 100,
-            "gradientMode": "hue",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
+            "align": "auto",
+            "displayMode": "auto",
+            "inspect": false
           },
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -1492,813 +964,30 @@
             ]
           }
         },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 9,
-        "w": 12,
-        "x": 12,
-        "y": 34
-      },
-      "id": 18,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom"
-        },
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "targets": [
-        {
-          "alias": "",
-          "bucketAggs": [
-            {
-              "field": "timestamp",
-              "id": "2",
-              "settings": {
-                "interval": "1d"
-              },
-              "type": "date_histogram"
-            }
-          ],
-          "datasource": {
-            "type": "elasticsearch",
-            "uid": "P93B636384B151928"
-          },
-          "metrics": [
-            {
-              "hide": false,
-              "id": "1",
-              "type": "count"
-            }
-          ],
-          "query": "action.keyword:CREATE AND model.keyword:COPRODUCTIONPROCESS ",
-          "refId": "A",
-          "timeField": "timestamp"
-        }
-      ],
-      "title": "Coproduction Processes Created",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "postgres",
-        "uid": "P0156C528EAB550E4"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "axisSoftMin": 0,
-            "fillOpacity": 80,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "process_name"
             },
-            "lineWidth": 1,
-            "scaleDistribution": {
-              "type": "linear"
-            }
-          },
-          "decimals": 0,
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
+            "properties": [
               {
-                "color": "green"
-              },
-              {
-                "color": "red",
-                "value": 80
+                "id": "custom.width",
+                "value": 269
               }
             ]
-          },
-          "unit": "short"
-        },
-        "overrides": []
+          }
+        ]
       },
       "gridPos": {
-        "h": 8,
+        "h": 6,
         "w": 12,
         "x": 0,
         "y": 42
       },
-      "id": 62,
-      "options": {
-        "barRadius": 0,
-        "barWidth": 0.97,
-        "groupWidth": 0.7,
-        "legend": {
-          "calcs": [],
-          "displayMode": "hidden",
-          "placement": "right"
-        },
-        "orientation": "vertical",
-        "showValue": "never",
-        "stacking": "none",
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        },
-        "xTickLabelRotation": 0,
-        "xTickLabelSpacing": 0
-      },
-      "pluginVersion": "8.5.1",
-      "targets": [
-        {
-          "datasource": {
-            "type": "postgres",
-            "uid": "P0156C528EAB550E4"
-          },
-          "format": "table",
-          "group": [],
-          "metricColumn": "none",
-          "rawQuery": true,
-          "rawSql": "select type, count(distinct creator_id) \nfrom asset\ngroup by type\norder by type;",
-          "refId": "A",
-          "select": [
-            [
-              {
-                "params": [
-                  "value"
-                ],
-                "type": "column"
-              }
-            ]
-          ],
-          "timeColumn": "time",
-          "where": [
-            {
-              "name": "$__timeFilter",
-              "params": [],
-              "type": "macro"
-            }
-          ]
-        }
-      ],
-      "title": "T008a Number of users per TYPE ( knowledge, internal, external) of INTERLINKER (asset created)",
-      "type": "barchart"
-    },
-    {
-      "datasource": {
-        "type": "elasticsearch",
-        "uid": "P93B636384B151928"
-      },
-      "description": "",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "bars",
-            "fillOpacity": 100,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "lineInterpolation": "stepAfter",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "never",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green"
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 9,
-        "w": 12,
-        "x": 12,
-        "y": 43
-      },
-      "id": 46,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom"
-        },
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "pluginVersion": "8.5.1",
-      "targets": [
-        {
-          "alias": "",
-          "bucketAggs": [
-            {
-              "field": "timestamp",
-              "id": "2",
-              "settings": {
-                "interval": "1d"
-              },
-              "type": "date_histogram"
-            }
-          ],
-          "datasource": {
-            "type": "elasticsearch",
-            "uid": "P93B636384B151928"
-          },
-          "metrics": [
-            {
-              "hide": false,
-              "id": "1",
-              "type": "count"
-            }
-          ],
-          "query": "action.keyword:CREATE AND model.keyword:ASSET",
-          "refId": "A",
-          "timeField": "timestamp"
-        }
-      ],
-      "title": "Number of created assets vs. time",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "elasticsearch",
-        "uid": "P93B636384B151928"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "continuous-GrYlRd"
-          },
-          "decimals": 0,
-          "mappings": [],
-          "min": 0,
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green"
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 0,
-        "y": 50
-      },
-      "id": 64,
-      "options": {
-        "displayMode": "basic",
-        "minVizHeight": 10,
-        "minVizWidth": 0,
-        "orientation": "horizontal",
-        "reduceOptions": {
-          "calcs": [],
-          "fields": "",
-          "limit": 0,
-          "values": true
-        },
-        "showUnfilled": true
-      },
-      "pluginVersion": "8.5.1",
-      "targets": [
-        {
-          "alias": "",
-          "bucketAggs": [
-            {
-              "field": "softwareinterlinker_id.keyword",
-              "id": "2",
-              "settings": {
-                "min_doc_count": "1",
-                "order": "desc",
-                "orderBy": "_term",
-                "size": "0"
-              },
-              "type": "terms"
-            }
-          ],
-          "datasource": {
-            "type": "elasticsearch",
-            "uid": "P93B636384B151928"
-          },
-          "metrics": [
-            {
-              "field": "user_id.keyword",
-              "id": "1",
-              "type": "cardinality"
-            }
-          ],
-          "query": "action:CREATE model:ASSET",
-          "refId": "A",
-          "timeField": "timestamp"
-        },
-        {
-          "alias": "",
-          "bucketAggs": [
-            {
-              "field": "knowledgeinterlinker_id.keyword",
-              "id": "2",
-              "settings": {
-                "min_doc_count": "1",
-                "order": "desc",
-                "orderBy": "_term",
-                "size": "0"
-              },
-              "type": "terms"
-            }
-          ],
-          "datasource": {
-            "type": "elasticsearch",
-            "uid": "P93B636384B151928"
-          },
-          "hide": false,
-          "metrics": [
-            {
-              "field": "user_id.keyword",
-              "id": "1",
-              "type": "cardinality"
-            }
-          ],
-          "query": "action:CREATE model:ASSET",
-          "refId": "B",
-          "timeField": "timestamp"
-        }
-      ],
-      "title": "T008b Number of users per NAME (ID) of INTERLINKER (asset created)",
-      "type": "bargauge"
-    },
-    {
-      "datasource": {
-        "type": "elasticsearch",
-        "uid": "P93B636384B151928"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "continuous-GrYlRd"
-          },
-          "decimals": 0,
-          "mappings": [],
-          "min": 0,
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green"
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 12,
-        "y": 52
-      },
-      "id": 50,
-      "options": {
-        "displayMode": "basic",
-        "minVizHeight": 10,
-        "minVizWidth": 0,
-        "orientation": "horizontal",
-        "reduceOptions": {
-          "calcs": [],
-          "fields": "",
-          "values": true
-        },
-        "showUnfilled": true
-      },
-      "pluginVersion": "8.5.1",
-      "targets": [
-        {
-          "alias": "",
-          "bucketAggs": [
-            {
-              "field": "user_id.keyword",
-              "id": "2",
-              "settings": {
-                "min_doc_count": "1",
-                "order": "desc",
-                "orderBy": "_term",
-                "size": "10"
-              },
-              "type": "terms"
-            }
-          ],
-          "datasource": {
-            "type": "elasticsearch",
-            "uid": "P93B636384B151928"
-          },
-          "metrics": [
-            {
-              "id": "1",
-              "type": "count"
-            }
-          ],
-          "query": "model.keyword:ASSET AND action.keyword:GET",
-          "refId": "A",
-          "timeField": "timestamp"
-        }
-      ],
-      "title": "Number of asset operations per user ID",
-      "type": "bargauge"
-    },
-    {
-      "datasource": {
-        "type": "elasticsearch",
-        "uid": "P93B636384B151928"
-      },
-      "description": "",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {
-            "align": "auto",
-            "displayMode": "auto",
-            "inspect": false
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green"
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 0,
-        "y": 58
-      },
-      "id": 66,
+      "id": 184,
       "options": {
         "footer": {
-          "fields": "",
-          "reducer": [
-            "sum"
-          ],
-          "show": false
-        },
-        "showHeader": true
-      },
-      "pluginVersion": "8.5.1",
-      "targets": [
-        {
-          "alias": "",
-          "bucketAggs": [
-            {
-              "field": "type.keyword",
-              "id": "2",
-              "settings": {
-                "min_doc_count": "1",
-                "order": "desc",
-                "orderBy": "_term",
-                "size": "0"
-              },
-              "type": "terms"
-            },
-            {
-              "field": "coproductionprocess_id.keyword",
-              "id": "3",
-              "settings": {
-                "min_doc_count": "1",
-                "order": "desc",
-                "orderBy": "_term",
-                "size": "10"
-              },
-              "type": "terms"
-            }
-          ],
-          "datasource": {
-            "type": "elasticsearch",
-            "uid": "P93B636384B151928"
-          },
-          "metrics": [
-            {
-              "field": "user_id.keyword",
-              "id": "1",
-              "type": "cardinality"
-            }
-          ],
-          "query": "action:CREATE",
-          "refId": "A",
-          "timeField": "timestamp"
-        }
-      ],
-      "title": "T009a Number of users per TYPE of INTERLINKER (asset created) per co-prod process",
-      "type": "table"
-    },
-    {
-      "datasource": {
-        "type": "elasticsearch",
-        "uid": "P93B636384B151928"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "continuous-GrYlRd"
-          },
-          "decimals": 0,
-          "mappings": [],
-          "min": 0,
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green"
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 0,
-        "y": 66
-      },
-      "id": 68,
-      "options": {
-        "displayMode": "basic",
-        "minVizHeight": 10,
-        "minVizWidth": 0,
-        "orientation": "horizontal",
-        "reduceOptions": {
-          "calcs": [],
-          "fields": "",
-          "limit": 0,
-          "values": true
-        },
-        "showUnfilled": true
-      },
-      "pluginVersion": "8.5.1",
-      "targets": [
-        {
-          "alias": "",
-          "bucketAggs": [
-            {
-              "field": "softwareinterlinker_id.keyword",
-              "id": "2",
-              "settings": {
-                "min_doc_count": "1",
-                "order": "desc",
-                "orderBy": "_term",
-                "size": "0"
-              },
-              "type": "terms"
-            },
-            {
-              "field": "coproductionprocess_id.keyword",
-              "id": "3",
-              "settings": {
-                "min_doc_count": "1",
-                "order": "desc",
-                "orderBy": "_term",
-                "size": "10"
-              },
-              "type": "terms"
-            }
-          ],
-          "datasource": {
-            "type": "elasticsearch",
-            "uid": "P93B636384B151928"
-          },
-          "metrics": [
-            {
-              "field": "user_id.keyword",
-              "id": "1",
-              "type": "cardinality"
-            }
-          ],
-          "query": "action:CREATE model:ASSET",
-          "refId": "A",
-          "timeField": "timestamp"
-        },
-        {
-          "alias": "",
-          "bucketAggs": [
-            {
-              "field": "knowledgeinterlinker_id.keyword",
-              "id": "2",
-              "settings": {
-                "min_doc_count": "1",
-                "order": "desc",
-                "orderBy": "_term",
-                "size": "0"
-              },
-              "type": "terms"
-            },
-            {
-              "field": "coproductionprocess_id.keyword",
-              "id": "3",
-              "settings": {
-                "min_doc_count": "1",
-                "order": "desc",
-                "orderBy": "_term",
-                "size": "10"
-              },
-              "type": "terms"
-            }
-          ],
-          "datasource": {
-            "type": "elasticsearch",
-            "uid": "P93B636384B151928"
-          },
-          "hide": false,
-          "metrics": [
-            {
-              "field": "user_id.keyword",
-              "id": "1",
-              "type": "cardinality"
-            }
-          ],
-          "query": "action:CREATE model:ASSET",
-          "refId": "B",
-          "timeField": "timestamp"
-        }
-      ],
-      "title": "T009b Number of users per NAME/ID of INTERLINKER (asset created) per co-prod process",
-      "type": "bargauge"
-    },
-    {
-      "datasource": {
-        "type": "elasticsearch",
-        "uid": "P93B636384B151928"
-      },
-      "description": "",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {
-            "align": "auto",
-            "displayMode": "auto",
-            "inspect": false
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green"
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 0,
-        "y": 74
-      },
-      "id": 70,
-      "options": {
-        "footer": {
-          "fields": "",
-          "reducer": [
-            "sum"
-          ],
-          "show": false
-        },
-        "showHeader": true
-      },
-      "pluginVersion": "8.5.1",
-      "targets": [
-        {
-          "alias": "",
-          "bucketAggs": [
-            {
-              "field": "type.keyword",
-              "id": "2",
-              "settings": {
-                "min_doc_count": "1",
-                "order": "desc",
-                "orderBy": "_term",
-                "size": "10"
-              },
-              "type": "terms"
-            },
-            {
-              "field": "roles.keyword",
-              "id": "3",
-              "settings": {
-                "min_doc_count": "1",
-                "order": "desc",
-                "orderBy": "_term",
-                "size": "10"
-              },
-              "type": "terms"
-            }
-          ],
-          "datasource": {
-            "type": "elasticsearch",
-            "uid": "P93B636384B151928"
-          },
-          "metrics": [
-            {
-              "field": "user_id.keyword",
-              "id": "1",
-              "type": "cardinality"
-            }
-          ],
-          "query": "action:CREATE",
-          "refId": "A",
-          "timeField": "timestamp"
-        }
-      ],
-      "title": "T010a Number of users per TYPE of INTERLINKER per user role (team type)",
-      "type": "table"
-    },
-    {
-      "datasource": {
-        "type": "elasticsearch",
-        "uid": "P93B636384B151928"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "custom": {
-            "align": "auto",
-            "displayMode": "auto",
-            "filterable": true,
-            "inspect": false
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green"
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 0,
-        "y": 82
-      },
-      "id": 72,
-      "options": {
-        "footer": {
-          "enablePagination": false,
           "fields": "",
           "reducer": [
             "sum"
@@ -2306,106 +995,93 @@
           "show": false
         },
         "showHeader": true,
-        "sortBy": [
-          {
-            "desc": true,
-            "displayName": "Unique Count"
-          }
-        ]
+        "sortBy": []
       },
       "pluginVersion": "8.5.1",
       "targets": [
         {
-          "alias": "",
-          "bucketAggs": [
-            {
-              "field": "softwareinterlinker_id.keyword",
-              "id": "2",
-              "settings": {
-                "min_doc_count": "1",
-                "order": "desc",
-                "orderBy": "_term",
-                "size": "0"
-              },
-              "type": "terms"
-            },
-            {
-              "field": "roles.keyword",
-              "id": "3",
-              "settings": {
-                "min_doc_count": "1",
-                "order": "desc",
-                "orderBy": "_term",
-                "size": "10"
-              },
-              "type": "terms"
-            }
-          ],
           "datasource": {
-            "type": "elasticsearch",
-            "uid": "P93B636384B151928"
+            "type": "digital-hub-dremio",
+            "uid": "PFFAE26C65C486A4D"
           },
-          "metrics": [
-            {
-              "field": "user_id.keyword",
-              "id": "1",
-              "type": "cardinality"
-            }
-          ],
-          "query": "action:CREATE model:ASSET",
+          "queryText": "select * from grafana.Serge_view007a_num_ACTIVE_USERS_per_PROC_per_TEAM",
+          "queryTimeout": 60,
           "refId": "A",
-          "timeField": "timestamp"
-        },
-        {
-          "alias": "",
-          "bucketAggs": [
-            {
-              "field": "knowledgeinterlinker_id.keyword",
-              "id": "2",
-              "settings": {
-                "min_doc_count": "1",
-                "order": "desc",
-                "orderBy": "_term",
-                "size": "0"
-              },
-              "type": "terms"
-            },
-            {
-              "field": "roles.keyword",
-              "id": "3",
-              "settings": {
-                "min_doc_count": "1",
-                "order": "desc",
-                "orderBy": "_term",
-                "size": "10"
-              },
-              "type": "terms"
-            }
-          ],
-          "datasource": {
-            "type": "elasticsearch",
-            "uid": "P93B636384B151928"
-          },
-          "hide": false,
-          "metrics": [
-            {
-              "field": "user_id.keyword",
-              "id": "1",
-              "type": "cardinality"
-            }
-          ],
-          "query": "action:CREATE model:ASSET",
-          "refId": "B",
-          "timeField": "timestamp"
+          "timeCol": "time_col"
         }
       ],
-      "title": "T010b Number of users per NAME/ID of INTERLINKER (asset created) per co-prod process",
+      "title": "T007a-num-ACTIVE-USERS-per-PROC-per-TEAM",
       "type": "table"
     },
     {
       "datasource": {
-        "type": "postgres",
-        "uid": "P0156C528EAB550E4"
+        "type": "digital-hub-dremio",
+        "uid": "PFFAE26C65C486A4D"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "displayMode": "auto",
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 6,
+        "x": 0,
+        "y": 48
+      },
+      "id": 186,
+      "options": {
+        "footer": {
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true
+      },
+      "pluginVersion": "8.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "digital-hub-dremio",
+            "uid": "PFFAE26C65C486A4D"
+          },
+          "queryText": "select * from grafana.Serge_view008a_num_ACTIVE_USERS_per_INTERL_TYPE",
+          "queryTimeout": 60,
+          "refId": "A",
+          "timeCol": "time_col"
+        }
+      ],
+      "title": "T008a_num_ACTIVE_USERS_per_INTERL_TYPE",
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "digital-hub-dremio",
+        "uid": "PFFAE26C65C486A4D"
       },
       "fieldConfig": {
         "defaults": {
@@ -2417,7 +1093,77 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 4,
+        "x": 0,
+        "y": 54
+      },
+      "id": 188,
+      "options": {
+        "displayMode": "gradient",
+        "minVizHeight": 10,
+        "minVizWidth": 0,
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": true
+        },
+        "showUnfilled": true
+      },
+      "pluginVersion": "8.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "digital-hub-dremio",
+            "uid": "PFFAE26C65C486A4D"
+          },
+          "queryText": "select * from grafana.Serge_view008b_num_ACTIVE_USERS_per_INTERL",
+          "queryTimeout": 60,
+          "refId": "A",
+          "timeCol": "time_col"
+        }
+      ],
+      "title": "T008b_num_ACTIVE_USERS_per_INTERL",
+      "type": "bargauge"
+    },
+    {
+      "datasource": {
+        "type": "digital-hub-dremio",
+        "uid": "PFFAE26C65C486A4D"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "displayMode": "auto",
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -2430,13 +1176,268 @@
       },
       "gridPos": {
         "h": 5,
-        "w": 5,
+        "w": 12,
         "x": 0,
-        "y": 90
+        "y": 62
       },
-      "id": 78,
+      "id": 190,
       "options": {
-        "colorMode": "none",
+        "footer": {
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true
+      },
+      "pluginVersion": "8.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "digital-hub-dremio",
+            "uid": "PFFAE26C65C486A4D"
+          },
+          "queryText": "select * from grafana.Serge_view009a_num_ACTIVE_USERS_per_INTERL_TYPE_per_PROC",
+          "queryTimeout": 60,
+          "refId": "A",
+          "timeCol": "time_col"
+        }
+      ],
+      "title": "T009a_num_ACTIVE_USERS_per_INTERL_TYPE_per_PROC",
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "digital-hub-dremio",
+        "uid": "PFFAE26C65C486A4D"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "displayMode": "auto",
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 4,
+        "x": 0,
+        "y": 67
+      },
+      "id": 192,
+      "options": {
+        "footer": {
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true
+      },
+      "pluginVersion": "8.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "digital-hub-dremio",
+            "uid": "PFFAE26C65C486A4D"
+          },
+          "queryText": "select * from grafana.Serge_view009b_num_ACTIVE_USERS_per_INTERL_per_PROC",
+          "queryTimeout": 60,
+          "refId": "A",
+          "timeCol": "time_col"
+        }
+      ],
+      "title": "T009b_num_ACTIVE_USERS_per_INTERL_per_PROC",
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "digital-hub-dremio",
+        "uid": "PFFAE26C65C486A4D"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "displayMode": "auto",
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 0,
+        "y": 72
+      },
+      "id": 194,
+      "options": {
+        "footer": {
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true
+      },
+      "pluginVersion": "8.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "digital-hub-dremio",
+            "uid": "PFFAE26C65C486A4D"
+          },
+          "queryText": "select * from grafana.\"Serge_view010a_num_USERS_per_INTERL_type_per_ROLE\"",
+          "queryTimeout": 60,
+          "refId": "A",
+          "timeCol": "time_col"
+        }
+      ],
+      "title": "T010a_num_USERS_per_INTERL_type_per_ROLE",
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "digital-hub-dremio",
+        "uid": "PFFAE26C65C486A4D"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "displayMode": "auto",
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 4,
+        "x": 0,
+        "y": 79
+      },
+      "id": 196,
+      "options": {
+        "footer": {
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true
+      },
+      "pluginVersion": "8.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "digital-hub-dremio",
+            "uid": "PFFAE26C65C486A4D"
+          },
+          "queryText": "select * from grafana.Serge_view010b_num_USERS_per_INTERL_per_ROLE",
+          "queryTimeout": 60,
+          "refId": "A",
+          "timeCol": "time_col"
+        }
+      ],
+      "title": "T010b_num_USERS_per_INTERL_per_ROLE",
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "digital-hub-dremio",
+        "uid": "PFFAE26C65C486A4D"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 0,
+        "y": 85
+      },
+      "id": 162,
+      "options": {
+        "colorMode": "value",
         "graphMode": "area",
         "justifyMode": "auto",
         "orientation": "auto",
@@ -2453,36 +1454,16 @@
       "targets": [
         {
           "datasource": {
-            "type": "postgres",
-            "uid": "P0156C528EAB550E4"
+            "type": "digital-hub-dremio",
+            "uid": "PFFAE26C65C486A4D"
           },
-          "format": "table",
-          "group": [],
-          "metricColumn": "none",
-          "rawQuery": true,
-          "rawSql": "select count(distinct id)\nfrom coproductionprocess;\n",
+          "queryText": "select * from grafana.Serge_view011_num_PROCESSES",
+          "queryTimeout": 60,
           "refId": "A",
-          "select": [
-            [
-              {
-                "params": [
-                  "value"
-                ],
-                "type": "column"
-              }
-            ]
-          ],
-          "timeColumn": "time",
-          "where": [
-            {
-              "name": "$__timeFilter",
-              "params": [],
-              "type": "macro"
-            }
-          ]
+          "timeCol": "time_col"
         }
       ],
-      "title": "T011 Total number of co-prod processes",
+      "title": "T011_num_PROCESSES",
       "type": "stat"
     },
     {
@@ -2500,7 +1481,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -2515,7 +1497,7 @@
         "h": 5,
         "w": 5,
         "x": 0,
-        "y": 95
+        "y": 89
       },
       "id": 148,
       "options": {
@@ -2570,22 +1552,26 @@
     },
     {
       "datasource": {
-        "type": "postgres",
-        "uid": "P0156C528EAB550E4"
+        "type": "digital-hub-dremio",
+        "uid": "PFFAE26C65C486A4D"
       },
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "continuous-GrYlRd"
+            "mode": "thresholds"
           },
-          "decimals": 0,
+          "custom": {
+            "align": "auto",
+            "displayMode": "auto",
+            "inspect": false
+          },
           "mappings": [],
-          "min": 0,
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -2593,82 +1579,6 @@
               }
             ]
           }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 0,
-        "y": 100
-      },
-      "id": 76,
-      "options": {
-        "displayMode": "basic",
-        "minVizHeight": 10,
-        "minVizWidth": 0,
-        "orientation": "horizontal",
-        "reduceOptions": {
-          "calcs": [],
-          "fields": "/^count$/",
-          "values": true
-        },
-        "showUnfilled": true
-      },
-      "pluginVersion": "8.5.1",
-      "targets": [
-        {
-          "datasource": {
-            "type": "postgres",
-            "uid": "P0156C528EAB550E4"
-          },
-          "format": "table",
-          "group": [],
-          "metricColumn": "none",
-          "rawQuery": true,
-          "rawSql": "select schema_used, count(distinct id)\nfrom coproductionprocess\ngroup by schema_used\norder by count desc;\n",
-          "refId": "A",
-          "select": [
-            [
-              {
-                "params": [
-                  "value"
-                ],
-                "type": "column"
-              }
-            ]
-          ],
-          "timeColumn": "time",
-          "where": [
-            {
-              "name": "$__timeFilter",
-              "params": [],
-              "type": "macro"
-            }
-          ]
-        }
-      ],
-      "title": "T015 Number of co-prod processes per type of schema",
-      "type": "bargauge"
-    },
-    {
-      "datasource": {
-        "type": "postgres",
-        "uid": "P103451395067D389"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            }
-          },
-          "mappings": []
         },
         "overrides": []
       },
@@ -2676,73 +1586,39 @@
         "h": 6,
         "w": 12,
         "x": 0,
-        "y": 108
+        "y": 94
       },
-      "id": 38,
+      "id": 174,
       "options": {
-        "displayLabels": [
-          "percent"
-        ],
-        "legend": {
-          "displayMode": "table",
-          "placement": "right",
-          "values": [
-            "value"
-          ]
-        },
-        "pieType": "pie",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
+        "footer": {
           "fields": "",
-          "values": true
+          "reducer": [
+            "sum"
+          ],
+          "show": false
         },
-        "tooltip": {
-          "mode": "single",
-          "sort": "asc"
-        }
+        "showHeader": true
       },
       "pluginVersion": "8.5.1",
       "targets": [
         {
           "datasource": {
-            "type": "postgres",
-            "uid": "P103451395067D389"
+            "type": "digital-hub-dremio",
+            "uid": "PFFAE26C65C486A4D"
           },
-          "format": "table",
-          "group": [],
-          "metricColumn": "none",
-          "rawQuery": true,
-          "rawSql": "SELECT nature, count(id) FROM interlinker group by nature;",
+          "queryText": "select * from grafana.Serge_view015_num_PROC_per_SCHEMA",
+          "queryTimeout": 60,
           "refId": "A",
-          "select": [
-            [
-              {
-                "params": [
-                  "value"
-                ],
-                "type": "column"
-              }
-            ]
-          ],
-          "timeColumn": "time",
-          "where": [
-            {
-              "name": "$__timeFilter",
-              "params": [],
-              "type": "macro"
-            }
-          ]
+          "timeCol": "time_col"
         }
       ],
-      "title": "T021 Total number of INTERLINKERs in Catalogue",
-      "type": "piechart"
+      "title": "T015_num_PROC_per_SCHEMA",
+      "type": "table"
     },
     {
       "datasource": {
-        "type": "postgres",
-        "uid": "P0156C528EAB550E4"
+        "type": "digital-hub-dremio",
+        "uid": "PFFAE26C65C486A4D"
       },
       "fieldConfig": {
         "defaults": {
@@ -2754,7 +1630,72 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 12,
+        "x": 0,
+        "y": 100
+      },
+      "id": 164,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "sum"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "8.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "digital-hub-dremio",
+            "uid": "PFFAE26C65C486A4D"
+          },
+          "queryText": "SELECT count( distinct( id ))\nFROM catalogue.public.interlinker ",
+          "queryTimeout": 60,
+          "refId": "A",
+          "timeCol": "time_col"
+        }
+      ],
+      "title": "T021_num_INTERL_total",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "digital-hub-dremio",
+        "uid": "PFFAE26C65C486A4D"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -2769,17 +1710,17 @@
         "h": 4,
         "w": 3,
         "x": 0,
-        "y": 114
+        "y": 105
       },
-      "id": 80,
+      "id": 166,
       "options": {
-        "colorMode": "none",
+        "colorMode": "value",
         "graphMode": "area",
         "justifyMode": "auto",
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
-            "lastNotNull"
+            "sum"
           ],
           "fields": "",
           "values": false
@@ -2790,42 +1731,22 @@
       "targets": [
         {
           "datasource": {
-            "type": "postgres",
-            "uid": "P0156C528EAB550E4"
+            "type": "digital-hub-dremio",
+            "uid": "PFFAE26C65C486A4D"
           },
-          "format": "table",
-          "group": [],
-          "metricColumn": "none",
-          "rawQuery": true,
-          "rawSql": "select count(distinct id) from asset;\n",
+          "queryText": "select * from grafana.Serge_view022a_num_USED_INTERL",
+          "queryTimeout": 60,
           "refId": "A",
-          "select": [
-            [
-              {
-                "params": [
-                  "value"
-                ],
-                "type": "column"
-              }
-            ]
-          ],
-          "timeColumn": "time",
-          "where": [
-            {
-              "name": "$__timeFilter",
-              "params": [],
-              "type": "macro"
-            }
-          ]
+          "timeCol": "time_col"
         }
       ],
-      "title": "T022a Number of ALL INTERLINKERs ever used",
+      "title": "T022a_num_USED_INTERL",
       "type": "stat"
     },
     {
       "datasource": {
-        "type": "postgres",
-        "uid": "P0156C528EAB550E4"
+        "type": "digital-hub-dremio",
+        "uid": "PFFAE26C65C486A4D"
       },
       "fieldConfig": {
         "defaults": {
@@ -2837,7 +1758,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -2850,19 +1772,19 @@
       },
       "gridPos": {
         "h": 4,
-        "w": 3,
+        "w": 4,
         "x": 3,
-        "y": 114
+        "y": 105
       },
-      "id": 82,
+      "id": 198,
       "options": {
-        "colorMode": "none",
+        "colorMode": "value",
         "graphMode": "area",
         "justifyMode": "auto",
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
-            "lastNotNull"
+            "sum"
           ],
           "fields": "",
           "values": false
@@ -2873,42 +1795,22 @@
       "targets": [
         {
           "datasource": {
-            "type": "postgres",
-            "uid": "P0156C528EAB550E4"
+            "type": "digital-hub-dremio",
+            "uid": "PFFAE26C65C486A4D"
           },
-          "format": "table",
-          "group": [],
-          "metricColumn": "none",
-          "rawQuery": true,
-          "rawSql": "select count(distinct id) from internalasset where knowledgeinterlinker_id is not null;\n",
+          "queryText": "select * from grafana.Serge_view022b_num_USED_INTERL_Internal_Knowledge",
+          "queryTimeout": 60,
           "refId": "A",
-          "select": [
-            [
-              {
-                "params": [
-                  "value"
-                ],
-                "type": "column"
-              }
-            ]
-          ],
-          "timeColumn": "time",
-          "where": [
-            {
-              "name": "$__timeFilter",
-              "params": [],
-              "type": "macro"
-            }
-          ]
+          "timeCol": "time_col"
         }
       ],
-      "title": "T022b Number of Knowledge INTERLINKERs ever used",
+      "title": "T022b_num_USED_INTERL_Internal_Knowledge",
       "type": "stat"
     },
     {
       "datasource": {
-        "type": "postgres",
-        "uid": "P0156C528EAB550E4"
+        "type": "digital-hub-dremio",
+        "uid": "PFFAE26C65C486A4D"
       },
       "fieldConfig": {
         "defaults": {
@@ -2920,7 +1822,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -2934,18 +1837,18 @@
       "gridPos": {
         "h": 4,
         "w": 3,
-        "x": 6,
-        "y": 114
+        "x": 0,
+        "y": 109
       },
-      "id": 84,
+      "id": 200,
       "options": {
-        "colorMode": "none",
+        "colorMode": "value",
         "graphMode": "area",
         "justifyMode": "auto",
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
-            "lastNotNull"
+            "sum"
           ],
           "fields": "",
           "values": false
@@ -2956,42 +1859,22 @@
       "targets": [
         {
           "datasource": {
-            "type": "postgres",
-            "uid": "P0156C528EAB550E4"
+            "type": "digital-hub-dremio",
+            "uid": "PFFAE26C65C486A4D"
           },
-          "format": "table",
-          "group": [],
-          "metricColumn": "none",
-          "rawQuery": true,
-          "rawSql": "select count(distinct id) from internalasset where softwareinterlinker_id is not null;\n",
+          "queryText": "select * from grafana.Serge_view022c_num_USED_INTERL_InternalSW",
+          "queryTimeout": 60,
           "refId": "A",
-          "select": [
-            [
-              {
-                "params": [
-                  "value"
-                ],
-                "type": "column"
-              }
-            ]
-          ],
-          "timeColumn": "time",
-          "where": [
-            {
-              "name": "$__timeFilter",
-              "params": [],
-              "type": "macro"
-            }
-          ]
+          "timeCol": "time_col"
         }
       ],
-      "title": "T022c Number of internal SW INTERLINKERs ever used",
+      "title": "T022c_num_USED_INTERL_InternalSW",
       "type": "stat"
     },
     {
       "datasource": {
-        "type": "postgres",
-        "uid": "P0156C528EAB550E4"
+        "type": "digital-hub-dremio",
+        "uid": "PFFAE26C65C486A4D"
       },
       "fieldConfig": {
         "defaults": {
@@ -3003,7 +1886,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -3016,19 +1900,19 @@
       },
       "gridPos": {
         "h": 4,
-        "w": 3,
-        "x": 9,
-        "y": 114
+        "w": 4,
+        "x": 3,
+        "y": 109
       },
-      "id": 86,
+      "id": 202,
       "options": {
-        "colorMode": "none",
+        "colorMode": "value",
         "graphMode": "area",
         "justifyMode": "auto",
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
-            "lastNotNull"
+            "sum"
           ],
           "fields": "",
           "values": false
@@ -3039,36 +1923,16 @@
       "targets": [
         {
           "datasource": {
-            "type": "postgres",
-            "uid": "P0156C528EAB550E4"
+            "type": "digital-hub-dremio",
+            "uid": "PFFAE26C65C486A4D"
           },
-          "format": "table",
-          "group": [],
-          "metricColumn": "none",
-          "rawQuery": true,
-          "rawSql": "select count(distinct id) from externalasset;\n",
+          "queryText": "select * from grafana.Serge_view022d_num_USED_INTERL_ExternalSW",
+          "queryTimeout": 60,
           "refId": "A",
-          "select": [
-            [
-              {
-                "params": [
-                  "value"
-                ],
-                "type": "column"
-              }
-            ]
-          ],
-          "timeColumn": "time",
-          "where": [
-            {
-              "name": "$__timeFilter",
-              "params": [],
-              "type": "macro"
-            }
-          ]
+          "timeCol": "time_col"
         }
       ],
-      "title": "T022d Number of external SW INTERLINKERs ever used",
+      "title": "T022d_num_USED_INTERL_ExternalSW",
       "type": "stat"
     },
     {
@@ -3097,7 +1961,7 @@
         "h": 5,
         "w": 5,
         "x": 0,
-        "y": 118
+        "y": 113
       },
       "id": 2,
       "options": {
@@ -3203,7 +2067,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -3218,7 +2083,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 123
+        "y": 118
       },
       "id": 88,
       "options": {
@@ -3283,49 +2148,21 @@
     },
     {
       "datasource": {
-        "type": "elasticsearch",
-        "uid": "P93B636384B151928"
+        "type": "digital-hub-dremio",
+        "uid": "PFFAE26C65C486A4D"
       },
-      "description": "",
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 25,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
+            "mode": "thresholds"
           },
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -3337,118 +2174,59 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 9,
-        "w": 12,
+        "h": 8,
+        "w": 6,
         "x": 0,
-        "y": 132
+        "y": 127
       },
-      "id": 90,
+      "id": 204,
       "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom"
+        "displayMode": "gradient",
+        "minVizHeight": 10,
+        "minVizWidth": 0,
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": true
         },
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
+        "showUnfilled": true
       },
+      "pluginVersion": "8.5.1",
       "targets": [
         {
-          "alias": "",
-          "bucketAggs": [
-            {
-              "field": "softwareinterlinker_id.keyword",
-              "id": "4",
-              "settings": {
-                "min_doc_count": "1",
-                "order": "desc",
-                "orderBy": "_term",
-                "size": "10"
-              },
-              "type": "terms"
-            },
-            {
-              "field": "timestamp",
-              "id": "2",
-              "settings": {
-                "interval": "auto"
-              },
-              "type": "date_histogram"
-            }
-          ],
           "datasource": {
-            "type": "elasticsearch",
-            "uid": "P93B636384B151928"
+            "type": "digital-hub-dremio",
+            "uid": "PFFAE26C65C486A4D"
           },
-          "metrics": [
-            {
-              "hide": true,
-              "id": "1",
-              "type": "count"
-            },
-            {
-              "field": "1",
-              "id": "3",
-              "pipelineAgg": "1",
-              "type": "cumulative_sum"
-            }
-          ],
-          "query": "action.keyword:CREATE AND model.keyword:ASSET AND (_exists_:softwareinterlinker_id.keyword)",
+          "queryText": "select * from grafana.Serge_view023a_use_frequency_of_INTERL_InternalKnowledge",
+          "queryTimeout": 60,
           "refId": "A",
-          "timeField": "timestamp"
+          "timeCol": "time_col"
         }
       ],
-      "title": "T023b Frequency histogram of used internal SW INTERLINKERs per INT. ID/NAME",
-      "type": "timeseries"
+      "title": "T023a_use_frequency_of_INTERL_InternalKnowledge",
+      "type": "bargauge"
     },
     {
       "datasource": {
-        "type": "elasticsearch",
-        "uid": "P93B636384B151928"
+        "type": "digital-hub-dremio",
+        "uid": "PFFAE26C65C486A4D"
       },
-      "description": "",
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "palette-classic"
+            "mode": "thresholds"
           },
-          "custom": {
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 25,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "decimals": 0,
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -3460,61 +2238,235 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 9,
-        "w": 12,
+        "h": 5,
+        "w": 5,
         "x": 0,
-        "y": 141
+        "y": 135
       },
-      "id": 92,
+      "id": 206,
       "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom"
+        "displayMode": "gradient",
+        "minVizHeight": 10,
+        "minVizWidth": 0,
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": true
         },
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
+        "showUnfilled": true
       },
+      "pluginVersion": "8.5.1",
       "targets": [
         {
-          "alias": "",
-          "bucketAggs": [
-            {
-              "field": "timestamp",
-              "id": "2",
-              "settings": {
-                "interval": "auto"
-              },
-              "type": "date_histogram"
-            }
-          ],
           "datasource": {
-            "type": "elasticsearch",
-            "uid": "P93B636384B151928"
+            "type": "digital-hub-dremio",
+            "uid": "PFFAE26C65C486A4D"
           },
-          "hide": false,
-          "metrics": [
-            {
-              "hide": true,
-              "id": "1",
-              "type": "count"
-            },
-            {
-              "field": "1",
-              "id": "3",
-              "pipelineAgg": "1",
-              "type": "cumulative_sum"
-            }
-          ],
-          "query": "action.keyword:CREATE AND model.keyword:ASSET AND type.keyword:externalasset",
+          "queryText": "select * from grafana.Serge_view023b_use_frequency_of_INTERL_InternalSW",
+          "queryTimeout": 60,
           "refId": "A",
-          "timeField": "timestamp"
+          "timeCol": "time_col"
         }
       ],
-      "title": "T023c Frequency histogram of used external SW INTERLINKERs per INT. ID/NAME",
-      "type": "timeseries"
+      "title": "T023b_use_frequency_of_INTERL_InternalSW",
+      "type": "bargauge"
+    },
+    {
+      "datasource": {
+        "type": "digital-hub-dremio",
+        "uid": "PFFAE26C65C486A4D"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "displayMode": "auto",
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 4,
+        "x": 0,
+        "y": 140
+      },
+      "id": 208,
+      "options": {
+        "footer": {
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true
+      },
+      "pluginVersion": "8.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "digital-hub-dremio",
+            "uid": "PFFAE26C65C486A4D"
+          },
+          "queryText": "select * from grafana.Serge_view023c_use_frequency_of_INTERL_ExternalSW",
+          "queryTimeout": 60,
+          "refId": "A",
+          "timeCol": "time_col"
+        }
+      ],
+      "title": "T023c_use_frequency_of_INTERL_ExternalSW",
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "digital-hub-dremio",
+        "uid": "PFFAE26C65C486A4D"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "displayMode": "auto",
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 4,
+        "x": 0,
+        "y": 143
+      },
+      "id": 210,
+      "options": {
+        "footer": {
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true
+      },
+      "pluginVersion": "8.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "digital-hub-dremio",
+            "uid": "PFFAE26C65C486A4D"
+          },
+          "queryText": "select * from grafana.\"Serge_view024x_num_USED_INTERL_per_PROC\"",
+          "queryTimeout": 60,
+          "refId": "A",
+          "timeCol": "time_col"
+        }
+      ],
+      "title": "T024x_num_USED_INTERL_per_PROC",
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "digital-hub-dremio",
+        "uid": "PFFAE26C65C486A4D"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 0,
+        "y": 148
+      },
+      "id": 212,
+      "options": {
+        "displayMode": "gradient",
+        "minVizHeight": 10,
+        "minVizWidth": 0,
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": true
+        },
+        "showUnfilled": true
+      },
+      "pluginVersion": "8.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "digital-hub-dremio",
+            "uid": "PFFAE26C65C486A4D"
+          },
+          "queryText": "select * from grafana.\"Serge_view025_num_USED_INTERL_per_SCHEMA\"",
+          "queryTimeout": 60,
+          "refId": "A",
+          "timeCol": "time_col"
+        }
+      ],
+      "title": "T025_num_USED_INTERL_per_SCHEMA",
+      "type": "bargauge"
     },
     {
       "datasource": {
@@ -3533,7 +2485,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -3548,7 +2501,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 150
+        "y": 152
       },
       "id": 94,
       "options": {
@@ -3616,7 +2569,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               }
             ]
           }
@@ -3627,7 +2581,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 158
+        "y": 160
       },
       "id": 96,
       "options": {
@@ -3697,7 +2651,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               }
             ]
           }
@@ -3708,7 +2663,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 166
+        "y": 168
       },
       "id": 98,
       "options": {
@@ -3778,7 +2733,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               }
             ]
           }
@@ -3789,7 +2745,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 174
+        "y": 176
       },
       "id": 100,
       "options": {
@@ -3858,7 +2814,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               }
             ]
           }
@@ -3869,7 +2826,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 182
+        "y": 184
       },
       "id": 102,
       "options": {
@@ -3923,12 +2880,14 @@
     },
     {
       "datasource": {
-        "type": "postgres",
-        "uid": "P0156C528EAB550E4"
+        "type": "digital-hub-dremio",
+        "uid": "PFFAE26C65C486A4D"
       },
-      "description": "",
       "fieldConfig": {
         "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
           "custom": {
             "align": "auto",
             "displayMode": "auto",
@@ -3939,7 +2898,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -3951,12 +2911,12 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 8,
-        "w": 12,
+        "h": 6,
+        "w": 7,
         "x": 0,
-        "y": 190
+        "y": 192
       },
-      "id": 104,
+      "id": 214,
       "options": {
         "footer": {
           "fields": "",
@@ -3971,37 +2931,16 @@
       "targets": [
         {
           "datasource": {
-            "type": "postgres",
-            "uid": "P0156C528EAB550E4"
+            "type": "digital-hub-dremio",
+            "uid": "PFFAE26C65C486A4D"
           },
-          "format": "table",
-          "group": [],
-          "hide": false,
-          "metricColumn": "none",
-          "rawQuery": true,
-          "rawSql": "select b.coproductionprocess_id, a.schema_used, count(distinct b.id)\nfrom coproductionprocess a\ninner join asset b on (a.id=b.coproductionprocess_id)\ngroup by b.coproductionprocess_id, a.schema_used\norder by count desc;",
+          "queryText": "select * from grafana.Serge_view026_num_USED_INTERL_per_SCHEMA_per_PROC",
+          "queryTimeout": 60,
           "refId": "A",
-          "select": [
-            [
-              {
-                "params": [
-                  "value"
-                ],
-                "type": "column"
-              }
-            ]
-          ],
-          "timeColumn": "time",
-          "where": [
-            {
-              "name": "$__timeFilter",
-              "params": [],
-              "type": "macro"
-            }
-          ]
+          "timeCol": "time_col"
         }
       ],
-      "title": "T026 Num. used INTERLINKERs per co-prod. process per schema type",
+      "title": "T026_num_USED_INTERL_per_SCHEMA_per_PROC",
       "type": "table"
     },
     {
@@ -4022,7 +2961,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -4089,8 +3029,8 @@
     },
     {
       "datasource": {
-        "type": "datasource",
-        "uid": "-- Mixed --"
+        "type": "digital-hub-dremio",
+        "uid": "PFFAE26C65C486A4D"
       },
       "fieldConfig": {
         "defaults": {
@@ -4102,7 +3042,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -4111,42 +3052,17 @@
             ]
           }
         },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Count"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "Logs"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "count"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "SQL"
-              }
-            ]
-          }
-        ]
+        "overrides": []
       },
       "gridPos": {
-        "h": 5,
+        "h": 6,
         "w": 5,
         "x": 0,
         "y": 206
       },
-      "id": 40,
+      "id": 168,
       "options": {
-        "colorMode": "none",
+        "colorMode": "value",
         "graphMode": "area",
         "justifyMode": "auto",
         "orientation": "auto",
@@ -4162,71 +3078,24 @@
       "pluginVersion": "8.5.1",
       "targets": [
         {
-          "alias": "",
-          "bucketAggs": [
-            {
-              "field": "timestamp",
-              "id": "2",
-              "settings": {
-                "interval": "auto"
-              },
-              "type": "date_histogram"
-            }
-          ],
           "datasource": {
-            "type": "elasticsearch",
-            "uid": "P93B636384B151928"
+            "type": "digital-hub-dremio",
+            "uid": "PFFAE26C65C486A4D"
           },
-          "metrics": [
-            {
-              "id": "1",
-              "type": "count"
-            }
-          ],
-          "query": "action:CREATE AND model:ASSET",
+          "queryText": "select count( distinct(id) ) as num_Assets from coproduction.public.asset",
+          "queryTimeout": 60,
           "refId": "A",
-          "timeField": "timestamp"
-        },
-        {
-          "datasource": {
-            "uid": "P0156C528EAB550E4"
-          },
-          "format": "table",
-          "group": [],
-          "hide": false,
-          "metricColumn": "none",
-          "rawQuery": true,
-          "rawSql": "select count(distinct id)\nfrom asset;",
-          "refId": "B",
-          "select": [
-            [
-              {
-                "params": [
-                  "value"
-                ],
-                "type": "column"
-              }
-            ]
-          ],
-          "timeColumn": "time",
-          "where": [
-            {
-              "name": "$__timeFilter",
-              "params": [],
-              "type": "macro"
-            }
-          ]
+          "timeCol": "time_col"
         }
       ],
-      "title": "T031a Total number of assets created anywhere",
+      "title": "T031a_Num_Assets_",
       "type": "stat"
     },
     {
       "datasource": {
-        "type": "datasource",
-        "uid": "-- Mixed --"
+        "type": "digital-hub-dremio",
+        "uid": "PFFAE26C65C486A4D"
       },
-      "description": "",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -4237,7 +3106,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -4246,42 +3116,17 @@
             ]
           }
         },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Count"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "Logs"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "count"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "SQL"
-              }
-            ]
-          }
-        ]
+        "overrides": []
       },
       "gridPos": {
-        "h": 5,
+        "h": 6,
         "w": 5,
         "x": 5,
         "y": 206
       },
-      "id": 108,
+      "id": 216,
       "options": {
-        "colorMode": "none",
+        "colorMode": "value",
         "graphMode": "area",
         "justifyMode": "auto",
         "orientation": "auto",
@@ -4297,70 +3142,23 @@
       "pluginVersion": "8.5.1",
       "targets": [
         {
-          "alias": "",
-          "bucketAggs": [
-            {
-              "field": "timestamp",
-              "id": "2",
-              "settings": {
-                "interval": "auto"
-              },
-              "type": "date_histogram"
-            }
-          ],
           "datasource": {
-            "type": "elasticsearch",
-            "uid": "P93B636384B151928"
+            "type": "digital-hub-dremio",
+            "uid": "PFFAE26C65C486A4D"
           },
-          "hide": false,
-          "metrics": [
-            {
-              "id": "1",
-              "type": "count"
-            }
-          ],
-          "query": "action:CREATE AND model:ASSET AND _exists_:knowledgeinterlinker_id",
+          "queryText": "select * from grafana.Serge_view031b_num_ASSETS_for_InterKnow_INTERL",
+          "queryTimeout": 60,
           "refId": "A",
-          "timeField": "timestamp"
-        },
-        {
-          "datasource": {
-            "uid": "P0156C528EAB550E4"
-          },
-          "format": "table",
-          "group": [],
-          "hide": false,
-          "metricColumn": "none",
-          "rawQuery": true,
-          "rawSql": "select count(distinct id)\nfrom internalasset\nwhere knowledgeinterlinker_id is not null;",
-          "refId": "B",
-          "select": [
-            [
-              {
-                "params": [
-                  "value"
-                ],
-                "type": "column"
-              }
-            ]
-          ],
-          "timeColumn": "time",
-          "where": [
-            {
-              "name": "$__timeFilter",
-              "params": [],
-              "type": "macro"
-            }
-          ]
+          "timeCol": "time_col"
         }
       ],
-      "title": "T031b Total num of assets for Knowledge type INTERLINKERs",
+      "title": "T031b_num_ASSETS_for_InterKnow_INTERL",
       "type": "stat"
     },
     {
       "datasource": {
-        "type": "datasource",
-        "uid": "-- Mixed --"
+        "type": "digital-hub-dremio",
+        "uid": "PFFAE26C65C486A4D"
       },
       "fieldConfig": {
         "defaults": {
@@ -4372,7 +3170,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -4381,42 +3180,17 @@
             ]
           }
         },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Count"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "Logs"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "count"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "SQL"
-              }
-            ]
-          }
-        ]
+        "overrides": []
       },
       "gridPos": {
-        "h": 5,
+        "h": 6,
         "w": 5,
         "x": 0,
-        "y": 211
+        "y": 212
       },
-      "id": 110,
+      "id": 218,
       "options": {
-        "colorMode": "none",
+        "colorMode": "value",
         "graphMode": "area",
         "justifyMode": "auto",
         "orientation": "auto",
@@ -4432,69 +3206,23 @@
       "pluginVersion": "8.5.1",
       "targets": [
         {
-          "alias": "",
-          "bucketAggs": [
-            {
-              "field": "timestamp",
-              "id": "2",
-              "settings": {
-                "interval": "auto"
-              },
-              "type": "date_histogram"
-            }
-          ],
           "datasource": {
-            "type": "elasticsearch",
-            "uid": "P93B636384B151928"
+            "type": "digital-hub-dremio",
+            "uid": "PFFAE26C65C486A4D"
           },
-          "metrics": [
-            {
-              "id": "1",
-              "type": "count"
-            }
-          ],
-          "query": "action:CREATE AND model:ASSET AND !_exists_:knowledgeinterlinker_id",
+          "queryText": "select * from grafana.Serge_view031c_num_ASSETS_for_InterSW_INTERL",
+          "queryTimeout": 60,
           "refId": "A",
-          "timeField": "timestamp"
-        },
-        {
-          "datasource": {
-            "uid": "P0156C528EAB550E4"
-          },
-          "format": "table",
-          "group": [],
-          "hide": false,
-          "metricColumn": "none",
-          "rawQuery": true,
-          "rawSql": "select count(distinct id)\nfrom internalasset\nwhere knowledgeinterlinker_id is null;",
-          "refId": "B",
-          "select": [
-            [
-              {
-                "params": [
-                  "value"
-                ],
-                "type": "column"
-              }
-            ]
-          ],
-          "timeColumn": "time",
-          "where": [
-            {
-              "name": "$__timeFilter",
-              "params": [],
-              "type": "macro"
-            }
-          ]
+          "timeCol": "time_col"
         }
       ],
-      "title": "T031c Total num of assets for internal SW type INTERLINKERs",
+      "title": "T031c_num_ASSETS_for_InterSW_INTERL",
       "type": "stat"
     },
     {
       "datasource": {
-        "type": "datasource",
-        "uid": "-- Mixed --"
+        "type": "digital-hub-dremio",
+        "uid": "PFFAE26C65C486A4D"
       },
       "fieldConfig": {
         "defaults": {
@@ -4506,7 +3234,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -4515,42 +3244,17 @@
             ]
           }
         },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Count"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "Logs"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "count"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "SQL"
-              }
-            ]
-          }
-        ]
+        "overrides": []
       },
       "gridPos": {
-        "h": 5,
+        "h": 6,
         "w": 5,
         "x": 5,
-        "y": 211
+        "y": 212
       },
-      "id": 112,
+      "id": 220,
       "options": {
-        "colorMode": "none",
+        "colorMode": "value",
         "graphMode": "area",
         "justifyMode": "auto",
         "orientation": "auto",
@@ -4566,64 +3270,148 @@
       "pluginVersion": "8.5.1",
       "targets": [
         {
-          "alias": "",
-          "bucketAggs": [
-            {
-              "field": "timestamp",
-              "id": "2",
-              "settings": {
-                "interval": "auto"
-              },
-              "type": "date_histogram"
-            }
-          ],
           "datasource": {
-            "type": "elasticsearch",
-            "uid": "P93B636384B151928"
+            "type": "digital-hub-dremio",
+            "uid": "PFFAE26C65C486A4D"
           },
-          "metrics": [
-            {
-              "id": "1",
-              "type": "count"
-            }
-          ],
-          "query": "action:CREATE AND model:ASSET AND type:externalasset",
+          "queryText": "select * from grafana.Serge_view031d_num_ASSETS_for_ExterSW_INTERL",
+          "queryTimeout": 60,
           "refId": "A",
-          "timeField": "timestamp"
-        },
-        {
-          "datasource": {
-            "uid": "P0156C528EAB550E4"
-          },
-          "format": "table",
-          "group": [],
-          "hide": false,
-          "metricColumn": "none",
-          "rawQuery": true,
-          "rawSql": "select count(distinct id)\nfrom externalasset;",
-          "refId": "B",
-          "select": [
-            [
-              {
-                "params": [
-                  "value"
-                ],
-                "type": "column"
-              }
-            ]
-          ],
-          "timeColumn": "time",
-          "where": [
-            {
-              "name": "$__timeFilter",
-              "params": [],
-              "type": "macro"
-            }
-          ]
+          "timeCol": "time_col"
         }
       ],
-      "title": "T031d Total num of assets for external SW type INTERLINKERs",
+      "title": "T031d_num_ASSETS_for_ExterSW_INTERL",
       "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "digital-hub-dremio",
+        "uid": "PFFAE26C65C486A4D"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "displayMode": "auto",
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 0,
+        "y": 218
+      },
+      "id": 222,
+      "options": {
+        "footer": {
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true
+      },
+      "pluginVersion": "8.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "digital-hub-dremio",
+            "uid": "PFFAE26C65C486A4D"
+          },
+          "queryText": "select * from grafana.Serge_view032x_num_ASSETS_per_PROCESS",
+          "queryTimeout": 60,
+          "refId": "A",
+          "timeCol": "time_col"
+        }
+      ],
+      "title": "T032x_num_ASSETS_per_PROCESS",
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "digital-hub-dremio",
+        "uid": "PFFAE26C65C486A4D"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "displayMode": "auto",
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 0,
+        "y": 225
+      },
+      "id": 224,
+      "options": {
+        "footer": {
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true
+      },
+      "pluginVersion": "8.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "digital-hub-dremio",
+            "uid": "PFFAE26C65C486A4D"
+          },
+          "queryText": "select * from grafana.Serge_view033x_num_ASSETS_per_INTERL",
+          "queryTimeout": 60,
+          "refId": "A",
+          "timeCol": "time_col"
+        }
+      ],
+      "title": "T033x_num_ASSETS_per_INTERL",
+      "type": "table"
     },
     {
       "datasource": {
@@ -4643,7 +3431,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -4658,7 +3447,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 216
+        "y": 232
       },
       "id": 42,
       "options": {
@@ -4776,7 +3565,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -4791,7 +3581,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 225
+        "y": 241
       },
       "id": 114,
       "options": {
@@ -4890,7 +3680,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -4905,7 +3696,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 233
+        "y": 249
       },
       "id": 116,
       "options": {
@@ -5004,7 +3795,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -5019,7 +3811,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 241
+        "y": 257
       },
       "id": 118,
       "options": {
@@ -5117,7 +3909,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               }
             ]
           }
@@ -5128,7 +3921,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 249
+        "y": 265
       },
       "id": 120,
       "options": {
@@ -5197,7 +3990,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               }
             ]
           }
@@ -5208,7 +4002,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 257
+        "y": 273
       },
       "id": 122,
       "options": {
@@ -5277,7 +4071,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               }
             ]
           }
@@ -5288,7 +4083,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 265
+        "y": 281
       },
       "id": 124,
       "options": {
@@ -5357,7 +4152,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               }
             ]
           }
@@ -5368,7 +4164,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 273
+        "y": 289
       },
       "id": 44,
       "options": {
@@ -5451,6 +4247,94 @@
     },
     {
       "datasource": {
+        "type": "postgres",
+        "uid": "P0156C528EAB550E4"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "displayMode": "auto",
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 0,
+        "y": 298
+      },
+      "id": 226,
+      "options": {
+        "footer": {
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true
+      },
+      "pluginVersion": "8.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "postgres",
+            "uid": "P0156C528EAB550E4"
+          },
+          "format": "table",
+          "group": [],
+          "metricColumn": "none",
+          "queryTimeout": 60,
+          "rawQuery": true,
+          "rawSql": "select u.full_name, -- a.creator_id as user_id, \n       count(distinct a.id) as num_assets\nfrom asset a\nleft join \"user\" u on u.id = a.creator_id\ngroup by u.full_name\norder by num_assets desc\n",
+          "refId": "A",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "timeCol": "time_col",
+          "timeColumn": "time",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            }
+          ]
+        }
+      ],
+      "title": "T034_Num_Assets_per_USER_",
+      "type": "table"
+    },
+    {
+      "datasource": {
         "type": "elasticsearch",
         "uid": "P93B636384B151928"
       },
@@ -5492,7 +4376,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               }
             ]
           }
@@ -5503,7 +4388,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 282
+        "y": 305
       },
       "id": 8,
       "options": {
@@ -5604,7 +4489,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               }
             ]
           }
@@ -5615,7 +4501,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 290
+        "y": 313
       },
       "id": 52,
       "options": {
@@ -5717,7 +4603,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               }
             ]
           }
@@ -5728,7 +4615,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 298
+        "y": 321
       },
       "id": 126,
       "options": {
@@ -5841,7 +4728,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               }
             ]
           }
@@ -5852,7 +4740,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 306
+        "y": 329
       },
       "id": 128,
       "options": {
@@ -5965,7 +4853,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               }
             ]
           }
@@ -5976,7 +4865,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 314
+        "y": 337
       },
       "id": 130,
       "options": {
@@ -6086,7 +4975,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               }
             ]
           }
@@ -6097,7 +4987,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 322
+        "y": 345
       },
       "id": 132,
       "options": {
@@ -6170,7 +5060,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -6185,7 +5076,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 330
+        "y": 353
       },
       "id": 136,
       "options": {
@@ -6254,7 +5145,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -6269,7 +5161,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 338
+        "y": 361
       },
       "id": 134,
       "options": {
@@ -6322,10 +5214,9 @@
     },
     {
       "datasource": {
-        "type": "datasource",
-        "uid": "-- Mixed --"
+        "type": "digital-hub-dremio",
+        "uid": "PFFAE26C65C486A4D"
       },
-      "description": "",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -6336,7 +5227,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -6345,42 +5237,17 @@
             ]
           }
         },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Count"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "Logs"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "count"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "SQL"
-              }
-            ]
-          }
-        ]
+        "overrides": []
       },
       "gridPos": {
-        "h": 5,
-        "w": 5,
+        "h": 4,
+        "w": 3,
         "x": 0,
-        "y": 346
+        "y": 369
       },
-      "id": 14,
+      "id": 160,
       "options": {
-        "colorMode": "none",
+        "colorMode": "value",
         "graphMode": "area",
         "justifyMode": "auto",
         "orientation": "auto",
@@ -6396,63 +5263,17 @@
       "pluginVersion": "8.5.1",
       "targets": [
         {
-          "alias": "",
-          "bucketAggs": [
-            {
-              "field": "timestamp",
-              "id": "2",
-              "settings": {
-                "interval": "auto"
-              },
-              "type": "date_histogram"
-            }
-          ],
           "datasource": {
-            "type": "elasticsearch",
-            "uid": "P93B636384B151928"
+            "type": "digital-hub-dremio",
+            "uid": "PFFAE26C65C486A4D"
           },
-          "metrics": [
-            {
-              "id": "1",
-              "type": "count"
-            }
-          ],
-          "query": "action:CREATE AND model:TEAM",
+          "queryText": "select count( distinct(id) ) from coproduction.public.team",
+          "queryTimeout": 60,
           "refId": "A",
-          "timeField": "timestamp"
-        },
-        {
-          "datasource": {
-            "uid": "P0156C528EAB550E4"
-          },
-          "format": "table",
-          "group": [],
-          "hide": false,
-          "metricColumn": "none",
-          "rawQuery": true,
-          "rawSql": "select count(distinct id)\nfrom team;",
-          "refId": "B",
-          "select": [
-            [
-              {
-                "params": [
-                  "value"
-                ],
-                "type": "column"
-              }
-            ]
-          ],
-          "timeColumn": "time",
-          "where": [
-            {
-              "name": "$__timeFilter",
-              "params": [],
-              "type": "macro"
-            }
-          ]
+          "timeCol": "time_col"
         }
       ],
-      "title": "T053 Number of total teams created within web portal",
+      "title": "T053_Number_of_TEAMS_",
       "type": "stat"
     },
     {
@@ -6472,7 +5293,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -6487,7 +5309,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 351
+        "y": 373
       },
       "id": 16,
       "options": {
@@ -6574,7 +5396,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -6589,7 +5412,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 359
+        "y": 381
       },
       "id": 150,
       "options": {
@@ -6676,7 +5499,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -6691,7 +5515,7 @@
         "h": 4,
         "w": 4,
         "x": 0,
-        "y": 367
+        "y": 389
       },
       "id": 152,
       "options": {
@@ -6777,7 +5601,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -6792,7 +5617,7 @@
         "h": 4,
         "w": 4,
         "x": 0,
-        "y": 371
+        "y": 393
       },
       "id": 140,
       "options": {
@@ -6847,23 +5672,26 @@
     },
     {
       "datasource": {
-        "type": "postgres",
-        "uid": "P0156C528EAB550E4"
+        "type": "digital-hub-dremio",
+        "uid": "PFFAE26C65C486A4D"
       },
-      "description": "",
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "continuous-GrYlRd"
+            "mode": "thresholds"
           },
-          "decimals": 0,
+          "custom": {
+            "align": "auto",
+            "displayMode": "auto",
+            "inspect": false
+          },
           "mappings": [],
-          "min": 0,
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -6875,59 +5703,101 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 8,
-        "w": 12,
+        "h": 4,
+        "w": 5,
         "x": 0,
-        "y": 375
+        "y": 397
       },
-      "id": 142,
+      "id": 170,
       "options": {
-        "displayMode": "basic",
-        "minVizHeight": 10,
-        "minVizWidth": 0,
-        "orientation": "horizontal",
-        "reduceOptions": {
-          "calcs": [],
+        "footer": {
           "fields": "",
-          "values": true
+          "reducer": [
+            "sum"
+          ],
+          "show": false
         },
-        "showUnfilled": true
+        "showHeader": true
       },
       "pluginVersion": "8.5.1",
       "targets": [
         {
           "datasource": {
-            "type": "postgres",
-            "uid": "P0156C528EAB550E4"
+            "type": "digital-hub-dremio",
+            "uid": "PFFAE26C65C486A4D"
           },
-          "format": "table",
-          "group": [],
-          "metricColumn": "none",
-          "rawQuery": true,
-          "rawSql": "select team_id, count(user_id)\nfrom association_user_team\ngroup by team_id\norder by count desc;",
+          "queryText": "select * from grafana.Serge_view058_num_USERS_per_ORG",
+          "queryTimeout": 60,
           "refId": "A",
-          "select": [
-            [
-              {
-                "params": [
-                  "value"
-                ],
-                "type": "column"
-              }
-            ]
-          ],
-          "timeColumn": "time",
-          "where": [
-            {
-              "name": "$__timeFilter",
-              "params": [],
-              "type": "macro"
-            }
-          ]
+          "timeCol": "time_col"
         }
       ],
-      "title": "T058 Number of users per organization",
-      "type": "bargauge"
+      "title": "T058_num_USERS_per_ORG",
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "digital-hub-dremio",
+        "uid": "PFFAE26C65C486A4D"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 0,
+        "y": 401
+      },
+      "id": 159,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "sum"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "8.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "digital-hub-dremio",
+            "uid": "PFFAE26C65C486A4D"
+          },
+          "queryText": "select count(distinct(id)) as num_org from coproduction.public.organization",
+          "queryTimeout": 60,
+          "refId": "A",
+          "timeCol": "time_col"
+        }
+      ],
+      "title": "T058_Num_Organizations_",
+      "type": "stat"
     }
   ],
   "refresh": "",
@@ -7042,6 +5912,6 @@
   "timezone": "",
   "title": "User Monitoring Elastic",
   "uid": "ag3hc92",
-  "version": 56,
+  "version": 16,
   "weekStart": "monday"
 }

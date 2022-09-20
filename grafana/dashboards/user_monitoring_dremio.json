@@ -1,0 +1,2620 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": 6,
+  "links": [],
+  "liveNow": false,
+  "panels": [
+    {
+      "datasource": {
+        "type": "digital-hub-dremio",
+        "uid": "PFFAE26C65C486A4D"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 0,
+        "y": 0
+      },
+      "id": 2,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "8.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "digital-hub-dremio",
+            "uid": "PFFAE26C65C486A4D"
+          },
+          "queryText": "select * from grafana.Serge_view001_num_USERS_total",
+          "queryTimeout": 60,
+          "refId": "A",
+          "timeCol": "time_col"
+        }
+      ],
+      "title": "T001-num-USERS-all",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "digital-hub-dremio",
+        "uid": "PFFAE26C65C486A4D"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 3,
+        "y": 0
+      },
+      "id": 14,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "sum"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "8.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "digital-hub-dremio",
+            "uid": "PFFAE26C65C486A4D"
+          },
+          "queryText": "select * from grafana.Serge_view005a_num_ACTIVE_USERS_total",
+          "queryTimeout": 60,
+          "refId": "A",
+          "timeCol": "time_col"
+        }
+      ],
+      "title": "T005a-num-ACTIVE-USERS",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "digital-hub-dremio",
+        "uid": "PFFAE26C65C486A4D"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 6,
+        "y": 0
+      },
+      "id": 100,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "sum"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "8.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "digital-hub-dremio",
+            "uid": "PFFAE26C65C486A4D"
+          },
+          "queryText": "select count(distinct(id)) as num_org from coproduction.public.organization",
+          "queryTimeout": 60,
+          "refId": "A",
+          "timeCol": "time_col"
+        }
+      ],
+      "title": "_Num_Organizations_",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "digital-hub-dremio",
+        "uid": "PFFAE26C65C486A4D"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 9,
+        "y": 0
+      },
+      "id": 42,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "sum"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "8.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "digital-hub-dremio",
+            "uid": "PFFAE26C65C486A4D"
+          },
+          "queryText": "select count( distinct(id) ) from coproduction.public.team",
+          "queryTimeout": 60,
+          "refId": "A",
+          "timeCol": "time_col"
+        }
+      ],
+      "title": "_Number_of_TEAMS_",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "digital-hub-dremio",
+        "uid": "PFFAE26C65C486A4D"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 0,
+        "y": 4
+      },
+      "id": 36,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "sum"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "8.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "digital-hub-dremio",
+            "uid": "PFFAE26C65C486A4D"
+          },
+          "queryText": "select * from grafana.Serge_view011_num_PROCESSES",
+          "queryTimeout": 60,
+          "refId": "A",
+          "timeCol": "time_col"
+        }
+      ],
+      "title": "T011_num_PROCESSES",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "digital-hub-dremio",
+        "uid": "PFFAE26C65C486A4D"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "orange",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 3,
+        "y": 4
+      },
+      "id": 112,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "8.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "digital-hub-dremio",
+            "uid": "PFFAE26C65C486A4D"
+          },
+          "queryText": "SELECT * FROM grafana.Serge_view061_num_proc_logs",
+          "queryTimeout": 60,
+          "refId": "A",
+          "timeCol": "time_col"
+        }
+      ],
+      "title": "T061_num_proc_logs",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "digital-hub-dremio",
+        "uid": "PFFAE26C65C486A4D"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 6,
+        "y": 4
+      },
+      "id": 76,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "sum"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "8.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "digital-hub-dremio",
+            "uid": "PFFAE26C65C486A4D"
+          },
+          "queryText": "select count( distinct(id) ) as num_Assets from coproduction.public.asset",
+          "queryTimeout": 60,
+          "refId": "A",
+          "timeCol": "time_col"
+        }
+      ],
+      "title": "_Num_Assets_",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "digital-hub-dremio",
+        "uid": "PFFAE26C65C486A4D"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "orange",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 9,
+        "y": 4
+      },
+      "id": 114,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "8.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "digital-hub-dremio",
+            "uid": "PFFAE26C65C486A4D"
+          },
+          "queryText": "select * from grafana.Serge_view062_num_assets_logs",
+          "queryTimeout": 60,
+          "refId": "A",
+          "timeCol": "time_col"
+        }
+      ],
+      "title": "T062_num_assets_logs",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "digital-hub-dremio",
+        "uid": "PFFAE26C65C486A4D"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 0,
+        "y": 8
+      },
+      "id": 48,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "sum"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "8.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "digital-hub-dremio",
+            "uid": "PFFAE26C65C486A4D"
+          },
+          "queryText": "SELECT count( distinct( id ))\nFROM catalogue.public.interlinker ",
+          "queryTimeout": 60,
+          "refId": "A",
+          "timeCol": "time_col"
+        }
+      ],
+      "title": "T021_num_INTERL_total",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "digital-hub-dremio",
+        "uid": "PFFAE26C65C486A4D"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 3,
+        "y": 8
+      },
+      "id": 50,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "sum"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "8.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "digital-hub-dremio",
+            "uid": "PFFAE26C65C486A4D"
+          },
+          "queryText": "select * from grafana.Serge_view022a_num_USED_INTERL",
+          "queryTimeout": 60,
+          "refId": "A",
+          "timeCol": "time_col"
+        }
+      ],
+      "title": "T022a_num_USED_INTERL",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "postgres",
+        "uid": "P0156C528EAB550E4"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "displayMode": "auto",
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 8,
+        "x": 0,
+        "y": 12
+      },
+      "id": 110,
+      "options": {
+        "footer": {
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true
+      },
+      "pluginVersion": "8.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "postgres",
+            "uid": "P0156C528EAB550E4"
+          },
+          "format": "table",
+          "group": [],
+          "metricColumn": "none",
+          "queryTimeout": 60,
+          "rawQuery": true,
+          "rawSql": "SELECT \"o\".\"name_translations\" as org_name, t.name as team_name, count(distinct(\"a\".\"user_id\")) as num_users\nfrom \"organization\" AS \"o\"\nleft join \"team\" AS \"t\" ON \"o\".\"id\" = \"t\".\"organization_id\"\nleft join \"association_user_team\" AS \"a\" ON \"t\".\"id\" = \"a\".\"team_id\"\ngroup by o.name_translations, t.name",
+          "refId": "A",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "timeCol": "time_col",
+          "timeColumn": "time",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            }
+          ]
+        }
+      ],
+      "title": "pg058_num_USERS_per_ORG",
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "digital-hub-dremio",
+        "uid": "PFFAE26C65C486A4D"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "displayMode": "auto",
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 12,
+        "x": 0,
+        "y": 22
+      },
+      "id": 8,
+      "options": {
+        "footer": {
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true
+      },
+      "pluginVersion": "8.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "digital-hub-dremio",
+            "uid": "PFFAE26C65C486A4D"
+          },
+          "queryText": "select * from grafana.Serge_view006_num_USERS_per_TEAM",
+          "queryTimeout": 60,
+          "refId": "A",
+          "timeCol": "time_col"
+        }
+      ],
+      "title": "T006-num-USERS-per-TEAM",
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "digital-hub-dremio",
+        "uid": "PFFAE26C65C486A4D"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "displayMode": "auto",
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 12,
+        "x": 0,
+        "y": 27
+      },
+      "id": 6,
+      "options": {
+        "footer": {
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true
+      },
+      "pluginVersion": "8.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "digital-hub-dremio",
+            "uid": "PFFAE26C65C486A4D"
+          },
+          "queryText": "select * from grafana.Serge_view003x_num_users2_per_ROLE",
+          "queryTimeout": 60,
+          "refId": "A",
+          "timeCol": "time_col"
+        }
+      ],
+      "title": "T003x_num_users2_per_ROLE",
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "digital-hub-dremio",
+        "uid": "PFFAE26C65C486A4D"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "displayMode": "auto",
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 12,
+        "x": 0,
+        "y": 32
+      },
+      "id": 46,
+      "options": {
+        "footer": {
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true
+      },
+      "pluginVersion": "8.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "digital-hub-dremio",
+            "uid": "PFFAE26C65C486A4D"
+          },
+          "queryText": "select * from grafana.Serge_view015aa_num_PROC_per_SCHEMA",
+          "queryTimeout": 60,
+          "refId": "A",
+          "timeCol": "time_col"
+        }
+      ],
+      "title": "T015aa_num_PROC_per_SCHEMA",
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "digital-hub-dremio",
+        "uid": "PFFAE26C65C486A4D"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "displayMode": "auto",
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 21,
+        "w": 14,
+        "x": 0,
+        "y": 38
+      },
+      "id": 102,
+      "options": {
+        "footer": {
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true
+      },
+      "pluginVersion": "8.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "digital-hub-dremio",
+            "uid": "PFFAE26C65C486A4D"
+          },
+          "queryText": "select * from grafana.\"Serge_view002yy_num_TEAMS_USERS3_per_PROCESS\"",
+          "queryTimeout": 60,
+          "refId": "A",
+          "timeCol": "time_col"
+        }
+      ],
+      "title": "T002yy_num_TEAMS_USERS3_per_PROCESS",
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "digital-hub-dremio",
+        "uid": "PFFAE26C65C486A4D"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "displayMode": "auto",
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 11,
+        "x": 4,
+        "y": 59
+      },
+      "id": 10,
+      "options": {
+        "footer": {
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true
+      },
+      "pluginVersion": "8.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "digital-hub-dremio",
+            "uid": "PFFAE26C65C486A4D"
+          },
+          "queryText": "select * from grafana.Serge_view004_num_USERS_per_PROC_per_ROLE",
+          "queryTimeout": 60,
+          "refId": "A",
+          "timeCol": "time_col"
+        }
+      ],
+      "title": "T004-num-USERS-per-PROCESS-per-ROLE",
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "digital-hub-dremio",
+        "uid": "PFFAE26C65C486A4D"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "displayMode": "auto",
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "process_name"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 268
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "team_type"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 178
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 11,
+        "w": 10,
+        "x": 4,
+        "y": 68
+      },
+      "id": 18,
+      "options": {
+        "footer": {
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true,
+        "sortBy": []
+      },
+      "pluginVersion": "8.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "digital-hub-dremio",
+            "uid": "PFFAE26C65C486A4D"
+          },
+          "queryText": "select * from grafana.\"Serge_view005d_num_ACTIVE_USERS_per_PROC_per_ROLE\"",
+          "queryTimeout": 60,
+          "refId": "A",
+          "timeCol": "time_col"
+        }
+      ],
+      "title": "T005d-num-ACTIVE-USERS-per-PROC-per-ROLE",
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "digital-hub-dremio",
+        "uid": "PFFAE26C65C486A4D"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "displayMode": "auto",
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "process_name"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 269
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 20,
+        "w": 10,
+        "x": 4,
+        "y": 79
+      },
+      "id": 20,
+      "options": {
+        "footer": {
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true,
+        "sortBy": []
+      },
+      "pluginVersion": "8.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "digital-hub-dremio",
+            "uid": "PFFAE26C65C486A4D"
+          },
+          "queryText": "select * from grafana.Serge_view007a_num_ACTIVE_USERS_per_PROC_per_TEAM",
+          "queryTimeout": 60,
+          "refId": "A",
+          "timeCol": "time_col"
+        }
+      ],
+      "title": "T007a-num-ACTIVE-USERS-per-PROC-per-TEAM",
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "digital-hub-dremio",
+        "uid": "PFFAE26C65C486A4D"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "displayMode": "auto",
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 6,
+        "x": 0,
+        "y": 99
+      },
+      "id": 24,
+      "options": {
+        "footer": {
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true
+      },
+      "pluginVersion": "8.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "digital-hub-dremio",
+            "uid": "PFFAE26C65C486A4D"
+          },
+          "queryText": "select * from grafana.Serge_view008a_num_ACTIVE_USERS_per_INTERL_TYPE",
+          "queryTimeout": 60,
+          "refId": "A",
+          "timeCol": "time_col"
+        }
+      ],
+      "title": "T008a_num_ACTIVE_USERS_per_INTERL_TYPE",
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "digital-hub-dremio",
+        "uid": "PFFAE26C65C486A4D"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 13,
+        "x": 6,
+        "y": 99
+      },
+      "id": 26,
+      "options": {
+        "displayMode": "gradient",
+        "minVizHeight": 10,
+        "minVizWidth": 0,
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": true
+        },
+        "showUnfilled": true
+      },
+      "pluginVersion": "8.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "digital-hub-dremio",
+            "uid": "PFFAE26C65C486A4D"
+          },
+          "queryText": "select * from grafana.Serge_view008b_num_ACTIVE_USERS_per_INTERL",
+          "queryTimeout": 60,
+          "refId": "A",
+          "timeCol": "time_col"
+        }
+      ],
+      "title": "T008b_num_ACTIVE_USERS_per_INTERL",
+      "type": "bargauge"
+    },
+    {
+      "datasource": {
+        "type": "digital-hub-dremio",
+        "uid": "PFFAE26C65C486A4D"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "displayMode": "auto",
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 18,
+        "w": 10,
+        "x": 0,
+        "y": 107
+      },
+      "id": 28,
+      "options": {
+        "footer": {
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true
+      },
+      "pluginVersion": "8.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "digital-hub-dremio",
+            "uid": "PFFAE26C65C486A4D"
+          },
+          "queryText": "select * from grafana.Serge_view009a_num_ACTIVE_USERS_per_INTERL_TYPE_per_PROC",
+          "queryTimeout": 60,
+          "refId": "A",
+          "timeCol": "time_col"
+        }
+      ],
+      "title": "T009a_num_ACTIVE_USERS_per_INTERL_TYPE_per_PROC",
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "digital-hub-dremio",
+        "uid": "PFFAE26C65C486A4D"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "displayMode": "auto",
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 18,
+        "w": 10,
+        "x": 10,
+        "y": 107
+      },
+      "id": 30,
+      "options": {
+        "footer": {
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true
+      },
+      "pluginVersion": "8.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "digital-hub-dremio",
+            "uid": "PFFAE26C65C486A4D"
+          },
+          "queryText": "select * from grafana.Serge_view009b_num_ACTIVE_USERS_per_INTERL_per_PROC",
+          "queryTimeout": 60,
+          "refId": "A",
+          "timeCol": "time_col"
+        }
+      ],
+      "title": "T009b_num_ACTIVE_USERS_per_INTERL_per_PROC",
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "digital-hub-dremio",
+        "uid": "PFFAE26C65C486A4D"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "displayMode": "auto",
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 13,
+        "w": 10,
+        "x": 0,
+        "y": 125
+      },
+      "id": 32,
+      "options": {
+        "footer": {
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true
+      },
+      "pluginVersion": "8.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "digital-hub-dremio",
+            "uid": "PFFAE26C65C486A4D"
+          },
+          "queryText": "select * from grafana.\"Serge_view010a_num_USERS_per_INTERL_type_per_ROLE\"",
+          "queryTimeout": 60,
+          "refId": "A",
+          "timeCol": "time_col"
+        }
+      ],
+      "title": "T010a_num_USERS_per_INTERL_type_per_ROLE",
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "digital-hub-dremio",
+        "uid": "PFFAE26C65C486A4D"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "displayMode": "auto",
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 13,
+        "w": 10,
+        "x": 10,
+        "y": 125
+      },
+      "id": 34,
+      "options": {
+        "footer": {
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true
+      },
+      "pluginVersion": "8.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "digital-hub-dremio",
+            "uid": "PFFAE26C65C486A4D"
+          },
+          "queryText": "select * from grafana.Serge_view010b_num_USERS_per_INTERL_per_ROLE",
+          "queryTimeout": 60,
+          "refId": "A",
+          "timeCol": "time_col"
+        }
+      ],
+      "title": "T010b_num_USERS_per_INTERL_per_ROLE",
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "digital-hub-dremio",
+        "uid": "PFFAE26C65C486A4D"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 4,
+        "x": 0,
+        "y": 138
+      },
+      "id": 52,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "sum"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "8.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "digital-hub-dremio",
+            "uid": "PFFAE26C65C486A4D"
+          },
+          "queryText": "select * from grafana.Serge_view022b_num_USED_INTERL_Internal_Knowledge",
+          "queryTimeout": 60,
+          "refId": "A",
+          "timeCol": "time_col"
+        }
+      ],
+      "title": "T022b_num_USED_INTERL_Internal_Knowledge",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "digital-hub-dremio",
+        "uid": "PFFAE26C65C486A4D"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 4,
+        "x": 4,
+        "y": 138
+      },
+      "id": 54,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "sum"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "8.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "digital-hub-dremio",
+            "uid": "PFFAE26C65C486A4D"
+          },
+          "queryText": "select * from grafana.Serge_view022c_num_USED_INTERL_InternalSW",
+          "queryTimeout": 60,
+          "refId": "A",
+          "timeCol": "time_col"
+        }
+      ],
+      "title": "T022c_num_USED_INTERL_InternalSW",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "digital-hub-dremio",
+        "uid": "PFFAE26C65C486A4D"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 4,
+        "x": 8,
+        "y": 138
+      },
+      "id": 56,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "sum"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "8.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "digital-hub-dremio",
+            "uid": "PFFAE26C65C486A4D"
+          },
+          "queryText": "select * from grafana.Serge_view022d_num_USED_INTERL_ExternalSW",
+          "queryTimeout": 60,
+          "refId": "A",
+          "timeCol": "time_col"
+        }
+      ],
+      "title": "T022d_num_USED_INTERL_ExternalSW",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "digital-hub-dremio",
+        "uid": "PFFAE26C65C486A4D"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 6,
+        "x": 0,
+        "y": 144
+      },
+      "id": 58,
+      "options": {
+        "displayMode": "gradient",
+        "minVizHeight": 10,
+        "minVizWidth": 0,
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": true
+        },
+        "showUnfilled": true
+      },
+      "pluginVersion": "8.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "digital-hub-dremio",
+            "uid": "PFFAE26C65C486A4D"
+          },
+          "queryText": "select * from grafana.Serge_view023a_use_frequency_of_INTERL_InternalKnowledge",
+          "queryTimeout": 60,
+          "refId": "A",
+          "timeCol": "time_col"
+        }
+      ],
+      "title": "T023a_use_frequency_of_INTERL_InternalKnowledge",
+      "type": "bargauge"
+    },
+    {
+      "datasource": {
+        "type": "digital-hub-dremio",
+        "uid": "PFFAE26C65C486A4D"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 7,
+        "x": 6,
+        "y": 144
+      },
+      "id": 60,
+      "options": {
+        "displayMode": "gradient",
+        "minVizHeight": 10,
+        "minVizWidth": 0,
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": true
+        },
+        "showUnfilled": true
+      },
+      "pluginVersion": "8.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "digital-hub-dremio",
+            "uid": "PFFAE26C65C486A4D"
+          },
+          "queryText": "select * from grafana.Serge_view023b_use_frequency_of_INTERL_InternalSW",
+          "queryTimeout": 60,
+          "refId": "A",
+          "timeCol": "time_col"
+        }
+      ],
+      "title": "T023b_use_frequency_of_INTERL_InternalSW",
+      "type": "bargauge"
+    },
+    {
+      "datasource": {
+        "type": "digital-hub-dremio",
+        "uid": "PFFAE26C65C486A4D"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "displayMode": "auto",
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 13,
+        "x": 0,
+        "y": 152
+      },
+      "id": 62,
+      "options": {
+        "footer": {
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true
+      },
+      "pluginVersion": "8.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "digital-hub-dremio",
+            "uid": "PFFAE26C65C486A4D"
+          },
+          "queryText": "select * from grafana.Serge_view023c_use_frequency_of_INTERL_ExternalSW",
+          "queryTimeout": 60,
+          "refId": "A",
+          "timeCol": "time_col"
+        }
+      ],
+      "title": "T023c_use_frequency_of_INTERL_ExternalSW",
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "digital-hub-dremio",
+        "uid": "PFFAE26C65C486A4D"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "displayMode": "auto",
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 13,
+        "w": 14,
+        "x": 0,
+        "y": 158
+      },
+      "id": 98,
+      "options": {
+        "footer": {
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true
+      },
+      "pluginVersion": "8.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "digital-hub-dremio",
+            "uid": "PFFAE26C65C486A4D"
+          },
+          "queryText": "select * from grafana.\"Serge_view024x_num_USED_INTERL_per_PROC\"",
+          "queryTimeout": 60,
+          "refId": "A",
+          "timeCol": "time_col"
+        }
+      ],
+      "title": "T024x_num_USED_INTERL_per_PROC",
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "digital-hub-dremio",
+        "uid": "PFFAE26C65C486A4D"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 9,
+        "x": 0,
+        "y": 171
+      },
+      "id": 72,
+      "options": {
+        "displayMode": "gradient",
+        "minVizHeight": 10,
+        "minVizWidth": 0,
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": true
+        },
+        "showUnfilled": true
+      },
+      "pluginVersion": "8.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "digital-hub-dremio",
+            "uid": "PFFAE26C65C486A4D"
+          },
+          "queryText": "select * from grafana.\"Serge_view025_num_USED_INTERL_per_SCHEMA\"",
+          "queryTimeout": 60,
+          "refId": "A",
+          "timeCol": "time_col"
+        }
+      ],
+      "title": "T025_num_USED_INTERL_per_SCHEMA",
+      "type": "bargauge"
+    },
+    {
+      "datasource": {
+        "type": "digital-hub-dremio",
+        "uid": "PFFAE26C65C486A4D"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "displayMode": "auto",
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 11,
+        "w": 12,
+        "x": 0,
+        "y": 177
+      },
+      "id": 74,
+      "options": {
+        "footer": {
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true
+      },
+      "pluginVersion": "8.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "digital-hub-dremio",
+            "uid": "PFFAE26C65C486A4D"
+          },
+          "queryText": "select * from grafana.Serge_view026_num_USED_INTERL_per_SCHEMA_per_PROC",
+          "queryTimeout": 60,
+          "refId": "A",
+          "timeCol": "time_col"
+        }
+      ],
+      "title": "T026_num_USED_INTERL_per_SCHEMA_per_PROC",
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "digital-hub-dremio",
+        "uid": "PFFAE26C65C486A4D"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 4,
+        "x": 0,
+        "y": 188
+      },
+      "id": 78,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "sum"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "8.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "digital-hub-dremio",
+            "uid": "PFFAE26C65C486A4D"
+          },
+          "queryText": "select * from grafana.Serge_view031b_num_ASSETS_for_InterKnow_INTERL",
+          "queryTimeout": 60,
+          "refId": "A",
+          "timeCol": "time_col"
+        }
+      ],
+      "title": "T031b_num_ASSETS_for_InterKnow_INTERL",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "digital-hub-dremio",
+        "uid": "PFFAE26C65C486A4D"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 4,
+        "x": 4,
+        "y": 188
+      },
+      "id": 80,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "sum"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "8.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "digital-hub-dremio",
+            "uid": "PFFAE26C65C486A4D"
+          },
+          "queryText": "select * from grafana.Serge_view031c_num_ASSETS_for_InterSW_INTERL",
+          "queryTimeout": 60,
+          "refId": "A",
+          "timeCol": "time_col"
+        }
+      ],
+      "title": "T031c_num_ASSETS_for_InterSW_INTERL",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "digital-hub-dremio",
+        "uid": "PFFAE26C65C486A4D"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 4,
+        "x": 8,
+        "y": 188
+      },
+      "id": 82,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "sum"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "8.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "digital-hub-dremio",
+            "uid": "PFFAE26C65C486A4D"
+          },
+          "queryText": "select * from grafana.Serge_view031d_num_ASSETS_for_ExterSW_INTERL",
+          "queryTimeout": 60,
+          "refId": "A",
+          "timeCol": "time_col"
+        }
+      ],
+      "title": "T031d_num_ASSETS_for_ExterSW_INTERL",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "digital-hub-dremio",
+        "uid": "PFFAE26C65C486A4D"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "displayMode": "auto",
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 16,
+        "x": 0,
+        "y": 193
+      },
+      "id": 92,
+      "options": {
+        "footer": {
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true
+      },
+      "pluginVersion": "8.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "digital-hub-dremio",
+            "uid": "PFFAE26C65C486A4D"
+          },
+          "queryText": "select * from grafana.Serge_view032x_num_ASSETS_per_PROCESS",
+          "queryTimeout": 60,
+          "refId": "A",
+          "timeCol": "time_col"
+        }
+      ],
+      "title": "T032x_num_ASSETS_per_PROCESS",
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "digital-hub-dremio",
+        "uid": "PFFAE26C65C486A4D"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "displayMode": "auto",
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 11,
+        "w": 13,
+        "x": 0,
+        "y": 203
+      },
+      "id": 104,
+      "options": {
+        "footer": {
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true
+      },
+      "pluginVersion": "8.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "digital-hub-dremio",
+            "uid": "PFFAE26C65C486A4D"
+          },
+          "queryText": "select * from grafana.Serge_view033x_num_ASSETS_per_INTERL",
+          "queryTimeout": 60,
+          "refId": "A",
+          "timeCol": "time_col"
+        }
+      ],
+      "title": "T033x_num_ASSETS_per_INTERL",
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "postgres",
+        "uid": "P0156C528EAB550E4"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "displayMode": "auto",
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 214
+      },
+      "id": 106,
+      "options": {
+        "footer": {
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true
+      },
+      "pluginVersion": "8.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "postgres",
+            "uid": "P0156C528EAB550E4"
+          },
+          "format": "table",
+          "group": [],
+          "metricColumn": "none",
+          "queryTimeout": 60,
+          "rawQuery": true,
+          "rawSql": "select u.full_name, -- a.creator_id as user_id, \n       count(distinct a.id) as num_assets\nfrom asset a\nleft join \"user\" u on u.id = a.creator_id\ngroup by u.full_name\norder by num_assets desc\n",
+          "refId": "A",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "timeCol": "time_col",
+          "timeColumn": "time",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            }
+          ]
+        }
+      ],
+      "title": "_Num_Assets_per_USER_",
+      "type": "table"
+    }
+  ],
+  "refresh": "",
+  "schemaVersion": 36,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "",
+  "title": "User monitoring dremio",
+  "uid": "1plfGok4k2",
+  "version": 22,
+  "weekStart": ""
+}
