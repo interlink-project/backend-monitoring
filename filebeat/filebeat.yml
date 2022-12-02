@@ -4,7 +4,7 @@ filebeat.autodiscover:
       templates:
         - condition:
               contains:
-                docker.container.image: "elastic"
+                docker.container.image: elastic
           config:
             - type: container
               paths:
