@@ -1,16 +1,10 @@
-filebeat.inputs:
-- type: container
-  paths:
-    - '/var/lib/docker/containers/*/*.log'
-
 filebeat.autodiscover:
   providers:
     - type: docker
       templates:
         - condition:
-            and:
-              contains:
-                - docker.container.image: elastic
+              not.contains:
+                - docker.container.image: "elastic"
           config:
             - type: container
               paths:
