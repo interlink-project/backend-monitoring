@@ -2,11 +2,9 @@ filebeat.autodiscover:
   providers:
     - type: docker
       templates:
-        - condition.and:
-              - not.contains:
+        - condition:
+              contains:
                 docker.container.image: "elastic"
-              - not.contains:
-                docker.container.image: "filebeat"
           config:
             - type: container
               paths:
