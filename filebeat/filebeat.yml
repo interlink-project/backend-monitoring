@@ -8,9 +8,10 @@ filebeat.autodiscover:
     - type: docker
       templates:
         - condition:
-            contains:
-              - docker.container.image: "elastic"
-              - docker.container.image: "filebeat"
+            and:
+              contains:
+                - docker.container.image: "elastic"
+                - docker.container.image: "filebeat"
           config:
             - type: container
               paths:
