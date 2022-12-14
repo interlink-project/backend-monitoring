@@ -95,6 +95,17 @@ jobs:
             interlinkproject/backend-monitoring:promtail.${{ github.ref_name }}.${{ steps.date.outputs.date }}
           cache-from: type=registry,ref=interlinkproject/backend-monitoring:promtail-buildcache
           cache-to: type=registry,ref=interlinkproject/backend-monitoring:promtail-buildcache,mode=max
+      - name: Build and push Docker Image Alertmanager
+        id: docker_build_alertmanager
+        uses: docker/build-push-action@v2
+        with:
+          context: ./alertmanager
+          push: true
+          tags: |
+            interlinkproject/backend-monitoring:alertmanager.${{ github.ref_name }}
+            interlinkproject/backend-monitoring:alertmanager.${{ github.ref_name }}.${{ steps.date.outputs.date }}
+          cache-from: type=registry,ref=interlinkproject/backend-monitoring:alertmanager-buildcache
+          cache-to: type=registry,ref=interlinkproject/backend-monitoring:alertmanager-buildcache,mode=max
       - name: Trigger Dev Deployment
         uses: octokit/request-action@v2.x
         id: trigger_dev_deployment

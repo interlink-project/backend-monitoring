@@ -230,24 +230,24 @@ services:
       - traefik-public
 
 
-#  alertmanager:
-#    image: alertmanagerdev
-#    container_name: ${PLATFORM_STACK_NAME}-alertmanager
-#    restart: unless-stopped
-#    build:
-#      context: ./alertmanager/.
-#      dockerfile: Dockerfile
-#    ports:
-#      - "9093:9093"
-#    command:
-#      - '-config.file=/etc/alertmanager/config.yml'
-#      - '-storage.path=/alertmanager'
-#    networks:
-#      - grafana-network
-#    logging:
-#      driver: "json-file"
-#      options:
-#        tag: "{{.ImageName}}|{{.Name}}|{{.ImageFullID}}|{{.FullID}}"
+  alertmanager:
+    image: alertmanagerdev
+    container_name: ${PLATFORM_STACK_NAME}-alertmanager
+    restart: unless-stopped
+    build:
+      context: ./alertmanager/.
+      dockerfile: Dockerfile
+    ports:
+      - "9093:9093"
+    command:
+      - '-config.file=/etc/alertmanager/config.yml'
+      - '-storage.path=/alertmanager'
+    networks:
+      - grafana-network
+    logging:
+      driver: "json-file"
+      options:
+        tag: "{{.ImageName}}|{{.Name}}|{{.ImageFullID}}|{{.FullID}}"
 
 
 volumes:
