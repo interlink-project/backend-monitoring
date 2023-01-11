@@ -32,10 +32,10 @@ datasources:
   access: proxy
   database: 'filebeat'
   basicAuth: true
-  basicAuthUser: $ELASTIC_USERNAME
+  basicAuthUser: $ELASTIC_GRAFANA_USERNAME
   secureJsonData:
-    basicAuthPassword: $ELASTIC_PASSWORD
-  url: $ELASTIC_HOST:$ELASTIC_PORT
+    basicAuthPassword: $ELASTIC_GRAFANA_PASSWORD
+  url: $ELASTIC_GRAFANA_HOST:$ELASTIC_GRAFANA_PORT
   jsonData:
     timeField: '@timestamp'
     logMessageField: message
