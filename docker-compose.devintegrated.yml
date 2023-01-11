@@ -210,7 +210,7 @@ services:
 
   grafanaelasticsearch:
     image: elasticsearch:8.2.2
-    container_name: ${PLATFORM_STACK_NAME}-elasticsearch8
+    container_name: ${PLATFORM_STACK_NAME}-grafana-elasticsearch
     restart: unless-stopped
     environment:
       - xpack.security.enabled=true
