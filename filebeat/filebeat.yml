@@ -15,7 +15,7 @@ processors:
     overwrite_keys: true
 
 output.elasticsearch:
-  hosts: ["grafanaelasticsearch:9200"]
+  hosts: ["grafana-elasticsearch:9200"]
   username: "elastic"
   password: "elastic"
   indices:
