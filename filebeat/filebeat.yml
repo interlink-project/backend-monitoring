@@ -1,17 +1,9 @@
-filebeat.autodiscover:
-  providers:
-    - type: docker
-      templates:
-        - condition:
-              contains:
-                docker.container.image: elastic
-          config:
-            - type: container
-              paths:
-                - /var/lib/docker/containers/${data.docker.container.id}/*.log
-              exclude_lines: [".*"]
-
-
+filebeat.inputs:
+- type: docker
+  containers:
+    ids: "*"
+    path: '/var/lib/docker/containers'
+    stream: "all"
 
 processors:
 - add_docker_metadata:
@@ -23,7 +15,7 @@ processors:
     overwrite_keys: true
 
 output.elasticsearch:
-  hosts: ["newelasticsearch:9200"]
+  hosts: ["grafanaelasticsearch:9200"]
   username: "elastic"
   password: "elastic"
   indices:
