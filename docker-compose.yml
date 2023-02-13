@@ -2,6 +2,95 @@ version: "3.7"
 
 services:
 
+  proxy:
+    image: traefik:v2.6.6
+    container_name: ${PLATFORM_STACK_NAME}-traefik
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+      - "8090:8080"
+    volumes:
+      - ./letsencrypt:/letsencrypt
+      - /var/run/docker.sock:/var/run/docker.sock
+    command:
+      # Enable Docker in Traefik, so that it reads labels from Docker services
+      - --providers.docker=true
+      # Do not expose all Docker services, only the ones explicitly exposed
+      - --providers.docker.exposedbydefault=false
+      - --entrypoints.web.address=:80
+      - --entrypoints.websecure.address=:443
+      # Redirect Http to Https
+      - --entrypoints.web.http.redirections.entryPoint.to=websecure
+      - --entrypoints.web.http.redirections.entryPoint.scheme=https
+      - --entrypoints.web.http.redirections.entrypoint.permanent=true
+      # Enable the access log, with HTTP requests
+      - --accesslog
+      # Enable the Traefik log, for configurations and errors
+      - --log
+      # Enable the Dashboard and API
+      - --api
+      # Enable the Dashboard and API in insecure mode for local development
+      - --api.insecure=true
+      # - --certificatesresolvers.letsencrypt.acme.tlschallenge=true
+      - --certificatesresolvers.letsencrypt.acme.email=apps@interlink-project.eu
+      - --certificatesresolvers.letsencrypt.acme.storage=/letsencrypt/acme.json
+
+      # httpchallenge
+      - --certificatesresolvers.letsencrypt.acme.httpchallenge.entrypoint=web
+      - --certificatesresolvers.letsencrypt.acme.httpchallenge=true
+
+      # staging
+      # - --certificatesResolvers.letsencrypt.acme.caServer=https://acme-staging-v02.api.letsencrypt.org/directory
+
+    labels:
+      - traefik.http.routers.http-catchall.rule=hostregexp(`{host:.+}`)
+      - traefik.http.routers.http-catchall.entrypoints=web
+      - traefik.http.routers.http-catchall.middlewares=redirect-to-https
+      - traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https
+
+      # - traefik.http.middlewares.iframeHeaders.headers.customresponseheaders.Content-Security-Policy=frame-ancestors 'self' ${DOMAIN} *.${MAIN_DOMAIN}
+      # - traefik.http.middlewares.iframeHeaders.headers.customresponseheaders.X-Frame-Options=ALLOW-FROM https://${MAIN_DOMAIN}
+      # - traefik.http.middlewares.iframeHeaders.headers.customresponseheaders.Access-Control-Allow-Origin=*
+      # - traefik.http.middlewares.iframeHeaders.headers.customresponseheaders.Access-Control-Allow-Methods=DELETE, POST, PUT, GET, OPTIONS
+      # - traefik.http.middlewares.iframeHeaders.headers.customresponseheaders.Access-Control-Allow-Headers=Content-Type, Authorization, X-Requested-With
+    networks:
+      - traefik-public
+
+    logging:
+      driver: "json-file"
+      options:
+        tag: "{{.ImageName}}|{{.Name}}|{{.ImageFullID}}|{{.FullID}}"
+
+  portainer:
+    image: portainer/portainer-ce:2.11.1-alpine
+    container_name: ${PLATFORM_STACK_NAME}-portainer
+    restart: unless-stopped
+    ports:
+      - "9000:9000"
+    security_opt:
+      - no-new-privileges:true
+    networks:
+      - traefik-public
+    environment:
+      - TZ=${TZ}
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - portainer-data:/data
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=traefik-public
+      - traefik.http.routers.${PLATFORM_STACK_NAME}-portainer.entrypoints=websecure
+      - traefik.http.routers.${PLATFORM_STACK_NAME}-portainer.tls.certresolver=letsencrypt
+      - traefik.http.routers.${PLATFORM_STACK_NAME}-portainer.tls=true
+      - traefik.http.routers.${PLATFORM_STACK_NAME}-portainer.rule=Host(`portainer.${DOMAIN}`)
+      - traefik.http.services.${PLATFORM_STACK_NAME}-portainer.loadbalancer.server.port=9000
+    logging:
+      driver: "json-file"
+      options:
+        tag: "{{.ImageName}}|{{.Name}}|{{.ImageFullID}}|{{.FullID}}"
+
   grafana:
     image: grafanadev
     container_name: ${PLATFORM_STACK_NAME}-grafana
@@ -15,43 +104,15 @@ services:
       # Grafana
       GF_SECURITY_ADMIN_USER: ${GRAFANA_USERNAME}
       GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_PASSWORD}
-
-      # Postgres
-      POSTGRES_HOST: ${POSTGRES_HOST}
-      POSTGRES_PORT: ${POSTGRES_PORT}
-      POSTGRES_USERNAME: ${POSTGRES_USERNAME}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-
-      # Elasticsearch
-      ELASTIC_HOST: ${ELASTIC_HOST}
-      ELASTIC_PORT: ${ELASTIC_PORT}
-      ELASTIC_USERNAME: ${ELASTIC_USERNAME}
-      ELASTIC_PASSWORD: ${ELASTIC_PASSWORD}
-
-      # MySQL
-      MYSQL_HOST_MONITORING: ${MYSQL_HOST_MONITORING}
-      MYSQL_PORT_MONITORING: ${MYSQL_PORT_MONITORING}
-      MYSQL_USERNAME_MONITORING: ${MYSQL_USERNAME_MONITORING}
-      MYSQL_PASSWORD_MONITORING: ${MYSQL_PASSWORD_MONITORING}
-      MYSQL_DATABASE_MONITORING: ${MYSQL_DATABASE_MONITORING}
-      MYSQL_ROOT_PASSWORD_MONITORING: ${MYSQL_ROOT_PASSWORD_MONITORING}
-
-      # Dremio
-      DREMIO_HOST: ${DREMIO_HOST}
-      DREMIO_PORT: ${DREMIO_PORT}
-      DREMIO_USERNAME: ${DREMIO_USERNAME}
-      DREMIO_PASSWORD: ${DREMIO_PASSWORD}
-
     links:
       - prometheus:prometheus
-      - loki:loki
     volumes:
       - grafana-dashboards:/var/lib/grafana
       - grafana-data:/etc/grafana/
     labels:
       - traefik.enable=true
       - traefik.docker.network=traefik-public
-      - traefik.http.routers.${PLATFORM_STACK_NAME}-grafana.rule=Host(`${DOMAIN}`)  && PathPrefix(`/monitoring`)
+      - traefik.http.routers.${PLATFORM_STACK_NAME}-grafana.rule=Host(`${DOMAIN}`) && PathPrefix(`/monitoring`)
       - traefik.http.routers.${PLATFORM_STACK_NAME}-grafana.service=${PLATFORM_STACK_NAME}-grafana
       - traefik.http.services.${PLATFORM_STACK_NAME}-grafana.loadbalancer.server.port=3000
       - traefik.http.routers.${PLATFORM_STACK_NAME}-grafana.entrypoints=websecure
@@ -82,8 +143,6 @@ services:
       MYSQL_DATABASE: ${MYSQL_DATABASE}
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-    links:
-      - loki:loki
     networks:
       - grafana-network
       - traefik-public
@@ -172,8 +231,6 @@ services:
     environment:
       - GF_SECURITY_ADMIN_USER=admin
       - GF_SECURITY_ADMIN_PASSWORD=admin
-    links:
-      - loki:loki
     networks:
       - grafana-network
     logging:
@@ -241,7 +298,10 @@ volumes:
   grafana-data:
   mysql-data:
   prometheus-data:
-#  alertmanager-data:
+  grafanaelasticsearchelasticsearch-data:
+  grafanaelasticsearchelasticsearch-config:
+
+  portainer-data:
 
 
 networks:
