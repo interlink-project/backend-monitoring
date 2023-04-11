@@ -12,9 +12,9 @@ json.add_error_key: true
 json.message_key: message
 
 output.elasticsearch:
-  hosts: ["grafana-elasticsearch:9200"]
-  username: $ELASTIC_GRAFANA_USERNAME
-  password: $ELASTIC_GRAFANA_PASSWORD
+  hosts: ["${ELASTIC_GRAFANA_HOST}:${ELASTIC_GRAFANA_PORT}"]
+  username: ${ELASTIC_GRAFANA_USERNAME}
+  password: ${ELASTIC_GRAFANA_PASSWORD}
   indices:
     - index: "filebeat-%{+yyyy.MM.dd}"
 
