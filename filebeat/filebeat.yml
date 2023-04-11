@@ -13,8 +13,8 @@ json.message_key: message
 
 output.elasticsearch:
   hosts: ["${ELASTIC_GRAFANA_HOST}:${ELASTIC_GRAFANA_PORT}"]
-  username: ${ELASTIC_GRAFANA_USERNAME}
-  password: ${ELASTIC_GRAFANA_PASSWORD}
+  username: "${ELASTIC_GRAFANA_USERNAME}"
+  password: "${ELASTIC_GRAFANA_PASSWORD}"
   indices:
     - index: "filebeat-%{+yyyy.MM.dd}"
 
