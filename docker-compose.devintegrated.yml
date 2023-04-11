@@ -44,7 +44,6 @@ services:
 
     links:
       - prometheus:prometheus
-      - loki:loki
     volumes:
       - grafana-dashboards:/var/lib/grafana
       - grafana-data:/etc/grafana/
@@ -82,8 +81,6 @@ services:
       MYSQL_DATABASE: ${MYSQL_DATABASE}
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-    links:
-      - loki:loki
     networks:
       - grafana-network
       - traefik-public
@@ -172,8 +169,6 @@ services:
     environment:
       - GF_SECURITY_ADMIN_USER=admin
       - GF_SECURITY_ADMIN_PASSWORD=admin
-    links:
-      - loki:loki
     networks:
       - grafana-network
     logging:
@@ -193,6 +188,9 @@ services:
         source: /datadrive/docker/containers
         target: /var/lib/docker/containers
         read_only: true
+      - type: volume
+        source: filebeat-data
+        target: /usr/share/filebeat/data
       - type: bind
         source: /var/run/docker.sock
         target: /var/run/docker.sock
@@ -241,6 +239,7 @@ volumes:
   grafana-data:
   mysql-data:
   prometheus-data:
+  filebeat-data:
 #  alertmanager-data:
 
 
