@@ -12,7 +12,7 @@ json.add_error_key: true
 json.message_key: message
 
 output.elasticsearch:
-  hosts: ["${ELASTIC_GRAFANA_HOST}:${ELASTIC_GRAFANA_PORT}"]
+  hosts: ["grafana-elasticsearch:9200"]
   username: "elastic"
   password: "elastic"
   indices:
