@@ -13,10 +13,10 @@ json.message_key: message
 
 output.elasticsearch:
   hosts: ["grafana-elasticsearch:9200"]
-  username: "elastic"
-  password: "elastic"
+  username: $ELASTIC_GRAFANA_USERNAME
+  password: $ELASTIC_GRAFANA_PASSWORD
   indices:
-    - index: "filebeat"
+    - index: "filebeat-%{+yyyy.MM.dd}"
 
 logging.json: true
 logging.metrics.enabled: false

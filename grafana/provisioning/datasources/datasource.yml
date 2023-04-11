@@ -30,7 +30,7 @@ datasources:
 - name: Elasticsearch-filebeat
   type: elasticsearch
   access: proxy
-  database: 'filebeat'
+  database: 'filebeat*'
   basicAuth: true
   basicAuthUser: $ELASTIC_GRAFANA_USERNAME
   secureJsonData:
