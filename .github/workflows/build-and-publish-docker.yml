@@ -62,17 +62,6 @@ jobs:
             interlinkproject/backend-monitoring:filebeat.${{ github.ref_name }}.${{ steps.date.outputs.date }}
           cache-from: type=registry,ref=interlinkproject/backend-monitoring:filebeat-buildcache
           cache-to: type=registry,ref=interlinkproject/backend-monitoring:filebeat-buildcache,mode=max
-      - name: Build and push Docker Image Loki
-        id: docker_build_loki
-        uses: docker/build-push-action@v2
-        with:
-          context: ./loki
-          push: true
-          tags: |
-            interlinkproject/backend-monitoring:loki.${{ github.ref_name }}
-            interlinkproject/backend-monitoring:loki.${{ github.ref_name }}.${{ steps.date.outputs.date }}
-          cache-from: type=registry,ref=interlinkproject/backend-monitoring:loki-buildcache
-          cache-to: type=registry,ref=interlinkproject/backend-monitoring:loki-buildcache,mode=max
       - name: Build and push Docker Image Prometheus
         id: docker_build_prometheus
         uses: docker/build-push-action@v2
@@ -84,17 +73,6 @@ jobs:
             interlinkproject/backend-monitoring:prometheus.${{ github.ref_name }}.${{ steps.date.outputs.date }}
           cache-from: type=registry,ref=interlinkproject/backend-monitoring:prometheus-buildcache
           cache-to: type=registry,ref=interlinkproject/backend-monitoring:prometheus-buildcache,mode=max
-      - name: Build and push Docker Image Promtail
-        id: docker_build_promtail
-        uses: docker/build-push-action@v2
-        with:
-          context: ./promtail
-          push: true
-          tags: |
-            interlinkproject/backend-monitoring:promtail.${{ github.ref_name }}
-            interlinkproject/backend-monitoring:promtail.${{ github.ref_name }}.${{ steps.date.outputs.date }}
-          cache-from: type=registry,ref=interlinkproject/backend-monitoring:promtail-buildcache
-          cache-to: type=registry,ref=interlinkproject/backend-monitoring:promtail-buildcache,mode=max
       - name: Trigger Dev Deployment
         uses: octokit/request-action@v2.x
         id: trigger_dev_deployment
