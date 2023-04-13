@@ -9,41 +9,10 @@ services:
     build:
       context: ./grafana/
       dockerfile: Dockerfile
+    env_file:
+      .env
     ports:
       - "3000:3000"
-    environment:
-      # Grafana
-      GF_SECURITY_ADMIN_USER: ${GRAFANA_USERNAME}
-      GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_PASSWORD}
-
-      # Postgres
-      POSTGRES_HOST: ${POSTGRES_HOST}
-      POSTGRES_PORT: ${POSTGRES_PORT}
-      POSTGRES_USERNAME: ${POSTGRES_USERNAME}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-
-      # Elasticsearch
-      ELASTIC_HOST: ${ELASTIC_HOST}
-      ELASTIC_PORT: ${ELASTIC_PORT}
-      ELASTIC_USERNAME: ${ELASTIC_USERNAME}
-      ELASTIC_PASSWORD: ${ELASTIC_PASSWORD}
-
-      # MySQL
-      MYSQL_HOST_MONITORING: ${MYSQL_HOST_MONITORING}
-      MYSQL_PORT_MONITORING: ${MYSQL_PORT_MONITORING}
-      MYSQL_USERNAME_MONITORING: ${MYSQL_USERNAME_MONITORING}
-      MYSQL_PASSWORD_MONITORING: ${MYSQL_PASSWORD_MONITORING}
-      MYSQL_DATABASE_MONITORING: ${MYSQL_DATABASE_MONITORING}
-      MYSQL_ROOT_PASSWORD_MONITORING: ${MYSQL_ROOT_PASSWORD_MONITORING}
-
-      # Dremio
-      DREMIO_HOST: ${DREMIO_HOST}
-      DREMIO_PORT: ${DREMIO_PORT}
-      DREMIO_USERNAME: ${DREMIO_USERNAME}
-      DREMIO_PASSWORD: ${DREMIO_PASSWORD}
-
-    links:
-      - prometheus:prometheus
     volumes:
       - grafana-dashboards:/var/lib/grafana
       - grafana-data:/etc/grafana/
@@ -102,9 +71,6 @@ services:
       - 9090
     ports:
       - "9090:9090"
-    links:
-      - cadvisor:cadvisor
-      - node-exporter:node-exporter
     networks:
       - grafana-network
     logging:
@@ -154,28 +120,6 @@ services:
       options:
         tag: "{{.ImageName}}|{{.Name}}|{{.ImageFullID}}|{{.FullID}}"
 
-  promtail:
-    image: promtaildev
-    container_name: ${PLATFORM_STACK_NAME}-promtail
-    build:
-      context: ./promtail/.
-      dockerfile: Dockerfile
-    restart: unless-stopped
-    command: -config.file=/etc/promtail/config.yml
-    volumes:
-      - /var/log:/var/log
-      - /var/lib/docker/containers/:/var/lib/docker/containers/:ro
-      - /datadrive/docker/containers/:/datadrive/docker/containers/:ro
-    environment:
-      - GF_SECURITY_ADMIN_USER=admin
-      - GF_SECURITY_ADMIN_PASSWORD=admin
-    networks:
-      - grafana-network
-    logging:
-      driver: "json-file"
-      options:
-        tag: "{{.ImageName}}|{{.Name}}|{{.ImageFullID}}|{{.FullID}}"
-
   filebeat:
     image: filebeatdev
     container_name: ${PLATFORM_STACK_NAME}-filebeat
@@ -183,6 +127,8 @@ services:
       context: ./filebeat/.
       dockerfile: Dockerfile
     user: root
+    env_file:
+      .env
     volumes:
       - type: bind
         source: /datadrive/docker/containers
@@ -210,6 +156,8 @@ services:
     image: elasticsearch:8.2.2
     container_name: ${PLATFORM_STACK_NAME}-grafana-elasticsearch
     restart: unless-stopped
+    env_file:
+      .env
     environment:
       - xpack.security.enabled=true
       - discovery.type=single-node
@@ -238,7 +186,8 @@ volumes:
   mysql-data:
   prometheus-data:
   filebeat-data:
-#  alertmanager-data:
+  grafanaelasticsearchelasticsearch-data:
+  grafanaelasticsearchelasticsearch-config:
 
 
 networks:
