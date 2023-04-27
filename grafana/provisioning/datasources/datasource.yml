@@ -40,7 +40,7 @@ datasources:
     timeField: '@timestamp'
     logMessageField: message
     logLevelField: stream
-    esVersion: '8.0.0'
+    esVersion: '6.0.0'
 
 - name: Coproduction
   type: postgres
