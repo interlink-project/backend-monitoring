@@ -16,7 +16,7 @@ output.elasticsearch:
   username: "${ELASTIC_USERNAME}"
   password: "${ELASTIC_PASSWORD}"
   indices:
-    - index: "filebeat-%{+yyyy.MM.dd}"
+    - index: "filebeat-%{+yyyy.MM}"
 
 logging.json: true
 logging.metrics.enabled: false

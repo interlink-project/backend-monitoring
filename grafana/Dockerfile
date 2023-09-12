@@ -30,5 +30,10 @@ ENV DREMIO_PORT=9047
 ENV DREMIO_USERNAME=admin
 ENV DREMIO_PASSWORD=admin
 
+
+#SMTP
+GF_SMTP_USER="""USER"""
+GF_SMTP_PASSWORD="""PASSWORD"""
+
 RUN chown grafana /etc/grafana/provisioning
 RUN chown grafana /var/lib/grafana/plugins

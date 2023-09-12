@@ -7,13 +7,6 @@ datasources:
   access: proxy
   editable: true
 
-- name: Loki
-  type: loki
-  url: http://loki:3100
-  isDefault: false
-  access: proxy
-  editable: true
-
 - name: Elasticsearch-logging
   type: elasticsearch
   access: proxy
@@ -22,7 +15,7 @@ datasources:
   basicAuthUser: $ELASTIC_GRAFANA_USERNAME
   secureJsonData:
     basicAuthPassword: $ELASTIC_GRAFANA_PASSWORD
-  url: $ELASTIC_GRAFANA_HOST:$ELASTIC_GRAFANA_PORT
+  url: http://$ELASTIC_GRAFANA_HOST:$ELASTIC_GRAFANA_PORT
   jsonData:
     timeField: 'timestamp'
     esVersion: '8.0.0'
@@ -35,7 +28,7 @@ datasources:
   basicAuthUser: $ELASTIC_GRAFANA_USERNAME
   secureJsonData:
     basicAuthPassword: $ELASTIC_GRAFANA_PASSWORD
-  url: $ELASTIC_GRAFANA_HOST:$ELASTIC_GRAFANA_PORT
+  url: http://$ELASTIC_GRAFANA_HOST:$ELASTIC_GRAFANA_PORT
   jsonData:
     timeField: '@timestamp'
     logMessageField: message
