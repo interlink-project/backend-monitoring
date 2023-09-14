@@ -32,8 +32,11 @@ ENV DREMIO_PASSWORD=admin
 
 
 #SMTP
-ENV GF_SMTP_USER=user
-ENV GF_SMTP_PASSWORD=changeme
+ENV GF_SMTP_HOST=localhost:587
+ENV GF_SMTP_USER=1@1.com
+ENV GF_SMTP_PASSWORD="""password"""
+ENV GF_SMTP_FROM_ADDRESS=1@1.com
+ENV GF_SMTP_FROM_NAME=1@1.com
 
 RUN chown grafana /etc/grafana/provisioning
 RUN chown grafana /var/lib/grafana/plugins
