@@ -1,4 +1,4 @@
-FROM grafana/grafana:9.3.8
+FROM grafana/grafana:9.5.9
 COPY grafana.ini /etc/grafana/grafana.ini
 COPY provisioning /etc/grafana/provisioning
 COPY dashboards /var/lib/grafana/dashboards
