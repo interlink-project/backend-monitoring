@@ -73,6 +73,17 @@ jobs:
             interlinkproject/backend-monitoring:prometheus.${{ github.ref_name }}.${{ steps.date.outputs.date }}
           cache-from: type=registry,ref=interlinkproject/backend-monitoring:prometheus-buildcache
           cache-to: type=registry,ref=interlinkproject/backend-monitoring:prometheus-buildcache,mode=max
+      - name: Build and push Docker Image Elastic Curator
+        id: docker_build_prometheus
+        uses: docker/build-push-action@v2
+        with:
+          context: ./curator
+          push: true
+          tags: |
+            interlinkproject/backend-monitoring:curator.${{ github.ref_name }}
+            interlinkproject/backend-monitoring:curator.${{ github.ref_name }}.${{ steps.date.outputs.date }}
+          cache-from: type=registry,ref=interlinkproject/backend-monitoring:curator-buildcache
+          cache-to: type=registry,ref=interlinkproject/backend-monitoring:curator-buildcache,mode=max
       - name: Trigger Dev Deployment
         uses: octokit/request-action@v2.x
         id: trigger_dev_deployment

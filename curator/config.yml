@@ -1,0 +1,29 @@
+elasticsearch:
+  client:
+    hosts: http://${ELASTIC_HOST}:${ELASTIC_PORT}
+    cloud_id:
+    bearer_auth:
+    opaque_id:
+    request_timeout: 60
+    http_compress:
+    verify_certs:
+    ca_certs:
+    client_cert:
+    client_key:
+    ssl_assert_hostname:
+    ssl_assert_fingerprint:
+    ssl_version:
+  other_settings:
+    master_only:
+    skip_version_test:
+    username: ${ELASTIC_USERNAME}
+    password: ${ELASTIC_PASSWORD}
+    api_key:
+      id:
+      api_key:
+
+logging:
+  loglevel: INFO
+  logfile: /path/to/file.log
+  logformat: default
+  blacklist: []
