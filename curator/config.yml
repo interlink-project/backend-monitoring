@@ -24,6 +24,6 @@ elasticsearch:
 
 logging:
   loglevel: INFO
-  logfile: /path/to/file.log
+  logfile: /logs.log
   logformat: default
   blacklist: []
