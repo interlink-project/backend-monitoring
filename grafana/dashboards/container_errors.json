@@ -24,7 +24,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 14,
+  "id": 9,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -67,7 +67,7 @@
       },
       "datasource": {
         "type": "elasticsearch",
-        "uid": "X5gPkw0Vk"
+        "uid": "PD0696662DFA96978"
       },
       "fieldConfig": {
         "defaults": {
@@ -75,6 +75,8 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
@@ -99,7 +101,7 @@
               "mode": "none"
             },
             "thresholdsStyle": {
-              "mode": "off"
+              "mode": "line"
             }
           },
           "mappings": [],
@@ -112,7 +114,7 @@
               },
               {
                 "color": "red",
-                "value": 80
+                "value": 200
               }
             ]
           }
@@ -130,7 +132,8 @@
         "legend": {
           "calcs": [],
           "displayMode": "list",
-          "placement": "bottom"
+          "placement": "bottom",
+          "showLegend": true
         },
         "tooltip": {
           "mode": "single",
@@ -143,7 +146,7 @@
           "alias": "",
           "bucketAggs": [
             {
-              "field": "container.image.name.keyword",
+              "field": "container.name.keyword",
               "id": "2",
               "settings": {
                 "min_doc_count": "1",
@@ -157,8 +160,8 @@
               "field": "@timestamp",
               "id": "3",
               "settings": {
-                "interval": "auto",
-                "min_doc_count": "0",
+                "interval": "1d",
+                "min_doc_count": "1",
                 "timeZone": "utc",
                 "trimEdges": "0"
               },
@@ -167,7 +170,7 @@
           ],
           "datasource": {
             "type": "elasticsearch",
-            "uid": "X5gPkw0Vk"
+            "uid": "PD0696662DFA96978"
           },
           "metrics": [
             {
@@ -175,7 +178,7 @@
               "type": "count"
             }
           ],
-          "query": "level=stderr",
+          "query": "stream:stderr",
           "refId": "A",
           "timeField": "@timestamp"
         }
@@ -194,7 +197,7 @@
     {
       "datasource": {
         "type": "elasticsearch",
-        "uid": "X5gPkw0Vk"
+        "uid": "PD0696662DFA96978"
       },
       "fieldConfig": {
         "defaults": {
@@ -233,7 +236,8 @@
         "colWidth": 0.9,
         "legend": {
           "displayMode": "list",
-          "placement": "bottom"
+          "placement": "bottom",
+          "showLegend": true
         },
         "rowHeight": 0.9,
         "showValue": "auto",
@@ -248,7 +252,7 @@
           "alias": "",
           "bucketAggs": [
             {
-              "field": "container.image.name.keyword",
+              "field": "container.name.keyword",
               "id": "4",
               "settings": {
                 "min_doc_count": "1",
@@ -272,7 +276,7 @@
           ],
           "datasource": {
             "type": "elasticsearch",
-            "uid": "X5gPkw0Vk"
+            "uid": "PD0696662DFA96978"
           },
           "metrics": [
             {
@@ -280,7 +284,7 @@
               "type": "count"
             }
           ],
-          "query": "level=stderr",
+          "query": "stream:stderr",
           "refId": "A",
           "timeField": "@timestamp"
         }
@@ -291,7 +295,7 @@
     {
       "datasource": {
         "type": "elasticsearch",
-        "uid": "X5gPkw0Vk"
+        "uid": "PD0696662DFA96978"
       },
       "fieldConfig": {
         "defaults": {
@@ -332,15 +336,16 @@
           "fields": "",
           "values": true
         },
-        "showUnfilled": true
+        "showUnfilled": true,
+        "valueMode": "color"
       },
-      "pluginVersion": "8.5.1",
+      "pluginVersion": "9.5.9",
       "targets": [
         {
           "alias": "",
           "bucketAggs": [
             {
-              "field": "container.image.name.keyword",
+              "field": "container.name.keyword",
               "id": "2",
               "settings": {
                 "min_doc_count": "1",
@@ -353,7 +358,7 @@
           ],
           "datasource": {
             "type": "elasticsearch",
-            "uid": "X5gPkw0Vk"
+            "uid": "PD0696662DFA96978"
           },
           "metrics": [
             {
@@ -361,18 +366,18 @@
               "type": "count"
             }
           ],
-          "query": "level=stderr",
+          "query": "stream:stderr",
           "refId": "A",
           "timeField": "@timestamp"
         }
       ],
-      "title": "Container errors",
+      "title": "Total Container Errors",
       "type": "bargauge"
     },
     {
       "datasource": {
         "type": "elasticsearch",
-        "uid": "X5gPkw0Vk"
+        "uid": "PD0696662DFA96978"
       },
       "fieldConfig": {
         "defaults": {
@@ -404,6 +409,7 @@
         "legend": {
           "displayMode": "list",
           "placement": "right",
+          "showLegend": true,
           "values": []
         },
         "pieType": "pie",
@@ -425,7 +431,7 @@
           "alias": "",
           "bucketAggs": [
             {
-              "field": "container.image.name.keyword",
+              "field": "container.name.keyword",
               "id": "4",
               "settings": {
                 "min_doc_count": "1",
@@ -438,7 +444,7 @@
           ],
           "datasource": {
             "type": "elasticsearch",
-            "uid": "X5gPkw0Vk"
+            "uid": "PD0696662DFA96978"
           },
           "metrics": [
             {
@@ -446,7 +452,7 @@
               "type": "count"
             }
           ],
-          "query": "level=stderr",
+          "query": "stream:stderr",
           "refId": "A",
           "timeField": "@timestamp"
         }
@@ -457,7 +463,7 @@
     {
       "datasource": {
         "type": "elasticsearch",
-        "uid": "X5gPkw0Vk"
+        "uid": "PD0696662DFA96978"
       },
       "gridPos": {
         "h": 30,
@@ -491,7 +497,7 @@
           ],
           "datasource": {
             "type": "elasticsearch",
-            "uid": "X5gPkw0Vk"
+            "uid": "PD0696662DFA96978"
           },
           "metrics": [
             {
@@ -499,21 +505,155 @@
               "type": "logs"
             }
           ],
-          "query": "level=stderr",
+          "query": "stream:stderr",
           "refId": "A",
           "timeField": "@timestamp"
         }
       ],
-      "title": "Panel Title",
+      "title": "Logs",
       "type": "logs"
+    },
+    {
+      "datasource": {
+        "type": "elasticsearch",
+        "uid": "PD0696662DFA96978"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 0,
+        "y": 48
+      },
+      "id": 8,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "8.5.1",
+      "targets": [
+        {
+          "alias": "",
+          "bucketAggs": [
+            {
+              "field": "container.image.name.keyword",
+              "id": "2",
+              "settings": {
+                "min_doc_count": "1",
+                "order": "desc",
+                "orderBy": "1",
+                "size": "0"
+              },
+              "type": "terms"
+            },
+            {
+              "field": "@timestamp",
+              "id": "3",
+              "settings": {
+                "interval": "auto",
+                "min_doc_count": "0",
+                "timeZone": "utc",
+                "trimEdges": "0"
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "datasource": {
+            "type": "elasticsearch",
+            "uid": "PD0696662DFA96978"
+          },
+          "metrics": [
+            {
+              "id": "1",
+              "type": "count"
+            }
+          ],
+          "query": "level=stderr and container.image.name.keyword=\"mariadb\"",
+          "refId": "A",
+          "timeField": "@timestamp"
+        }
+      ],
+      "title": "Container errors",
+      "type": "timeseries"
     }
   ],
   "refresh": "",
-  "schemaVersion": 36,
+  "schemaVersion": 38,
   "style": "dark",
   "tags": [],
   "templating": {
-    "list": []
+    "list": [
+      {
+        "datasource": {
+          "type": "elasticsearch",
+          "uid": "PD0696662DFA96978"
+        },
+        "filters": [],
+        "hide": 0,
+        "label": "Container",
+        "name": "Container",
+        "skipUrlSync": false,
+        "type": "adhoc"
+      }
+    ]
   },
   "time": {
     "from": "now-7d",
