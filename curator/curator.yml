@@ -1,6 +1,6 @@
 elasticsearch:
   client:
-    hosts: ["${ELASTIC_HOST}:${ELASTIC_PORT}"]
+    hosts: ["http://${ELASTIC_HOST}:${ELASTIC_PORT}"]
     cloud_id:
     bearer_auth:
     opaque_id:
