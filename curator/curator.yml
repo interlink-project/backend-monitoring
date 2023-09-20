@@ -1,6 +1,6 @@
 elasticsearch:
   client:
-    hosts: ["http://${ELASTIC_HOST}:${ELASTIC_PORT}"]
+    hosts: ${ELASTIC_HOST}
     cloud_id:
     bearer_auth:
     opaque_id:
@@ -16,8 +16,8 @@ elasticsearch:
   other_settings:
     master_only:
     skip_version_test:
-    username: "${ELASTIC_USERNAME}"
-    password: "${ELASTIC_PASSWORD}"
+    username: ${ELASTIC_USERNAME}
+    password: ${ELASTIC_PASSWORD}
     api_key:
       id:
       api_key:
