@@ -160,7 +160,7 @@
               "field": "@timestamp",
               "id": "3",
               "settings": {
-                "interval": "1d",
+                "interval": "10m",
                 "min_doc_count": "1",
                 "timeZone": "utc",
                 "trimEdges": "0"
@@ -191,7 +191,7 @@
           "visible": true
         }
       ],
-      "title": "Container errors",
+      "title": "Container errors last 10m",
       "type": "timeseries"
     },
     {
